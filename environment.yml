@@ -16,4 +16,5 @@ dependencies:
   - jinja2
   - joblib
   - pip
-
+  - ipykernel
+  - nb_conda_kernels
