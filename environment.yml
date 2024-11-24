@@ -2,14 +2,19 @@ name: heart_failure_analysis_project
 channels:
   - conda-forge
 dependencies:
-  - python=3.11.9  
-  - pandas=2.2.2
-  - numpy=2.0.0
-  - matplotlib=3.9.2
-  - altair=5.4.1
-  - scikit-learn=1.5.2
-  - pip=24.0
-  - pip:
-      - altair-ally==0.1.1
-      - vega-datasets==0.9.0
-      - vegafusion==1.6.9
+  - python=3.9
+  - pandas
+  - numpy
+  - matplotlib
+  - seaborn
+  - altair
+  - vega_datasets
+  - scikit-learn
+  - imbalanced-learn
+  - scipy
+  - pillow
+  - jinja2
+  - joblib
+  - pip
+  - ipykernel
+  - nb_conda_kernels
