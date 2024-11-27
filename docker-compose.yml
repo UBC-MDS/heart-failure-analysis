@@ -1,0 +1,13 @@
+services:  # Define services (containers)
+  # Service to run Jupyter Notebook
+  jupyter-notebook:
+    image: ttimbers/breast-cancer-predictor:e8eb36e  # Use the specified image, pre-installed with dependencies for breast cancer prediction
+    ports:
+      - "8888:8888"  # Map port 8888 on the host to port 8888 in the container, used for Jupyter Notebook
+    volumes:
+      - .:/home/jovyan  # Mount the current directory to /home/jovyan in the container for file sharing
+    deploy:
+      resources:  # Set resource limitations for the container
+        limits:
+          memory: 5G  # Limit the container to use a maximum of 5GB memory
+    platform: linux/amd64  # Specify the target platform as 64-bit Linux
