@@ -13,10 +13,10 @@
 version: 1
 metadata:
   content_hash:
-    linux-64: 8c549fab0babcb00b5c61d10b0160a5ac3b3581e977e06b9ccadecb381bd4c93
-    osx-64: 3af8aacd03e6559c6b004ddc5308333188b94ceebe46b9949e3f32a5dc88603f
-    win-64: ad3778aa29d1f123d98c6c8229b7736c886b3edb8a905ed5a279a4ce033f5775
-    osx-arm64: b1994049ab9cbe408536ec584c75be23da926db5c8f70e2c80effff67f0fcd84
+    linux-64: 10d8a1d40f040a52ccb2728c947abcb6d10f3b77c4df4b8e0e2bc3d1ce17f509
+    osx-64: f8cdffdb9b1d9441b55b2c4108ddda93b2cb40c036bc5b89d565b51c25111203
+    win-64: d9eb688c1143bef5672389c2ad2edf143206d2e8597878e3251ded1909fc4e9d
+    osx-arm64: 852b551447a09016fcd4206409b9a9469256429f94c027865ab6f55100a5e3a1
   channels:
   - url: conda-forge
     used_env_vars: []
@@ -8722,43 +8722,43 @@ package:
   category: main
   optional: false
 - name: multimethod
-  version: '1.12'
+  version: '1.10'
   manager: pip
   platform: linux-64
   dependencies: {}
-  url: https://files.pythonhosted.org/packages/af/98/cff14d53a2f2f67d7fe8a4e235a383ee71aba6a1da12aeea24b325d0c72a/multimethod-1.12-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/7f/bd/750245e47e7f307d9f94d4fa84727f4ed9956005dfa671d58be1d531a0f6/multimethod-1.10-py3-none-any.whl
   hash:
-    sha256: fd0c473c43558908d97cc06e4d68e8f69202f167db46f7b4e4058893e7dbdf60
+    sha256: afd84da9c3d0445c84f827e4d63ad42d17c6d29b122427c6dee9032ac2d2a0d4
   category: main
   optional: false
 - name: multimethod
-  version: '1.12'
+  version: '1.10'
   manager: pip
   platform: osx-64
   dependencies: {}
-  url: https://files.pythonhosted.org/packages/af/98/cff14d53a2f2f67d7fe8a4e235a383ee71aba6a1da12aeea24b325d0c72a/multimethod-1.12-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/7f/bd/750245e47e7f307d9f94d4fa84727f4ed9956005dfa671d58be1d531a0f6/multimethod-1.10-py3-none-any.whl
   hash:
-    sha256: fd0c473c43558908d97cc06e4d68e8f69202f167db46f7b4e4058893e7dbdf60
+    sha256: afd84da9c3d0445c84f827e4d63ad42d17c6d29b122427c6dee9032ac2d2a0d4
   category: main
   optional: false
 - name: multimethod
-  version: '1.12'
+  version: '1.10'
   manager: pip
   platform: osx-arm64
   dependencies: {}
-  url: https://files.pythonhosted.org/packages/af/98/cff14d53a2f2f67d7fe8a4e235a383ee71aba6a1da12aeea24b325d0c72a/multimethod-1.12-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/7f/bd/750245e47e7f307d9f94d4fa84727f4ed9956005dfa671d58be1d531a0f6/multimethod-1.10-py3-none-any.whl
   hash:
-    sha256: fd0c473c43558908d97cc06e4d68e8f69202f167db46f7b4e4058893e7dbdf60
+    sha256: afd84da9c3d0445c84f827e4d63ad42d17c6d29b122427c6dee9032ac2d2a0d4
   category: main
   optional: false
 - name: multimethod
-  version: '1.12'
+  version: '1.10'
   manager: pip
   platform: win-64
   dependencies: {}
-  url: https://files.pythonhosted.org/packages/af/98/cff14d53a2f2f67d7fe8a4e235a383ee71aba6a1da12aeea24b325d0c72a/multimethod-1.12-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/7f/bd/750245e47e7f307d9f94d4fa84727f4ed9956005dfa671d58be1d531a0f6/multimethod-1.10-py3-none-any.whl
   hash:
-    sha256: fd0c473c43558908d97cc06e4d68e8f69202f167db46f7b4e4058893e7dbdf60
+    sha256: afd84da9c3d0445c84f827e4d63ad42d17c6d29b122427c6dee9032ac2d2a0d4
   category: main
   optional: false
 - name: mypy-extensions
@@ -9294,11 +9294,11 @@ package:
   category: main
   optional: false
 - name: pandera
-  version: 0.21.0
+  version: 0.20.4
   manager: pip
   platform: linux-64
   dependencies:
-    multimethod: '*'
+    multimethod: <=1.10.0
     numpy: '>=1.19.0'
     packaging: '>=20.0'
     pandas: '>=1.2.0'
@@ -9306,17 +9306,17 @@ package:
     typeguard: '*'
     typing-inspect: '>=0.6.0'
     wrapt: '*'
-  url: https://files.pythonhosted.org/packages/bb/46/036f7ce9ea162af98b65df15fa16a22fdb9813e326ef856eb82794e70871/pandera-0.21.0-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/0b/fe/055638517abe4b3a2e0e582d1246688ecb642e6e2edbe4031a8864b44568/pandera-0.20.4-py3-none-any.whl
   hash:
-    sha256: ee694182ff9f15c165d14a99a9b90bcdf95bce07c1935f73c69718db15c85809
+    sha256: 40368d9162938f304ce4ce6ad41ce4b57991b88f7de1bb4574aeb5a1ecf2dc8c
   category: main
   optional: false
 - name: pandera
-  version: 0.21.0
+  version: 0.20.4
   manager: pip
   platform: osx-64
   dependencies:
-    multimethod: '*'
+    multimethod: <=1.10.0
     numpy: '>=1.19.0'
     packaging: '>=20.0'
     pandas: '>=1.2.0'
@@ -9324,17 +9324,17 @@ package:
     typeguard: '*'
     typing-inspect: '>=0.6.0'
     wrapt: '*'
-  url: https://files.pythonhosted.org/packages/bb/46/036f7ce9ea162af98b65df15fa16a22fdb9813e326ef856eb82794e70871/pandera-0.21.0-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/0b/fe/055638517abe4b3a2e0e582d1246688ecb642e6e2edbe4031a8864b44568/pandera-0.20.4-py3-none-any.whl
   hash:
-    sha256: ee694182ff9f15c165d14a99a9b90bcdf95bce07c1935f73c69718db15c85809
+    sha256: 40368d9162938f304ce4ce6ad41ce4b57991b88f7de1bb4574aeb5a1ecf2dc8c
   category: main
   optional: false
 - name: pandera
-  version: 0.21.0
+  version: 0.20.4
   manager: pip
   platform: osx-arm64
   dependencies:
-    multimethod: '*'
+    multimethod: <=1.10.0
     numpy: '>=1.19.0'
     packaging: '>=20.0'
     pandas: '>=1.2.0'
@@ -9342,17 +9342,17 @@ package:
     typeguard: '*'
     typing-inspect: '>=0.6.0'
     wrapt: '*'
-  url: https://files.pythonhosted.org/packages/bb/46/036f7ce9ea162af98b65df15fa16a22fdb9813e326ef856eb82794e70871/pandera-0.21.0-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/0b/fe/055638517abe4b3a2e0e582d1246688ecb642e6e2edbe4031a8864b44568/pandera-0.20.4-py3-none-any.whl
   hash:
-    sha256: ee694182ff9f15c165d14a99a9b90bcdf95bce07c1935f73c69718db15c85809
+    sha256: 40368d9162938f304ce4ce6ad41ce4b57991b88f7de1bb4574aeb5a1ecf2dc8c
   category: main
   optional: false
 - name: pandera
-  version: 0.21.0
+  version: 0.20.4
   manager: pip
   platform: win-64
   dependencies:
-    multimethod: '*'
+    multimethod: <=1.10.0
     numpy: '>=1.19.0'
     packaging: '>=20.0'
     pandas: '>=1.2.0'
@@ -9360,9 +9360,9 @@ package:
     typeguard: '*'
     typing-inspect: '>=0.6.0'
     wrapt: '*'
-  url: https://files.pythonhosted.org/packages/bb/46/036f7ce9ea162af98b65df15fa16a22fdb9813e326ef856eb82794e70871/pandera-0.21.0-py3-none-any.whl
+  url: https://files.pythonhosted.org/packages/0b/fe/055638517abe4b3a2e0e582d1246688ecb642e6e2edbe4031a8864b44568/pandera-0.20.4-py3-none-any.whl
   hash:
-    sha256: ee694182ff9f15c165d14a99a9b90bcdf95bce07c1935f73c69718db15c85809
+    sha256: 40368d9162938f304ce4ce6ad41ce4b57991b88f7de1bb4574aeb5a1ecf2dc8c
   category: main
   optional: false
 - name: pandocfilters

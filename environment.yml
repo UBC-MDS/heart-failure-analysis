@@ -14,4 +14,4 @@ dependencies:
       - vega-datasets==0.9.0
       - vegafusion==1.6.9
       - deepchecks==0.18.1
-      - pandera
+      - pandera==0.20.4
