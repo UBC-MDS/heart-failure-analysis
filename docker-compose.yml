@@ -1,0 +1,9 @@
+services:
+  analysis-env:
+    image: gur5/heart-failure-prediction:764770f
+    ports:
+      - "8888:8888"
+    volumes:
+      - .:/home/jovyan
+    environment:
+      PASSWORD: password
