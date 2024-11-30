@@ -1,6 +1,6 @@
 services:
   jupyter-notebook:
-    image:  ttimbers/breast-cancer-predictor:3f8675c
+    image:  gur5/heart-failure-prediction:666e735
     ports:
       - "8888:8888"
     volumes:
