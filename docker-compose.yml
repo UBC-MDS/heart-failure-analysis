@@ -1,6 +1,6 @@
 services:
   jupyter-notebook:
-    image:  gur5/heart-failure-prediction:666e735
+    image:  gur5/heart-failure-prediction:88359b1
     ports:
       - "8888:8888"
     volumes:
