@@ -47,3 +47,15 @@ Chicco, D., Jurman, G. Machine learning can predict survival of patients with he
 Dua, Dheeru, and Casey Graff. 2017. “UCI Machine Learning Repository.” University of California, Irvine, School of Information; Computer Sciences. <http://archive.ics.uci.edu/ml>.
 
 Heart Failure Clinical Records [Dataset]. (2020). UCI Machine Learning Repository. <https://doi.org/10.24432/C5Z89R>.
+
+Kuter, David J. "Thrombopoietin and Platelets: Count Regulation." American Journal of Hematology. Wiley Online Library, 2016. Accessed November 27, 2024. https://onlinelibrary.wiley.com/doi/full/10.1002/ajh.23704
+
+Mayo Clinic Staff. "Ejection Fraction: What Does It Measure?" Mayo Clinic, Mayo Foundation for Medical Education and Research. Accessed November 27, 2024. https://www.mayoclinic.org/tests-procedures/ekg/expert-answers/ejection-fraction/faq-20058286
+
+Medical News Today Staff. "What to Know About Serum Creatinine." Medical News Today. Last updated March 22, 2018. Accessed November 27, 2024. https://www.medicalnewstoday.com/articles/322380
+
+MedlinePlus. "Serum Sodium Test." U.S. National Library of Medicine. Last reviewed September 5, 2023. Accessed November 27, 2024. https://medlineplus.gov/ency/article/003481.html
+
+U.S. News Staff. "Creatinine Levels: What You Should Know." U.S. News & World Report. Accessed November 27, 2024. https://health.usnews.com/health-care/patient-advice/articles/creatininelevels
+
+
