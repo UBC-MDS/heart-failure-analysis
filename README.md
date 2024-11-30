@@ -4,13 +4,13 @@
 
 ## About
 
-In Milestone project 1, we attempt to build a classification model using logistic regression algorithm to predict patient mortality risk after surviving a heart attack using their medical records. Using patient test results, the final classifier achieves an accuracy of 81.6%. The model’s precision of 70.0% suggests it is moderately conservative in predicting the positive class (death), minimizing false alarms.More importantly, the recall of 73.68% ensures the model identifies the majority of high-risk patients, reducing the likelihood of missing true positive cases, however, there is still room for a lot of improvement, particularly in aiming to maximise recall by minimising False Negatives. The F1-score of 0.71 reflects a good balance between precision and recall, highlighting the model’s robustness in survival prediction. While promising, further refinements are essential for more reliable predictions and effectively early intervention.
+In this project, we attempt to build a classification model using logistic regression algorithm to predict patient mortality risk after surviving a heart attack using their medical records. Using patient test results, the final classifier achieves an accuracy of 81.6%. The model’s precision of 70.0% suggests it is moderately conservative in predicting the positive class (death), minimizing false alarms.More importantly, the recall of 73.68% ensures the model identifies the majority of high-risk patients, reducing the likelihood of missing true positive cases, however, there is still room for a lot of improvement, particularly in aiming to maximise recall by minimising False Negatives. The F1-score of 0.71 reflects a good balance between precision and recall, highlighting the model’s robustness in survival prediction. While promising, further refinements are essential for more reliable predictions and effectively early intervention.
 
 The data set used in this project was created by D. Chicco, Giuseppe Jurman in 2020. It was sourced from the UCI Machine Learning Repository and can be found [here](https://archive.ics.uci.edu/dataset/519/heart+failure+clinical+records). Each row in the data set represents the medical records of 299 patients who had heart failure, collected during their follow-up period, where each patient profile has 13 clinical features（age, anaemia, diabetes, platelets, etc.).
 
 ## Dependencies
 
--   Docker
+- Docker
 - VS Code
 - VS Code Jupyter Extension
 
@@ -34,10 +34,8 @@ docker compose up
 
 2. In the terminal, look for a URL that starts with 
 `http://127.0.0.1:8888/lab?token=` 
-(for an example, see the highlighted text in the terminal below). 
+ 
 Copy and paste that URL into your browser.
-
-<img src="" width=400>
 
 3. To run the analysis,
 open `heart-failure-analysis.ipynb` in Jupyter Lab you just launched
