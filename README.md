@@ -1,12 +1,12 @@
 # Heart Failure Analysis
 
--   contributors:Yuhan Fan, Gurmehak Kaur, Ke Gao, Merari Santana
+-   contributors: Yuhan Fan, Gurmehak Kaur, Ke Gao, Merari Santana
 
 ## About
 
-In Milestone project 1, we attempt to build a classification model using logistic regression algorithm to predict patient mortality risk after surviving a heart attack using their medical records. Using patient test results, the final classifier achieves an accuracy of 81.6%. The model’s precision of 70.0% suggests it is moderately conservative in predicting the positive class (death), minimizing false alarms. More importantly, the recall of 73.68% ensures the model identifies the majority of high-risk patients, reducing the likelihood of missing true positive cases, which could have serious consequences. The F1-score of 0.71 reflects a good balance between precision and recall, highlighting the model’s robustness in survival prediction. While promising, further refinements are essential for more reliable predictions and effectively early intervention.
+In Milestone project 1, we attempt to build a classification model using logistic regression algorithm to predict patient mortality risk after surviving a heart attack using their medical records. Using patient test results, the final classifier achieves an accuracy of 81.6%. The model’s precision of 70.0% suggests it is moderately conservative in predicting the positive class (death), minimizing false alarms.More importantly, the recall of 73.68% ensures the model identifies the majority of high-risk patients, reducing the likelihood of missing true positive cases, however, there is still room for a lot of improvement, particularly in aiming to maximise recall by minimising False Negatives. The F1-score of 0.71 reflects a good balance between precision and recall, highlighting the model’s robustness in survival prediction. While promising, further refinements are essential for more reliable predictions and effectively early intervention.
 
-The data set that was used in this project is created by D. Chicco, Giuseppe Jurman in 2020. It was sourced from the UCI Machine Learning Repository and can be found [here](https://archive.ics.uci.edu/dataset/519/heart+failure+clinical+records). Each row in the data set represents the medical records of 299 patients who had heart failure, collected during their follow-up period, where each patient profile has 13 clinical features（age, anaemia, diabetes, platelets, etc.).
+The data set used in this project was created by D. Chicco, Giuseppe Jurman in 2020. It was sourced from the UCI Machine Learning Repository and can be found [here](https://archive.ics.uci.edu/dataset/519/heart+failure+clinical+records). Each row in the data set represents the medical records of 299 patients who had heart failure, collected during their follow-up period, where each patient profile has 13 clinical features（age, anaemia, diabetes, platelets, etc.).
 
 ## Dependencies
 
@@ -85,3 +85,13 @@ Chicco, D., Jurman, G. Machine learning can predict survival of patients with he
 Dua, Dheeru, and Casey Graff. 2017. “UCI Machine Learning Repository.” University of California, Irvine, School of Information; Computer Sciences. <http://archive.ics.uci.edu/ml>.
 
 Heart Failure Clinical Records [Dataset]. (2020). UCI Machine Learning Repository. <https://doi.org/10.24432/C5Z89R>.
+
+Kuter, David J. "Thrombopoietin and Platelets: Count Regulation." American Journal of Hematology. Wiley Online Library, 2016. Accessed November 27, 2024. https://onlinelibrary.wiley.com/doi/full/10.1002/ajh.23704
+
+Mayo Clinic Staff. "Ejection Fraction: What Does It Measure?" Mayo Clinic, Mayo Foundation for Medical Education and Research. Accessed November 27, 2024. https://www.mayoclinic.org/tests-procedures/ekg/expert-answers/ejection-fraction/faq-20058286
+
+Medical News Today Staff. "What to Know About Serum Creatinine." Medical News Today. Last updated March 22, 2018. Accessed November 27, 2024. https://www.medicalnewstoday.com/articles/322380
+
+MedlinePlus. "Serum Sodium Test." U.S. National Library of Medicine. Last reviewed September 5, 2023. Accessed November 27, 2024. https://medlineplus.gov/ency/article/003481.html
+
+U.S. News Staff. "Creatinine Levels: What You Should Know." U.S. News & World Report. Accessed November 27, 2024. https://health.usnews.com/health-care/patient-advice/articles/creatininelevels
