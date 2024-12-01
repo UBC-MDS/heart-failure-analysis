@@ -13,7 +13,7 @@
 version: 1
 metadata:
   content_hash:
-    linux-64: 10d8a1d40f040a52ccb2728c947abcb6d10f3b77c4df4b8e0e2bc3d1ce17f509
+    linux-64: d08e8b74883bd329b815b1f0f42ff3f8d0f80b4bf0fff32ef014f301cb32ed0f
     osx-64: f8cdffdb9b1d9441b55b2c4108ddda93b2cb40c036bc5b89d565b51c25111203
     win-64: d9eb688c1143bef5672389c2ad2edf143206d2e8597878e3251ded1909fc4e9d
     osx-arm64: 852b551447a09016fcd4206409b9a9469256429f94c027865ab6f55100a5e3a1
@@ -1249,19 +1249,6 @@ package:
   hash:
     md5: 7b86ecb7d3557821c649b3c31e3eb9f2
     sha256: 27380d870d42d00350d2d52598cddaf02f9505fb24be09488da0c9b8d1428f2d
-  category: main
-  optional: false
-- name: joblib
-  version: 1.4.2
-  manager: conda
-  platform: linux-64
-  dependencies:
-    python: '>=3.8'
-    setuptools: ''
-  url: https://conda.anaconda.org/conda-forge/noarch/joblib-1.4.2-pyhd8ed1ab_0.conda
-  hash:
-    md5: 25df261d4523d9f9783bcdb7208d872f
-    sha256: 8ad719524b1039510fcbd75eb776123189d75e2c09228189257ddbcab86f5b64
   category: main
   optional: false
 - name: joblib
@@ -3550,15 +3537,15 @@ package:
   category: main
   optional: false
 - name: narwhals
-  version: 1.14.2
+  version: 1.15.0
   manager: conda
   platform: linux-64
   dependencies:
     python: '>=3.9'
-  url: https://conda.anaconda.org/conda-forge/noarch/narwhals-1.14.2-pyhff2d567_0.conda
+  url: https://conda.anaconda.org/conda-forge/noarch/narwhals-1.15.0-pyhd8ed1ab_0.conda
   hash:
-    md5: c7948f818368f181dea8d4865efd8039
-    sha256: 0befc04516cb350cf35beb50a0b2662a6b9319e203234fc54862b9951fa33e42
+    md5: 6f0f83b6d5c648bf2a5e9865f4722dab
+    sha256: 910573148d5e77b2d0fae207b0dca2496abe96db151a3cf5ca1766b8ce2f20c5
   category: main
   optional: false
 - name: narwhals
@@ -4399,7 +4386,6 @@ package:
     tk: '>=8.6.13,<8.7.0a0'
     tzdata: ''
     xz: '>=5.2.6,<6.0a0'
-    pip: ''
   url: https://conda.anaconda.org/conda-forge/linux-64/python-3.11.9-hb806964_0_cpython.conda
   hash:
     md5: ac68acfa8b558ed406c75e98d3428d7b
@@ -4970,27 +4956,6 @@ package:
 - name: scikit-learn
   version: 1.5.2
   manager: conda
-  platform: linux-64
-  dependencies:
-    __glibc: '>=2.17,<3.0.a0'
-    _openmp_mutex: '>=4.5'
-    joblib: '>=1.2.0'
-    libgcc: '>=13'
-    libstdcxx: '>=13'
-    numpy: '>=1.19,<3'
-    python: '>=3.11,<3.12.0a0'
-    python_abi: 3.11.*
-    scipy: ''
-    threadpoolctl: '>=3.1.0'
-  url: https://conda.anaconda.org/conda-forge/linux-64/scikit-learn-1.5.2-py311h57cc02b_1.conda
-  hash:
-    md5: d1b6d7a73364d9fe20d2863bd2c43e3a
-    sha256: b6489f65911847d1f9807e254e9af0815548454b911df4d0b5019f9ab16fe530
-  category: main
-  optional: false
-- name: scikit-learn
-  version: 1.5.2
-  manager: conda
   platform: osx-64
   dependencies:
     __osx: '>=10.13'
@@ -5046,28 +5011,6 @@ package:
   hash:
     md5: c3e550b20baa56f911022f6304c8f547
     sha256: 3f23a54f327af0227115b1ac3a8d6b32926e87bfe0097e3c906bd205bb9340b7
-  category: main
-  optional: false
-- name: scipy
-  version: 1.14.1
-  manager: conda
-  platform: linux-64
-  dependencies:
-    __glibc: '>=2.17,<3.0.a0'
-    libblas: '>=3.9.0,<4.0a0'
-    libcblas: '>=3.9.0,<4.0a0'
-    libgcc: '>=13'
-    libgfortran: ''
-    libgfortran5: '>=13.3.0'
-    liblapack: '>=3.9.0,<4.0a0'
-    libstdcxx: '>=13'
-    numpy: '>=1.23.5'
-    python: '>=3.11,<3.12.0a0'
-    python_abi: 3.11.*
-  url: https://conda.anaconda.org/conda-forge/linux-64/scipy-1.14.1-py311he9a78e4_1.conda
-  hash:
-    md5: 49ba89bf4d8a995efb99517d1c7aeb1e
-    sha256: 59482b974c36c375fdfd0bc3e5a3003ea2d2ae72b64b8f3deaeef5a851dbc91d
   category: main
   optional: false
 - name: scipy
@@ -5241,18 +5184,6 @@ package:
   hash:
     md5: 28496a1e6af43c63927da4f80260348d
     sha256: 990dbe4fb42f14700c22bd434d8312607bf8d0bd9f922b054e51fda14c41994c
-  category: main
-  optional: false
-- name: threadpoolctl
-  version: 3.5.0
-  manager: conda
-  platform: linux-64
-  dependencies:
-    python: '>=3.8'
-  url: https://conda.anaconda.org/conda-forge/noarch/threadpoolctl-3.5.0-pyhc1e730c_0.conda
-  hash:
-    md5: df68d78237980a159bd7149f33c0e8fd
-    sha256: 45e402941f6bed094022c5726a2ca494e6224b85180d2367fb6ddd9aea68079d
   category: main
   optional: false
 - name: threadpoolctl
@@ -6167,11 +6098,11 @@ package:
   manager: conda
   platform: linux-64
   dependencies:
-    python: '>=3.8'
-  url: https://conda.anaconda.org/conda-forge/noarch/zipp-3.21.0-pyhd8ed1ab_0.conda
+    python: '>=3.9'
+  url: https://conda.anaconda.org/conda-forge/noarch/zipp-3.21.0-pyhd8ed1ab_1.conda
   hash:
-    md5: fee389bf8a4843bd7a2248ce11b7f188
-    sha256: 232a30e4b0045c9de5e168dda0328dc0e28df9439cdecdfb97dd79c1c82c4cec
+    md5: 0c3cc595284c5e8f0f9900a9b228a332
+    sha256: 567c04f124525c97a096b65769834b7acb047db24b15a56888a322bf3966c3e1
   category: main
   optional: false
 - name: zipp
@@ -7900,6 +7831,16 @@ package:
   url: https://files.pythonhosted.org/packages/c0/5a/9cac0c82afec3d09ccd97c8b6502d48f165f9124db81b4bcb90b4af974ee/jedi-0.19.2-py2.py3-none-any.whl
   hash:
     sha256: a8ef22bde8490f57fe5c7681a3c83cb58874daf72b4784de3cce5b6ef6edb5b9
+  category: main
+  optional: false
+- name: joblib
+  version: 1.4.2
+  manager: pip
+  platform: linux-64
+  dependencies: {}
+  url: https://files.pythonhosted.org/packages/91/29/df4b9b42f2be0b623cbd5e2140cafcaa2bef0759a00b7b70104dcfe2fb51/joblib-1.4.2-py3-none-any.whl
+  hash:
+    sha256: 06d478d5674cbc267e7496a410ee875abd68e4340feff4490bcb7afb88060ae6
   category: main
   optional: false
 - name: json5
@@ -10854,6 +10795,16 @@ package:
   url: https://files.pythonhosted.org/packages/6a/9e/2064975477fdc887e47ad42157e214526dcad8f317a948dee17e1659a62f/terminado-0.18.1-py3-none-any.whl
   hash:
     sha256: a4468e1b37bb318f8a86514f65814e1afc977cf29b3992a4500d9dd305dcceb0
+  category: main
+  optional: false
+- name: threadpoolctl
+  version: 3.5.0
+  manager: pip
+  platform: linux-64
+  dependencies: {}
+  url: https://files.pythonhosted.org/packages/4b/2c/ffbf7a134b9ab11a67b0cf0726453cedd9c5043a4fe7a35d1cefa9a1bcfb/threadpoolctl-3.5.0-py3-none-any.whl
+  hash:
+    sha256: 56c1e26c150397e58c4926da8eeee87533b1e32bef131bd4bf6a2f45f3185467
   category: main
   optional: false
 - name: tinycss2
