@@ -6,80 +6,75 @@ import click
 import os
 import zipfile
 import requests
-import pandas as pd
 
-
-#DOWNLOAD DATA
 
 def read_zip(url, directory):
     """
-    Read a zip file from the given URL and extract its contents to the specified directory.
+    Downloads a ZIP file from the given URL, saves it to the specified directory, and extracts its contents.
 
     Parameters:
     ----------
     url : str
-        The URL of the zip file to be read.
+        The URL of the ZIP file to download.
     directory : str
-        The directory where the contents of the zip file will be extracted.
+        The directory where the ZIP file will be saved and extracted.
 
     Returns:
     -------
     None
+
+    Raises:
+    ------
+    ValueError:
+        If the URL does not exist, is not a ZIP file, or the directory does not exist.
     """
+    # Validate URL and fetch the file
     request = requests.get(url)
     filename_from_url = os.path.basename(url)
 
-    # check if URL exists, if not raise an error
     if request.status_code != 200:
-        raise ValueError('The URL provided does not exist.')
+        raise ValueError(f"The URL '{url}' does not exist or is inaccessible.")
     
-    # check if the URL points to a zip file, if not raise an error  
-    #if request.headers['content-type'] != 'application/zip':
-    if filename_from_url[-4:] != '.zip':
-        raise ValueError('The URL provided does not point to a zip file.')
+    if not url.endswith('.zip'):
+        raise ValueError(f"The URL '{url}' does not point to a ZIP file.")
     
-    # check if the directory exists, if not raise an error
     if not os.path.isdir(directory):
-        raise ValueError('The directory provided does not exist.')
-
-    # write the zip file to the directory
+        raise ValueError(f"The directory '{directory}' does not exist.")
+    
+    # Save the ZIP file
     path_to_zip_file = os.path.join(directory, filename_from_url)
     with open(path_to_zip_file, 'wb') as f:
         f.write(request.content)
 
-    # get list of files/directories in the directory
-    original_files = os.listdir(directory)
-    original_timestamps = []
-    for filename in original_files:
-        filename = os.path.join(directory, filename)
-        original_timestamp = os.path.getmtime(filename)
-        original_timestamps.append(original_timestamp)
-
-    # extract the zip file to the directory
+    # Extract the ZIP file
     with zipfile.ZipFile(path_to_zip_file, 'r') as zip_ref:
         zip_ref.extractall(directory)
+    
+    # Validate extraction
+    extracted_files = os.listdir(directory)
+    if len(extracted_files) == 0:
+        raise ValueError("The ZIP file appears to be empty or extraction failed.")
+    print(f"Successfully extracted {len(extracted_files)} files to '{directory}'.")
 
-    # check if any files were extracted, if not raise an error
-    # get list of files/directories in the directory
-    current_files = os.listdir(directory)
-    current_timestamps = []
-    for filename in current_files:
-        filename = os.path.join(directory, filename)
-        current_timestamp = os.path.getmtime(filename)
-        current_timestamps.append(current_timestamp)
-    if (len(current_files) == len(original_files)) & (original_timestamps == current_timestamps):
-        raise ValueError('The ZIP file is empty.')
 
 @click.command()
-@click.option('--url', type=str, help="URL of dataset to be downloaded")
-@click.option('--write_to', type=str, help="Path to directory where raw data will be written to")
+@click.option('--url', type=str, required=True, help="URL of the ZIP dataset to be downloaded.")
+@click.option('--write_to', type=str, required=True, help="Path to the directory where data will be saved.")
 def main(url, write_to):
-    """Downloads data zip data from the web to a local filepath and extracts it."""
+    """
+    Downloads and extracts a ZIP file from a given URL to a specified directory.
+
+    If the directory does not exist, it will be created automatically.
+    """
+    # Ensure the directory exists
+    if not os.path.exists(write_to):
+        os.makedirs(write_to, exist_ok=True)
+    
     try:
         read_zip(url, write_to)
-    except:
-        os.makedirs(write_to)
-        read_zip(url, write_to)
+    except Exception as e:
+        print(f"Error: {e}")
+        exit(1)
 
 
 if __name__ == '__main__':
