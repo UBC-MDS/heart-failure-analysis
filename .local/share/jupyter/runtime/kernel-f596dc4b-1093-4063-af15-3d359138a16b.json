@@ -1,0 +1,13 @@
+{
+  "shell_port": 35049,
+  "iopub_port": 37357,
+  "stdin_port": 41601,
+  "control_port": 49163,
+  "hb_port": 38369,
+  "ip": "127.0.0.1",
+  "key": "824e4192-86d469f4cf30c6c06f0b05f7",
+  "transport": "tcp",
+  "signature_scheme": "hmac-sha256",
+  "kernel_name": "python3",
+  "jupyter_session": "/home/jovyan/heart-failure-analysis.ipynb"
+}
