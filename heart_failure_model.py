@@ -1,83 +1,98 @@
-# fit_heart_failure_model.py
-# author: Gurmehak
-# date: 2024-12-03
-
 import click
 import os
-import altair as alt
-import numpy as np
 import pandas as pd
+import numpy as np
 import pickle
-from deepchecks.tabular.checks import FeatureLabelCorrelation, FeatureFeatureCorrelation
-from deepchecks.tabular import Dataset
-from sklearn.pipeline import make_pipeline
+from sklearn.model_selection import cross_validate, GridSearchCV
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.neighbors import KNeighborsClassifier
 from sklearn.linear_model import LogisticRegression
-from sklearn.model_selection import GridSearchCV
-import warnings
-warnings.filterwarnings("ignore", category=FutureWarning, module="deepchecks")
+from sklearn.pipeline import make_pipeline
+import altair as alt
 
 @click.command()
 @click.option('--training-data', type=str, help="Path to training data")
 @click.option('--preprocessor', type=str, help="Path to preprocessor object")
-@click.option('--pipeline-to', type=str, help="Path to directory where the pipeline object will be written to")
+@click.option('--pipeline-to', type=str, help="Path to directory where the final pipeline object will be written to")
 @click.option('--plot-to', type=str, help="Path to directory where the plot will be written to")
 @click.option('--seed', type=int, help="Random seed", default=522)
-def main(training_data, preprocessor, columns_to_drop, pipeline_to, plot_to, seed):
-    '''Fits a heart failure prediction model to the training data 
-    and saves the pipeline object.'''
+def main(training_data, preprocessor, pipeline_to, plot_to, seed):
+    '''Tests three pipelines for heart failure prediction and selects Logistic Regression as the final model.'''
+    
     np.random.seed(seed)
 
-    # # Load training data and preprocessor
-    # heart_failure_train = pd.read_csv(training_data)
-    # heart_failure_preprocessor = pickle.load(open(preprocessor, "rb"))
+    # Load the dataset
+    heart_failure_train = pd.read_csv(training_data)
+    heart_failure_preprocessor = pickle.load(open(preprocessor, "rb"))
 
-    # # Validate training data
-    # scaled_train_ds = Dataset(heart_failure_train, label="DEATH_EVENT", cat_features=[])
+    # ----- Decision Tree Pipeline -----
+    dt_pipeline = make_pipeline(
+        heart_failure_preprocessor, 
+        DecisionTreeClassifier(random_state=seed)
+    )
+    dt_scores = cross_validate(
+        dt_pipeline, 
+        heart_failure_train.drop(columns=['DEATH_EVENT']), 
+        heart_failure_train['DEATH_EVENT'], 
+        return_train_score=True
+    )
+    dt_scores = pd.DataFrame(dt_scores).sort_values('test_score', ascending=False)
+    print("Decision Tree Scores:", dt_scores)
 
-    # check_feat_lab_corr = FeatureLabelCorrelation().add_condition_feature_pps_less_than(0.9)
-    # check_feat_lab_corr_result = check_feat_lab_corr.run(dataset=scaled_train_ds)
+    # ----- K-Nearest Neighbors Pipeline -----
+    knn_pipeline = make_pipeline(
+        heart_failure_preprocessor, 
+        KNeighborsClassifier()
+    )
+    knn_param_grid = {
+        "kneighborsclassifier__n_neighbors": range(1, 100, 3)
+    }
+    knn_grid_search = GridSearchCV(
+        knn_pipeline,
+        knn_param_grid,
+        cv=10,
+        n_jobs=-1,
+        return_train_score=True,
+    )
+    knn_grid_search.fit(
+        heart_failure_train.drop(columns=['DEATH_EVENT']), 
+        heart_failure_train['DEATH_EVENT']
+    )
+    knn_best_model = knn_grid_search.best_estimator_
+    print("Best KNN Model:", knn_best_model)
 
-    # check_feat_feat_corr = FeatureFeatureCorrelation().add_condition_max_number_of_pairs_above_threshold(
-    #     threshold=0.92, n_pairs=0)
-    # check_feat_feat_corr_result = check_feat_feat_corr.run(dataset=scaled_train_ds)
-
-    # if not check_feat_lab_corr_result.passed_conditions():
-    #     raise ValueError("Feature-Label correlation exceeds the maximum acceptable threshold.")
-
-    # if not check_feat_feat_corr_result.passed_conditions():
-    #     raise ValueError("Feature-feature correlation exceeds the maximum acceptable threshold.")
-
-    # Build pipeline and tune model
-    pipeline = make_pipeline(
-        heart_failure_preprocessor,
+    # ----- Logistic Regression Pipeline -----
+    lr_pipeline = make_pipeline(
+        heart_failure_preprocessor, 
         LogisticRegression(random_state=seed, max_iter=2000, class_weight="balanced")
     )
-
-    param_grid = {
+    lr_param_grid = {
         "logisticregression__C": 10.0 ** np.arange(-5, 5, 1)
     }
-
-    grid_search = GridSearchCV(
-        pipeline,
-        param_grid,
+    lr_grid_search = GridSearchCV(
+        lr_pipeline,
+        lr_param_grid,
         cv=10,
         n_jobs=-1,
         return_train_score=True
     )
-
-    heart_failure_fit = grid_search.fit(
-        heart_failure_train.drop(columns=["DEATH_EVENT"]),
-        heart_failure_train["DEATH_EVENT"]
+    lr_grid_search.fit(
+        heart_failure_train.drop(columns=['DEATH_EVENT']), 
+        heart_failure_train['DEATH_EVENT']
     )
+    lr_best_model = lr_grid_search.best_estimator_
+    print("Best Logistic Regression Model:", lr_best_model)
 
+    # Save the Logistic Regression pipeline
     with open(os.path.join(pipeline_to, "heart_failure_pipeline.pickle"), 'wb') as f:
-        pickle.dump(heart_failure_fit, f)
+        pickle.dump(lr_best_model, f)
 
-    # Extract and plot scores
-    scores = pd.DataFrame(grid_search.cv_results_).sort_values(
-        'mean_test_score', ascending=False)[['param_logisticregression__C', 'mean_test_score', 'mean_train_score']]
+    # ----- Visualizing Logistic Regression Scores -----
+    lr_scores = pd.DataFrame(lr_grid_search.cv_results_).sort_values(
+        'mean_test_score', ascending=False
+    )[['param_logisticregression__C', 'mean_test_score', 'mean_train_score']]
 
-    plot = alt.Chart(scores).transform_fold(
+    lr_plot = alt.Chart(lr_scores).transform_fold(
         ["mean_test_score", "mean_train_score"],
         as_=["Score Type", "Score"]
     ).mark_line().encode(
@@ -91,20 +106,19 @@ def main(training_data, preprocessor, columns_to_drop, pipeline_to, plot_to, see
         width=600,
         height=400
     )
+    lr_plot.save(os.path.join(plot_to, "logistic_regression_scores.png"), scale_factor=2.0)
 
-    plot.save(os.path.join(plot_to, "heart_failure_scores.png"), scale_factor=2.0)
-
-    # Extract model coefficients
-    lr_best_model = grid_search.best_estimator_.named_steps['logisticregression']
-    features = lr_best_model.coef_
+    # ----- Analyzing Logistic Regression Coefficients -----
+    lr_model = lr_best_model.named_steps['logisticregression']
+    features = lr_model.coef_
     feature_names = heart_failure_train.drop(columns=['DEATH_EVENT']).columns
     coefficients = pd.DataFrame({
         'Feature': feature_names,
         'Coefficient': features[0],
         'Absolute_Coefficient': abs(features[0])
     }).sort_values(by='Absolute_Coefficient', ascending=False)
-
-    coefficients.to_csv(os.path.join(plot_to, "heart_failure_coefficients.csv"), index=False)
+    coefficients.to_csv(os.path.join(plot_to, "logistic_regression_coefficients.csv"), index=False)
+    print("Logistic Regression Coefficients:", coefficients)
 
 if __name__ == '__main__':
     main()
