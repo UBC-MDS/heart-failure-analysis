@@ -37,7 +37,11 @@ def main(training_data, preprocessor, pipeline_to, plot_to, seed):
         return_train_score=True
     )
     dt_scores = pd.DataFrame(dt_scores).sort_values('test_score', ascending=False)
+<<<<<<< Updated upstream
     print("Decision Tree Scores:", dt_scores)
+=======
+    # print("Decision Tree Scores:", dt_scores)
+>>>>>>> Stashed changes
 
     # ----- K-Nearest Neighbors Pipeline -----
     knn_pipeline = make_pipeline(
@@ -59,7 +63,11 @@ def main(training_data, preprocessor, pipeline_to, plot_to, seed):
         heart_failure_train['DEATH_EVENT']
     )
     knn_best_model = knn_grid_search.best_estimator_
+<<<<<<< Updated upstream
     print("Best KNN Model:", knn_best_model)
+=======
+    # print("Best KNN Model:", knn_best_model)
+>>>>>>> Stashed changes
 
     # ----- Logistic Regression Pipeline -----
     lr_pipeline = make_pipeline(
