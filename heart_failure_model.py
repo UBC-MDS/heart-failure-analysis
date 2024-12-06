@@ -27,7 +27,7 @@ def main(training_data, preprocessor, columns_to_drop, pipeline_to, plot_to, see
     and saves the pipeline object.'''
     np.random.seed(seed)
 
-    # # Load training data and preprocessor
+     # Load training data and preprocessor
     # heart_failure_train = pd.read_csv(training_data)
     # heart_failure_preprocessor = pickle.load(open(preprocessor, "rb"))
 
