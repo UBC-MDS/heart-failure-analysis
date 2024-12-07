@@ -2,6 +2,7 @@
 # author: Yuhan Fan
 # date: 2024-12-06
 
+import pickle
 import click
 import os
 import pandas as pd
