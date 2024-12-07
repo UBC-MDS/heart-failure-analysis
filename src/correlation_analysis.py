@@ -2,6 +2,7 @@
 # author: Ke Gao
 # date: 2024-12-06
 
+import os
 import pandas as pd
 import altair as alt
 from sklearn.compose import make_column_transformer
@@ -77,6 +78,12 @@ def plot_correlation_matrix(scaled_train, output_file=None):
         title="Correlation Heatmap"
     )
     if output_file:
+        # Create directory if it doesn't exist
+        output_dir = os.path.dirname(output_file)
+        if output_dir and not os.path.exists(output_dir):
+            os.makedirs(output_dir)
+            click.echo(f"Directory {output_dir} created.")
+        
         chart.save(output_file)
         click.echo(f"Heatmap saved to {output_file}.")
     else:
