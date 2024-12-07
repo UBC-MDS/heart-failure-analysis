@@ -17,19 +17,26 @@ import altair as alt
 @click.option('--pipeline-to', type=str, help="Path to directory where the final pipeline object will be written to")
 @click.option('--plot-to', type=str, help="Path to directory where the plot will be written to")
 @click.option('--seed', type=int, help="Random seed", default=522)
-def main(training_data, preprocessor, pipeline_to, plot_to, seed):
+def main(training_data, pipeline_to, plot_to, seed):
     '''Tests three pipelines for heart failure prediction and selects Logistic Regression as the final model.'''
+    
+    # 创建路径如果不存在
+    os.makedirs(pipeline_to, exist_ok=True)
+    os.makedirs(plot_to, exist_ok=True)
     
     np.random.seed(seed)
 
     # Load the dataset
     heart_failure_train = pd.read_csv(training_data)
-    heart_failure_preprocessor = preprocessor = make_column_transformer(
+    
+    numeric_columns = ['age', 'creatinine_phosphokinase', 'ejection_fraction', 'platelets', 'serum_creatinine', 'serum_sodium', 'time']
+    binary_columns = ['anaemia', 'diabetes', 'high_blood_pressure', 'sex', 'smoking']
+    
+    heart_failure_preprocessor = make_column_transformer(
         (StandardScaler(), numeric_columns),
-        (OneHotEncoder(handle_unknown="ignore", sparse_output=False, drop='if_binary', dtype = int), binary_columns),
-        remainder = 'passthrough'
-        )
-
+        (OneHotEncoder(handle_unknown="ignore", sparse_output=False, drop='if_binary', dtype=int), binary_columns),
+        remainder='passthrough'
+    )
 
     # ----- Decision Tree Pipeline -----
     dt_pipeline = make_pipeline(
@@ -43,7 +50,6 @@ def main(training_data, preprocessor, pipeline_to, plot_to, seed):
         return_train_score=True
     )
     dt_scores = pd.DataFrame(dt_scores).sort_values('test_score', ascending=False)
-    # print("Decision Tree Scores:", dt_scores)
 
     # ----- K-Nearest Neighbors Pipeline -----
     knn_pipeline = make_pipeline(
@@ -65,7 +71,6 @@ def main(training_data, preprocessor, pipeline_to, plot_to, seed):
         heart_failure_train['DEATH_EVENT']
     )
     knn_best_model = knn_grid_search.best_estimator_
-    # print("Best KNN Model:", knn_best_model)
 
     # ----- Logistic Regression Pipeline -----
     lr_pipeline = make_pipeline(
@@ -82,16 +87,16 @@ def main(training_data, preprocessor, pipeline_to, plot_to, seed):
         n_jobs=-1,
         return_train_score=True
     )
-    heart_failure_fit = lr_grid_search.fit(
+    heart_failure_model = lr_grid_search.fit(
         heart_failure_train.drop(columns=['DEATH_EVENT']), 
         heart_failure_train['DEATH_EVENT']
     )
     lr_best_model = lr_grid_search.best_estimator_
     print("Best Logistic Regression Model:", lr_best_model)
 
-    # Save the Logistic Regression model
+    # Save the Logistic Regression pipeline
     with open(os.path.join(pipeline_to, "heart_failure_model.pickle"), 'wb') as f:
-        pickle.dump(heart_failure_fit, f)
+        pickle.dump(heart_failure_model, f)
 
     # ----- Visualizing Logistic Regression Scores -----
     lr_scores = pd.DataFrame(lr_grid_search.cv_results_).sort_values(
@@ -125,7 +130,6 @@ def main(training_data, preprocessor, pipeline_to, plot_to, seed):
     }).sort_values(by='Absolute_Coefficient', ascending=False)
     coefficients.to_csv(os.path.join(plot_to, "logistic_regression_coefficients.csv"), index=False)
     print("Logistic Regression Coefficients:", coefficients)
-
 
 if __name__ == '__main__':
     main()
