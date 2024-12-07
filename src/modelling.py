@@ -14,7 +14,6 @@ import altair as alt
 
 @click.command()
 @click.option('--training-data', type=str, help="Path to training data")
-@click.option('--preprocessor', type=str, help="Path to preprocessor object")
 @click.option('--pipeline-to', type=str, help="Path to directory where the final pipeline object will be written to")
 @click.option('--plot-to', type=str, help="Path to directory where the plot will be written to")
 @click.option('--seed', type=int, help="Random seed", default=522)
@@ -83,16 +82,16 @@ def main(training_data, preprocessor, pipeline_to, plot_to, seed):
         n_jobs=-1,
         return_train_score=True
     )
-    lr_grid_search.fit(
+    heart_failure_fit = lr_grid_search.fit(
         heart_failure_train.drop(columns=['DEATH_EVENT']), 
         heart_failure_train['DEATH_EVENT']
     )
     lr_best_model = lr_grid_search.best_estimator_
     print("Best Logistic Regression Model:", lr_best_model)
 
-    # Save the Logistic Regression pipeline
-    with open(os.path.join(pipeline_to, "heart_failure_pipeline.pickle"), 'wb') as f:
-        pickle.dump(lr_best_model, f)
+    # Save the Logistic Regression model
+    with open(os.path.join(pipeline_to, "heart_failure_model.pickle"), 'wb') as f:
+        pickle.dump(heart_failure_fit, f)
 
     # ----- Visualizing Logistic Regression Scores -----
     lr_scores = pd.DataFrame(lr_grid_search.cv_results_).sort_values(
@@ -126,6 +125,7 @@ def main(training_data, preprocessor, pipeline_to, plot_to, seed):
     }).sort_values(by='Absolute_Coefficient', ascending=False)
     coefficients.to_csv(os.path.join(plot_to, "logistic_regression_coefficients.csv"), index=False)
     print("Logistic Regression Coefficients:", coefficients)
+
 
 if __name__ == '__main__':
     main()
