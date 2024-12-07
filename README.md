@@ -74,8 +74,11 @@ where you launched the container, and then type `docker compose rm`
 ### Calling scripts
 
 To run the analysis, open a terminal and run the following commands and their respective arguments:
-`python download_and_convert.py --url "https://archive.ics.uci.edu/static/public/519/heart+failure+clinical+records.zip"`
-`python process_and_analyze.py --file_path "../data/heart_failure_clinical_records_dataset_converted.csv"`
+
+`python src/download_and_convert.py --url "https://archive.ics.uci.edu/static/public/519/heart+failure+clinical+records.zip"`
+
+
+`python src/process_and_analyze.py --file_path "../data/heart_failure_clinical_records_dataset_converted.csv"`
 
 
 
