@@ -117,7 +117,7 @@ def main(training_data, pipeline_to, plot_to, seed):
         width=600,
         height=400
     )
-    lr_plot.save(os.path.join(plot_to, "logistic_regression_scores.png"), scale_factor=2.0)
+    lr_plot.save(os.path.join(plot_to, "logistic_regression_scores.html"), scale_factor=2.0)
 
     # ----- Analyzing Logistic Regression Coefficients -----
     lr_model = lr_best_model.named_steps['logisticregression']
