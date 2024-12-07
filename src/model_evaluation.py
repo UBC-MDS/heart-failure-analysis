@@ -30,7 +30,7 @@ import warnings
 @click.option('--pipeline-from', type=str, help="Path to directory where the fit pipeline object lives")
 @click.option('--results-to', type=str, help="Path to directory where the plot will be written to")
 @click.option('--seed', type=int, help="Random seed", default=123)
-def main(scaled_test_data, columns_to_drop, pipeline_from, results_to, seed):
+def main(scaled_test_data, pipeline_from, results_to, seed):
     '''Evaluates the health failure classifier on the test data 
     and saves the evaluation results.'''
     np.random.seed(seed)
