@@ -3,6 +3,8 @@ import os
 import pandas as pd
 import numpy as np
 import pickle
+from sklearn.compose import make_column_transformer
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.model_selection import cross_validate, GridSearchCV
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.neighbors import KNeighborsClassifier
@@ -23,7 +25,12 @@ def main(training_data, preprocessor, pipeline_to, plot_to, seed):
 
     # Load the dataset
     heart_failure_train = pd.read_csv(training_data)
-    heart_failure_preprocessor = pickle.load(open(preprocessor, "rb"))
+    heart_failure_preprocessor = preprocessor = make_column_transformer(
+        (StandardScaler(), numeric_columns),
+        (OneHotEncoder(handle_unknown="ignore", sparse_output=False, drop='if_binary', dtype = int), binary_columns),
+        remainder = 'passthrough'
+        )
+
 
     # ----- Decision Tree Pipeline -----
     dt_pipeline = make_pipeline(
@@ -37,11 +44,7 @@ def main(training_data, preprocessor, pipeline_to, plot_to, seed):
         return_train_score=True
     )
     dt_scores = pd.DataFrame(dt_scores).sort_values('test_score', ascending=False)
-<<<<<<< Updated upstream
-    print("Decision Tree Scores:", dt_scores)
-=======
     # print("Decision Tree Scores:", dt_scores)
->>>>>>> Stashed changes
 
     # ----- K-Nearest Neighbors Pipeline -----
     knn_pipeline = make_pipeline(
@@ -63,11 +66,7 @@ def main(training_data, preprocessor, pipeline_to, plot_to, seed):
         heart_failure_train['DEATH_EVENT']
     )
     knn_best_model = knn_grid_search.best_estimator_
-<<<<<<< Updated upstream
-    print("Best KNN Model:", knn_best_model)
-=======
     # print("Best KNN Model:", knn_best_model)
->>>>>>> Stashed changes
 
     # ----- Logistic Regression Pipeline -----
     lr_pipeline = make_pipeline(
