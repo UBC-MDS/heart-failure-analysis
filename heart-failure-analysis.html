@@ -53,7 +53,6 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#data" id="toc-data" class="nav-link" data-scroll-target="#data">Data</a></li>
   <li><a href="#model" id="toc-model" class="nav-link" data-scroll-target="#model">Model</a></li>
   <li><a href="#results-and-conculsion" id="toc-results-and-conculsion" class="nav-link" data-scroll-target="#results-and-conculsion">Results and Conculsion</a></li>
-  <li><a href="#building-the-model" id="toc-building-the-model" class="nav-link" data-scroll-target="#building-the-model">Building the Model</a></li>
   <li><a href="#model-evaluation" id="toc-model-evaluation" class="nav-link" data-scroll-target="#model-evaluation">Model Evaluation</a></li>
   <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
@@ -103,86 +102,86 @@ ul.task-list li input[type="checkbox"] {
 Table&nbsp;1: Description of the columns in the heart failure dataset.
 </figcaption>
 <div aria-describedby="tbl-patient-table-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display" data-execution_count="376">
+<div class="cell-output cell-output-display" data-execution_count="117">
 <style type="text/css">
-#T_7001d_row0_col0, #T_7001d_row0_col1, #T_7001d_row1_col0, #T_7001d_row1_col1, #T_7001d_row2_col0, #T_7001d_row2_col1, #T_7001d_row3_col0, #T_7001d_row3_col1, #T_7001d_row4_col0, #T_7001d_row4_col1, #T_7001d_row5_col0, #T_7001d_row5_col1, #T_7001d_row6_col0, #T_7001d_row6_col1, #T_7001d_row7_col0, #T_7001d_row7_col1, #T_7001d_row8_col0, #T_7001d_row8_col1, #T_7001d_row9_col0, #T_7001d_row9_col1, #T_7001d_row10_col0, #T_7001d_row10_col1, #T_7001d_row11_col0, #T_7001d_row11_col1, #T_7001d_row12_col0, #T_7001d_row12_col1 {
+#T_cdea6_row0_col0, #T_cdea6_row0_col1, #T_cdea6_row1_col0, #T_cdea6_row1_col1, #T_cdea6_row2_col0, #T_cdea6_row2_col1, #T_cdea6_row3_col0, #T_cdea6_row3_col1, #T_cdea6_row4_col0, #T_cdea6_row4_col1, #T_cdea6_row5_col0, #T_cdea6_row5_col1, #T_cdea6_row6_col0, #T_cdea6_row6_col1, #T_cdea6_row7_col0, #T_cdea6_row7_col1, #T_cdea6_row8_col0, #T_cdea6_row8_col1, #T_cdea6_row9_col0, #T_cdea6_row9_col1, #T_cdea6_row10_col0, #T_cdea6_row10_col1, #T_cdea6_row11_col0, #T_cdea6_row11_col1, #T_cdea6_row12_col0, #T_cdea6_row12_col1 {
   text-align: left;
 }
 </style>
 
-<table id="T_7001d" class="do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<table id="T_cdea6" class="do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th class="blank level0" data-quarto-table-cell-role="th">&nbsp;</th>
-<th id="T_7001d_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Column Name</th>
-<th id="T_7001d_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Description</th>
+<th id="T_cdea6_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Column Name</th>
+<th id="T_cdea6_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td id="T_7001d_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th">0</td>
-<td id="T_7001d_row0_col0" class="data row0 col0">age</td>
-<td id="T_7001d_row0_col1" class="data row0 col1">Patient's age</td>
+<td id="T_cdea6_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th">0</td>
+<td id="T_cdea6_row0_col0" class="data row0 col0">age</td>
+<td id="T_cdea6_row0_col1" class="data row0 col1">Patient's age</td>
 </tr>
 <tr class="even">
-<td id="T_7001d_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th">1</td>
-<td id="T_7001d_row1_col0" class="data row1 col0">anaemia</td>
-<td id="T_7001d_row1_col1" class="data row1 col1">Decrease of red blood cells or hemoglobin</td>
+<td id="T_cdea6_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th">1</td>
+<td id="T_cdea6_row1_col0" class="data row1 col0">anaemia</td>
+<td id="T_cdea6_row1_col1" class="data row1 col1">Decrease of red blood cells or hemoglobin</td>
 </tr>
 <tr class="odd">
-<td id="T_7001d_level0_row2" class="row_heading level0 row2" data-quarto-table-cell-role="th">2</td>
-<td id="T_7001d_row2_col0" class="data row2 col0">creatinine_phosphokinase</td>
-<td id="T_7001d_row2_col1" class="data row2 col1">Level of the CPK enzyme in the blood</td>
+<td id="T_cdea6_level0_row2" class="row_heading level0 row2" data-quarto-table-cell-role="th">2</td>
+<td id="T_cdea6_row2_col0" class="data row2 col0">creatinine_phosphokinase</td>
+<td id="T_cdea6_row2_col1" class="data row2 col1">Level of the CPK enzyme in the blood</td>
 </tr>
 <tr class="even">
-<td id="T_7001d_level0_row3" class="row_heading level0 row3" data-quarto-table-cell-role="th">3</td>
-<td id="T_7001d_row3_col0" class="data row3 col0">diabetes</td>
-<td id="T_7001d_row3_col1" class="data row3 col1">If the patient has diabetes</td>
+<td id="T_cdea6_level0_row3" class="row_heading level0 row3" data-quarto-table-cell-role="th">3</td>
+<td id="T_cdea6_row3_col0" class="data row3 col0">diabetes</td>
+<td id="T_cdea6_row3_col1" class="data row3 col1">If the patient has diabetes</td>
 </tr>
 <tr class="odd">
-<td id="T_7001d_level0_row4" class="row_heading level0 row4" data-quarto-table-cell-role="th">4</td>
-<td id="T_7001d_row4_col0" class="data row4 col0">ejection_fraction</td>
-<td id="T_7001d_row4_col1" class="data row4 col1">Percentage of blood leaving the heart at each contraction</td>
+<td id="T_cdea6_level0_row4" class="row_heading level0 row4" data-quarto-table-cell-role="th">4</td>
+<td id="T_cdea6_row4_col0" class="data row4 col0">ejection_fraction</td>
+<td id="T_cdea6_row4_col1" class="data row4 col1">Percentage of blood leaving the heart at each contraction</td>
 </tr>
 <tr class="even">
-<td id="T_7001d_level0_row5" class="row_heading level0 row5" data-quarto-table-cell-role="th">5</td>
-<td id="T_7001d_row5_col0" class="data row5 col0">high_blood_pressure</td>
-<td id="T_7001d_row5_col1" class="data row5 col1">If the patient has hypertension</td>
+<td id="T_cdea6_level0_row5" class="row_heading level0 row5" data-quarto-table-cell-role="th">5</td>
+<td id="T_cdea6_row5_col0" class="data row5 col0">high_blood_pressure</td>
+<td id="T_cdea6_row5_col1" class="data row5 col1">If the patient has hypertension</td>
 </tr>
 <tr class="odd">
-<td id="T_7001d_level0_row6" class="row_heading level0 row6" data-quarto-table-cell-role="th">6</td>
-<td id="T_7001d_row6_col0" class="data row6 col0">platelets</td>
-<td id="T_7001d_row6_col1" class="data row6 col1">Platelets in the blood</td>
+<td id="T_cdea6_level0_row6" class="row_heading level0 row6" data-quarto-table-cell-role="th">6</td>
+<td id="T_cdea6_row6_col0" class="data row6 col0">platelets</td>
+<td id="T_cdea6_row6_col1" class="data row6 col1">Platelets in the blood</td>
 </tr>
 <tr class="even">
-<td id="T_7001d_level0_row7" class="row_heading level0 row7" data-quarto-table-cell-role="th">7</td>
-<td id="T_7001d_row7_col0" class="data row7 col0">serum_creatinine</td>
-<td id="T_7001d_row7_col1" class="data row7 col1">Level of serum creatinine in the blood</td>
+<td id="T_cdea6_level0_row7" class="row_heading level0 row7" data-quarto-table-cell-role="th">7</td>
+<td id="T_cdea6_row7_col0" class="data row7 col0">serum_creatinine</td>
+<td id="T_cdea6_row7_col1" class="data row7 col1">Level of serum creatinine in the blood</td>
 </tr>
 <tr class="odd">
-<td id="T_7001d_level0_row8" class="row_heading level0 row8" data-quarto-table-cell-role="th">8</td>
-<td id="T_7001d_row8_col0" class="data row8 col0">serum_sodium</td>
-<td id="T_7001d_row8_col1" class="data row8 col1">Level of serum sodium in the blood</td>
+<td id="T_cdea6_level0_row8" class="row_heading level0 row8" data-quarto-table-cell-role="th">8</td>
+<td id="T_cdea6_row8_col0" class="data row8 col0">serum_sodium</td>
+<td id="T_cdea6_row8_col1" class="data row8 col1">Level of serum sodium in the blood</td>
 </tr>
 <tr class="even">
-<td id="T_7001d_level0_row9" class="row_heading level0 row9" data-quarto-table-cell-role="th">9</td>
-<td id="T_7001d_row9_col0" class="data row9 col0">sex</td>
-<td id="T_7001d_row9_col1" class="data row9 col1">Woman or man</td>
+<td id="T_cdea6_level0_row9" class="row_heading level0 row9" data-quarto-table-cell-role="th">9</td>
+<td id="T_cdea6_row9_col0" class="data row9 col0">sex</td>
+<td id="T_cdea6_row9_col1" class="data row9 col1">Woman or man</td>
 </tr>
 <tr class="odd">
-<td id="T_7001d_level0_row10" class="row_heading level0 row10" data-quarto-table-cell-role="th">10</td>
-<td id="T_7001d_row10_col0" class="data row10 col0">smoking</td>
-<td id="T_7001d_row10_col1" class="data row10 col1">If the patient smokes or not</td>
+<td id="T_cdea6_level0_row10" class="row_heading level0 row10" data-quarto-table-cell-role="th">10</td>
+<td id="T_cdea6_row10_col0" class="data row10 col0">smoking</td>
+<td id="T_cdea6_row10_col1" class="data row10 col1">If the patient smokes or not</td>
 </tr>
 <tr class="even">
-<td id="T_7001d_level0_row11" class="row_heading level0 row11" data-quarto-table-cell-role="th">11</td>
-<td id="T_7001d_row11_col0" class="data row11 col0">time</td>
-<td id="T_7001d_row11_col1" class="data row11 col1">Follow-up period</td>
+<td id="T_cdea6_level0_row11" class="row_heading level0 row11" data-quarto-table-cell-role="th">11</td>
+<td id="T_cdea6_row11_col0" class="data row11 col0">time</td>
+<td id="T_cdea6_row11_col1" class="data row11 col1">Follow-up period</td>
 </tr>
 <tr class="odd">
-<td id="T_7001d_level0_row12" class="row_heading level0 row12" data-quarto-table-cell-role="th">12</td>
-<td id="T_7001d_row12_col0" class="data row12 col0">DEATH_EVENT</td>
-<td id="T_7001d_row12_col1" class="data row12 col1">Whether the patient died or not (target variable)</td>
+<td id="T_cdea6_level0_row12" class="row_heading level0 row12" data-quarto-table-cell-role="th">12</td>
+<td id="T_cdea6_row12_col0" class="data row12 col0">DEATH_EVENT</td>
+<td id="T_cdea6_row12_col1" class="data row12 col1">Whether the patient died or not (target variable)</td>
 </tr>
 </tbody>
 </table>
@@ -191,253 +190,137 @@ Table&nbsp;1: Description of the columns in the heart failure dataset.
 </figure>
 </div>
 </div>
-<div id="117ec1fb" class="cell" data-execution_count="3">
-<div class="cell-output cell-output-display" data-execution_count="377">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">Column</th>
-<th data-quarto-table-cell-role="th">Missing Values</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>age</td>
-<td>0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>anaemia</td>
-<td>0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>creatinine_phosphokinase</td>
-<td>0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">3</td>
-<td>diabetes</td>
-<td>0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>ejection_fraction</td>
-<td>0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">5</td>
-<td>high_blood_pressure</td>
-<td>0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">6</td>
-<td>platelets</td>
-<td>0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">7</td>
-<td>serum_creatinine</td>
-<td>0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">8</td>
-<td>serum_sodium</td>
-<td>0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">9</td>
-<td>sex</td>
-<td>0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">10</td>
-<td>smoking</td>
-<td>0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">11</td>
-<td>time</td>
-<td>0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">12</td>
-<td>DEATH_EVENT</td>
-<td>0</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
-<p>No missing values, no imputation or filling Nulls required</p>
 <div id="correlation_heatmap" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="figures/correlation_heatmap.png" class="img-fluid figure-img" style="width:60.0%"></p>
 <figcaption>Correlation heatmap- Based on the correlation matrix graph below, all features have relatively low correlations between each other, the correlations are below 0.5, so there is no strong evidence to drop additional featues.</figcaption>
 </figure>
 </div>
-</section>
-</section>
-<section id="model" class="level2">
-<h2 class="anchored" data-anchor-id="model">Model</h2>
-<p>We compared Decision Tree, KNN, Logistic Regression, and selected Logistic Regression due to its interpretability, and ability to handle both linear and non-linear relationships between features. Logistic Regression performed better than the other two models as it works well with fewer features and is less prone to overfitting compared to more complex models like Decision Trees or KNN, especially when the data is relatively small.</p>
-</section>
-<section id="results-and-conculsion" class="level2">
-<h2 class="anchored" data-anchor-id="results-and-conculsion">Results and Conculsion</h2>
-<p>The analysis revealed that <code>platelets</code> and <code>ejection_fraction</code> are the most important features in predicting the risk of patient mortality. These features significantly impact the model’s ability to assess patient risk, which is crucial for early intervention. Our model achieved a recall score of 0.73, which is a good start, but there is room for improvement, particularly in reducing the number of high risk patients the model might miss, i.e., maximising recall by minimising False Negatives.</p>
-<p>The main challenges in this project stem from class imbalance and limited data availability. With more diverse and comprehensive datasets, performance could be further enhanced. We would also like to explore other machine learning models to improve the overall accuracy.</p>
-<p>In conclusion, while the current model shows potential, there is significant opportunity to enhance its effectiveness. With improvements in data quality and model optimization, this tool could become a crucial asset in predicting patient risk and saving lives.</p>
-<div id="d4256834" class="cell" data-execution_count="8">
-<div class="cell-output cell-output-display" data-execution_count="382">
-<pre><code>DEATH_EVENT
-False    203
-True      96
-Name: count, dtype: int64</code></pre>
-</div>
-</div>
-<ul>
-<li>Dataset Size: The dataset is relatively small, with only 300 rows.</li>
-<li>Class Imbalance: The target variable, DEATH_EVENT, has few examples in the “True” class (i.e., the event occurred), which might affect the model’s ability to learn and generalize well. This class imbalance will be taken into consideration during analysis and model evaluation.</li>
-</ul>
-<section id="data-splitting" class="level3">
-<h3 class="anchored" data-anchor-id="data-splitting">Data Splitting</h3>
-</section>
-<section id="preprocessing-columns" class="level3">
-<h3 class="anchored" data-anchor-id="preprocessing-columns">Preprocessing columns</h3>
-<div id="7ca14155" class="cell" data-execution_count="19">
-<div class="cell-output cell-output-display" data-execution_count="393">
-
-<style>
-  #altair-viz-3090f98e1fe04240bc02d8dc6bcfd002.vega-embed {
-    width: 100%;
-    display: flex;
-  }
-
-  #altair-viz-3090f98e1fe04240bc02d8dc6bcfd002.vega-embed details,
-  #altair-viz-3090f98e1fe04240bc02d8dc6bcfd002.vega-embed details summary {
-    position: relative;
-  }
+<div class="cell" data-execution_count="3">
+<div id="tbl-missing-values" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="3">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-missing-values-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;2: Number of missing values in each column of the heart failure dataset.
+</figcaption>
+<div aria-describedby="tbl-missing-values-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display" data-execution_count="118">
+<style type="text/css">
+#T_49589_row0_col0, #T_49589_row0_col1, #T_49589_row1_col0, #T_49589_row1_col1, #T_49589_row2_col0, #T_49589_row2_col1, #T_49589_row3_col0, #T_49589_row3_col1, #T_49589_row4_col0, #T_49589_row4_col1, #T_49589_row5_col0, #T_49589_row5_col1, #T_49589_row6_col0, #T_49589_row6_col1, #T_49589_row7_col0, #T_49589_row7_col1, #T_49589_row8_col0, #T_49589_row8_col1, #T_49589_row9_col0, #T_49589_row9_col1, #T_49589_row10_col0, #T_49589_row10_col1, #T_49589_row11_col0, #T_49589_row11_col1, #T_49589_row12_col0, #T_49589_row12_col1 {
+  text-align: left;
+}
 </style>
-<div id="altair-viz-3090f98e1fe04240bc02d8dc6bcfd002"></div>
-<script type="text/javascript">
-  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
-  (function(spec, embedOpt){
-    let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-3090f98e1fe04240bc02d8dc6bcfd002") {
-      outputDiv = document.getElementById("altair-viz-3090f98e1fe04240bc02d8dc6bcfd002");
-    }
-    const paths = {
-      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
-      "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
-      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5.20.1?noext",
-      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
-    };
 
-    function maybeLoadScript(lib, version) {
-      var key = `${lib.replace("-", "")}_version`;
-      return (VEGA_DEBUG[key] == version) ?
-        Promise.resolve(paths[lib]) :
-        new Promise(function(resolve, reject) {
-          var s = document.createElement('script');
-          document.getElementsByTagName("head")[0].appendChild(s);
-          s.async = true;
-          s.onload = () => {
-            VEGA_DEBUG[key] = version;
-            return resolve(paths[lib]);
-          };
-          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
-          s.src = paths[lib];
-        });
-    }
-
-    function showError(err) {
-      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
-      throw err;
-    }
-
-    function displayChart(vegaEmbed) {
-      vegaEmbed(outputDiv, spec, embedOpt)
-        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
-    }
-
-    if(typeof define === "function" && define.amd) {
-      requirejs.config({paths});
-      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
-    } else {
-      maybeLoadScript("vega", "5")
-        .then(() => maybeLoadScript("vega-lite", "5.20.1"))
-        .then(() => maybeLoadScript("vega-embed", "6"))
-        .catch(showError)
-        .then(() => displayChart(vegaEmbed));
-    }
-  })({"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "data": {"name": "data-6ef60ee1adad1671694a70ef22c8725b"}, "mark": {"type": "rect"}, "encoding": {"color": {"field": "Correlation", "scale": {"scheme": "viridis"}, "type": "quantitative"}, "tooltip": [{"field": "Feature 1", "type": "nominal"}, {"field": "Feature 2", "type": "nominal"}, {"field": "Correlation", "type": "quantitative"}], "x": {"field": "Feature 1", "type": "ordinal"}, "y": {"field": "Feature 2", "type": "ordinal"}}, "height": 600, "title": "Correlation Heatmap", "width": 600, "$schema": "https://vega.github.io/schema/vega-lite/v5.20.1.json", "datasets": {"data-6ef60ee1adad1671694a70ef22c8725b": [{"Feature 1": "age", "Feature 2": "age", "Correlation": 1.0}, {"Feature 1": "creatinine_phosphokinase", "Feature 2": "age", "Correlation": -0.06376475132400736}, {"Feature 1": "ejection_fraction", "Feature 2": "age", "Correlation": 0.0621776219225157}, {"Feature 1": "platelets", "Feature 2": "age", "Correlation": -0.07403106069144051}, {"Feature 1": "serum_creatinine", "Feature 2": "age", "Correlation": 0.12725300688574262}, {"Feature 1": "serum_sodium", "Feature 2": "age", "Correlation": -0.030955823589613084}, {"Feature 1": "time", "Feature 2": "age", "Correlation": -0.2275270337547087}, {"Feature 1": "anaemia_True", "Feature 2": "age", "Correlation": 0.1056719653017338}, {"Feature 1": "diabetes_True", "Feature 2": "age", "Correlation": -0.05827371538027603}, {"Feature 1": "high_blood_pressure_True", "Feature 2": "age", "Correlation": 0.12290562200914343}, {"Feature 1": "sex_True", "Feature 2": "age", "Correlation": 0.03753438201231209}, {"Feature 1": "smoking_True", "Feature 2": "age", "Correlation": 0.04733211367051004}, {"Feature 1": "age", "Feature 2": "creatinine_phosphokinase", "Correlation": -0.06376475132400736}, {"Feature 1": "creatinine_phosphokinase", "Feature 2": "creatinine_phosphokinase", "Correlation": 1.0}, {"Feature 1": "ejection_fraction", "Feature 2": "creatinine_phosphokinase", "Correlation": -0.04075758856440575}, {"Feature 1": "platelets", "Feature 2": "creatinine_phosphokinase", "Correlation": 0.07274034098176364}, {"Feature 1": "serum_creatinine", "Feature 2": "creatinine_phosphokinase", "Correlation": -0.006183554996433297}, {"Feature 1": "serum_sodium", "Feature 2": "creatinine_phosphokinase", "Correlation": 0.06307853846169495}, {"Feature 1": "time", "Feature 2": "creatinine_phosphokinase", "Correlation": -0.03112979327575543}, {"Feature 1": "anaemia_True", "Feature 2": "creatinine_phosphokinase", "Correlation": -0.1959129315679776}, {"Feature 1": "diabetes_True", "Feature 2": "creatinine_phosphokinase", "Correlation": -0.019464274528004196}, {"Feature 1": "high_blood_pressure_True", "Feature 2": "creatinine_phosphokinase", "Correlation": -0.08231573367703428}, {"Feature 1": "sex_True", "Feature 2": "creatinine_phosphokinase", "Correlation": 0.07554844976569426}, {"Feature 1": "smoking_True", "Feature 2": "creatinine_phosphokinase", "Correlation": -0.01080156811004636}, {"Feature 1": "age", "Feature 2": "ejection_fraction", "Correlation": 0.0621776219225157}, {"Feature 1": "creatinine_phosphokinase", "Feature 2": "ejection_fraction", "Correlation": -0.04075758856440575}, {"Feature 1": "ejection_fraction", "Feature 2": "ejection_fraction", "Correlation": 1.0}, {"Feature 1": "platelets", "Feature 2": "ejection_fraction", "Correlation": 0.06559639039874805}, {"Feature 1": "serum_creatinine", "Feature 2": "ejection_fraction", "Correlation": 0.017541843385284018}, {"Feature 1": "serum_sodium", "Feature 2": "ejection_fraction", "Correlation": 0.15007974947079927}, {"Feature 1": "time", "Feature 2": "ejection_fraction", "Correlation": 0.03958860488194872}, {"Feature 1": "anaemia_True", "Feature 2": "ejection_fraction", "Correlation": 0.023141117145274257}, {"Feature 1": "diabetes_True", "Feature 2": "ejection_fraction", "Correlation": 0.014984135059736964}, {"Feature 1": "high_blood_pressure_True", "Feature 2": "ejection_fraction", "Correlation": 0.011918490434588785}, {"Feature 1": "sex_True", "Feature 2": "ejection_fraction", "Correlation": -0.17596930787401208}, {"Feature 1": "smoking_True", "Feature 2": "ejection_fraction", "Correlation": -0.05141871041708947}, {"Feature 1": "age", "Feature 2": "platelets", "Correlation": -0.07403106069144051}, {"Feature 1": "creatinine_phosphokinase", "Feature 2": "platelets", "Correlation": 0.07274034098176364}, {"Feature 1": "ejection_fraction", "Feature 2": "platelets", "Correlation": 0.06559639039874805}, {"Feature 1": "platelets", "Feature 2": "platelets", "Correlation": 1.0}, {"Feature 1": "serum_creatinine", "Feature 2": "platelets", "Correlation": -0.023476125043626582}, {"Feature 1": "serum_sodium", "Feature 2": "platelets", "Correlation": 0.04333391192293458}, {"Feature 1": "time", "Feature 2": "platelets", "Correlation": 0.01433882640377149}, {"Feature 1": "anaemia_True", "Feature 2": "platelets", "Correlation": -0.09170937678117828}, {"Feature 1": "diabetes_True", "Feature 2": "platelets", "Correlation": 0.0933655271037345}, {"Feature 1": "high_blood_pressure_True", "Feature 2": "platelets", "Correlation": 0.05634713799816698}, {"Feature 1": "sex_True", "Feature 2": "platelets", "Correlation": -0.14336543993509873}, {"Feature 1": "smoking_True", "Feature 2": "platelets", "Correlation": 0.08713770791696317}, {"Feature 1": "age", "Feature 2": "serum_creatinine", "Correlation": 0.12725300688574262}, {"Feature 1": "creatinine_phosphokinase", "Feature 2": "serum_creatinine", "Correlation": -0.006183554996433297}, {"Feature 1": "ejection_fraction", "Feature 2": "serum_creatinine", "Correlation": 0.017541843385284018}, {"Feature 1": "platelets", "Feature 2": "serum_creatinine", "Correlation": -0.023476125043626582}, {"Feature 1": "serum_creatinine", "Feature 2": "serum_creatinine", "Correlation": 1.0}, {"Feature 1": "serum_sodium", "Feature 2": "serum_creatinine", "Correlation": -0.15159605351654862}, {"Feature 1": "time", "Feature 2": "serum_creatinine", "Correlation": -0.16874973865549267}, {"Feature 1": "anaemia_True", "Feature 2": "serum_creatinine", "Correlation": 0.07952781313383103}, {"Feature 1": "diabetes_True", "Feature 2": "serum_creatinine", "Correlation": -0.0014380590152496173}, {"Feature 1": "high_blood_pressure_True", "Feature 2": "serum_creatinine", "Correlation": 0.01210784159049237}, {"Feature 1": "sex_True", "Feature 2": "serum_creatinine", "Correlation": 0.012529935025439507}, {"Feature 1": "smoking_True", "Feature 2": "serum_creatinine", "Correlation": -0.011660740713260221}, {"Feature 1": "age", "Feature 2": "serum_sodium", "Correlation": -0.030955823589613084}, {"Feature 1": "creatinine_phosphokinase", "Feature 2": "serum_sodium", "Correlation": 0.06307853846169495}, {"Feature 1": "ejection_fraction", "Feature 2": "serum_sodium", "Correlation": 0.15007974947079927}, {"Feature 1": "platelets", "Feature 2": "serum_sodium", "Correlation": 0.04333391192293458}, {"Feature 1": "serum_creatinine", "Feature 2": "serum_sodium", "Correlation": -0.15159605351654862}, {"Feature 1": "serum_sodium", "Feature 2": "serum_sodium", "Correlation": 1.0}, {"Feature 1": "time", "Feature 2": "serum_sodium", "Correlation": 0.10674419472629701}, {"Feature 1": "anaemia_True", "Feature 2": "serum_sodium", "Correlation": 0.01751678665162263}, {"Feature 1": "diabetes_True", "Feature 2": "serum_sodium", "Correlation": -0.07855753038718112}, {"Feature 1": "high_blood_pressure_True", "Feature 2": "serum_sodium", "Correlation": 0.043391401447851204}, {"Feature 1": "sex_True", "Feature 2": "serum_sodium", "Correlation": -0.012236461255179966}, {"Feature 1": "smoking_True", "Feature 2": "serum_sodium", "Correlation": -0.022815196583129613}, {"Feature 1": "age", "Feature 2": "time", "Correlation": -0.2275270337547087}, {"Feature 1": "creatinine_phosphokinase", "Feature 2": "time", "Correlation": -0.03112979327575543}, {"Feature 1": "ejection_fraction", "Feature 2": "time", "Correlation": 0.03958860488194872}, {"Feature 1": "platelets", "Feature 2": "time", "Correlation": 0.01433882640377149}, {"Feature 1": "serum_creatinine", "Feature 2": "time", "Correlation": -0.16874973865549267}, {"Feature 1": "serum_sodium", "Feature 2": "time", "Correlation": 0.10674419472629701}, {"Feature 1": "time", "Feature 2": "time", "Correlation": 1.0}, {"Feature 1": "anaemia_True", "Feature 2": "time", "Correlation": -0.16507760784444925}, {"Feature 1": "diabetes_True", "Feature 2": "time", "Correlation": 0.046618708027955}, {"Feature 1": "high_blood_pressure_True", "Feature 2": "time", "Correlation": -0.23199358741601114}, {"Feature 1": "sex_True", "Feature 2": "time", "Correlation": -0.0771012902843279}, {"Feature 1": "smoking_True", "Feature 2": "time", "Correlation": -0.024605787560785276}, {"Feature 1": "age", "Feature 2": "anaemia_True", "Correlation": 0.1056719653017338}, {"Feature 1": "creatinine_phosphokinase", "Feature 2": "anaemia_True", "Correlation": -0.1959129315679776}, {"Feature 1": "ejection_fraction", "Feature 2": "anaemia_True", "Correlation": 0.023141117145274257}, {"Feature 1": "platelets", "Feature 2": "anaemia_True", "Correlation": -0.09170937678117828}, {"Feature 1": "serum_creatinine", "Feature 2": "anaemia_True", "Correlation": 0.07952781313383103}, {"Feature 1": "serum_sodium", "Feature 2": "anaemia_True", "Correlation": 0.01751678665162263}, {"Feature 1": "time", "Feature 2": "anaemia_True", "Correlation": -0.16507760784444925}, {"Feature 1": "anaemia_True", "Feature 2": "anaemia_True", "Correlation": 1.0}, {"Feature 1": "diabetes_True", "Feature 2": "anaemia_True", "Correlation": 0.01315347273822832}, {"Feature 1": "high_blood_pressure_True", "Feature 2": "anaemia_True", "Correlation": 0.0693117103723158}, {"Feature 1": "sex_True", "Feature 2": "anaemia_True", "Correlation": -0.055193167535857866}, {"Feature 1": "smoking_True", "Feature 2": "anaemia_True", "Correlation": -0.0937303783256939}, {"Feature 1": "age", "Feature 2": "diabetes_True", "Correlation": -0.05827371538027603}, {"Feature 1": "creatinine_phosphokinase", "Feature 2": "diabetes_True", "Correlation": -0.019464274528004196}, {"Feature 1": "ejection_fraction", "Feature 2": "diabetes_True", "Correlation": 0.014984135059736964}, {"Feature 1": "platelets", "Feature 2": "diabetes_True", "Correlation": 0.0933655271037345}, {"Feature 1": "serum_creatinine", "Feature 2": "diabetes_True", "Correlation": -0.0014380590152496173}, {"Feature 1": "serum_sodium", "Feature 2": "diabetes_True", "Correlation": -0.07855753038718112}, {"Feature 1": "time", "Feature 2": "diabetes_True", "Correlation": 0.046618708027955}, {"Feature 1": "anaemia_True", "Feature 2": "diabetes_True", "Correlation": 0.01315347273822832}, {"Feature 1": "diabetes_True", "Feature 2": "diabetes_True", "Correlation": 1.0}, {"Feature 1": "high_blood_pressure_True", "Feature 2": "diabetes_True", "Correlation": -0.05784649738565528}, {"Feature 1": "sex_True", "Feature 2": "diabetes_True", "Correlation": -0.19386047205795925}, {"Feature 1": "smoking_True", "Feature 2": "diabetes_True", "Correlation": -0.15606894490780898}, {"Feature 1": "age", "Feature 2": "high_blood_pressure_True", "Correlation": 0.12290562200914343}, {"Feature 1": "creatinine_phosphokinase", "Feature 2": "high_blood_pressure_True", "Correlation": -0.08231573367703428}, {"Feature 1": "ejection_fraction", "Feature 2": "high_blood_pressure_True", "Correlation": 0.011918490434588785}, {"Feature 1": "platelets", "Feature 2": "high_blood_pressure_True", "Correlation": 0.05634713799816698}, {"Feature 1": "serum_creatinine", "Feature 2": "high_blood_pressure_True", "Correlation": 0.01210784159049237}, {"Feature 1": "serum_sodium", "Feature 2": "high_blood_pressure_True", "Correlation": 0.043391401447851204}, {"Feature 1": "time", "Feature 2": "high_blood_pressure_True", "Correlation": -0.23199358741601114}, {"Feature 1": "anaemia_True", "Feature 2": "high_blood_pressure_True", "Correlation": 0.0693117103723158}, {"Feature 1": "diabetes_True", "Feature 2": "high_blood_pressure_True", "Correlation": -0.05784649738565528}, {"Feature 1": "high_blood_pressure_True", "Feature 2": "high_blood_pressure_True", "Correlation": 1.0}, {"Feature 1": "sex_True", "Feature 2": "high_blood_pressure_True", "Correlation": -0.12622573361899167}, {"Feature 1": "smoking_True", "Feature 2": "high_blood_pressure_True", "Correlation": -0.03184654713764368}, {"Feature 1": "age", "Feature 2": "sex_True", "Correlation": 0.03753438201231209}, {"Feature 1": "creatinine_phosphokinase", "Feature 2": "sex_True", "Correlation": 0.07554844976569426}, {"Feature 1": "ejection_fraction", "Feature 2": "sex_True", "Correlation": -0.17596930787401208}, {"Feature 1": "platelets", "Feature 2": "sex_True", "Correlation": -0.14336543993509873}, {"Feature 1": "serum_creatinine", "Feature 2": "sex_True", "Correlation": 0.012529935025439507}, {"Feature 1": "serum_sodium", "Feature 2": "sex_True", "Correlation": -0.012236461255179966}, {"Feature 1": "time", "Feature 2": "sex_True", "Correlation": -0.0771012902843279}, {"Feature 1": "anaemia_True", "Feature 2": "sex_True", "Correlation": -0.055193167535857866}, {"Feature 1": "diabetes_True", "Feature 2": "sex_True", "Correlation": -0.19386047205795925}, {"Feature 1": "high_blood_pressure_True", "Feature 2": "sex_True", "Correlation": -0.12622573361899167}, {"Feature 1": "sex_True", "Feature 2": "sex_True", "Correlation": 1.0}, {"Feature 1": "smoking_True", "Feature 2": "sex_True", "Correlation": 0.4368830092470748}, {"Feature 1": "age", "Feature 2": "smoking_True", "Correlation": 0.04733211367051004}, {"Feature 1": "creatinine_phosphokinase", "Feature 2": "smoking_True", "Correlation": -0.01080156811004636}, {"Feature 1": "ejection_fraction", "Feature 2": "smoking_True", "Correlation": -0.05141871041708947}, {"Feature 1": "platelets", "Feature 2": "smoking_True", "Correlation": 0.08713770791696317}, {"Feature 1": "serum_creatinine", "Feature 2": "smoking_True", "Correlation": -0.011660740713260221}, {"Feature 1": "serum_sodium", "Feature 2": "smoking_True", "Correlation": -0.022815196583129613}, {"Feature 1": "time", "Feature 2": "smoking_True", "Correlation": -0.024605787560785276}, {"Feature 1": "anaemia_True", "Feature 2": "smoking_True", "Correlation": -0.0937303783256939}, {"Feature 1": "diabetes_True", "Feature 2": "smoking_True", "Correlation": -0.15606894490780898}, {"Feature 1": "high_blood_pressure_True", "Feature 2": "smoking_True", "Correlation": -0.03184654713764368}, {"Feature 1": "sex_True", "Feature 2": "smoking_True", "Correlation": 0.4368830092470748}, {"Feature 1": "smoking_True", "Feature 2": "smoking_True", "Correlation": 1.0}]}}, {"mode": "vega-lite"});
-</script>
-</div>
-</div>
-</section>
-</section>
-<section id="building-the-model" class="level2">
-<h2 class="anchored" data-anchor-id="building-the-model">Building the Model</h2>
-<p>Testing Decision Tree, KNN, Logistic Regression</p>
-<section id="decision-tree" class="level3">
-<h3 class="anchored" data-anchor-id="decision-tree">Decision Tree</h3>
-<div id="6d70cce1" class="cell" data-execution_count="21">
-<div class="cell-output cell-output-display" data-execution_count="395">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table id="T_49589" class="do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">fit_time</th>
-<th data-quarto-table-cell-role="th">score_time</th>
-<th data-quarto-table-cell-role="th">test_score</th>
-<th data-quarto-table-cell-role="th">train_score</th>
+<th class="blank level0" data-quarto-table-cell-role="th">&nbsp;</th>
+<th id="T_49589_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Column</th>
+<th id="T_49589_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Missing Values</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td data-quarto-table-cell-role="th">4</td>
-<td>0.004774</td>
-<td>0.002321</td>
-<td>0.829787</td>
-<td>1.0</td>
+<td id="T_49589_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th">0</td>
+<td id="T_49589_row0_col0" class="data row0 col0">age</td>
+<td id="T_49589_row0_col1" class="data row0 col1">0</td>
+</tr>
+<tr class="even">
+<td id="T_49589_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th">1</td>
+<td id="T_49589_row1_col0" class="data row1 col0">anaemia</td>
+<td id="T_49589_row1_col1" class="data row1 col1">0</td>
+</tr>
+<tr class="odd">
+<td id="T_49589_level0_row2" class="row_heading level0 row2" data-quarto-table-cell-role="th">2</td>
+<td id="T_49589_row2_col0" class="data row2 col0">creatinine_phosphokinase</td>
+<td id="T_49589_row2_col1" class="data row2 col1">0</td>
+</tr>
+<tr class="even">
+<td id="T_49589_level0_row3" class="row_heading level0 row3" data-quarto-table-cell-role="th">3</td>
+<td id="T_49589_row3_col0" class="data row3 col0">diabetes</td>
+<td id="T_49589_row3_col1" class="data row3 col1">0</td>
+</tr>
+<tr class="odd">
+<td id="T_49589_level0_row4" class="row_heading level0 row4" data-quarto-table-cell-role="th">4</td>
+<td id="T_49589_row4_col0" class="data row4 col0">ejection_fraction</td>
+<td id="T_49589_row4_col1" class="data row4 col1">0</td>
+</tr>
+<tr class="even">
+<td id="T_49589_level0_row5" class="row_heading level0 row5" data-quarto-table-cell-role="th">5</td>
+<td id="T_49589_row5_col0" class="data row5 col0">high_blood_pressure</td>
+<td id="T_49589_row5_col1" class="data row5 col1">0</td>
+</tr>
+<tr class="odd">
+<td id="T_49589_level0_row6" class="row_heading level0 row6" data-quarto-table-cell-role="th">6</td>
+<td id="T_49589_row6_col0" class="data row6 col0">platelets</td>
+<td id="T_49589_row6_col1" class="data row6 col1">0</td>
+</tr>
+<tr class="even">
+<td id="T_49589_level0_row7" class="row_heading level0 row7" data-quarto-table-cell-role="th">7</td>
+<td id="T_49589_row7_col0" class="data row7 col0">serum_creatinine</td>
+<td id="T_49589_row7_col1" class="data row7 col1">0</td>
+</tr>
+<tr class="odd">
+<td id="T_49589_level0_row8" class="row_heading level0 row8" data-quarto-table-cell-role="th">8</td>
+<td id="T_49589_row8_col0" class="data row8 col0">serum_sodium</td>
+<td id="T_49589_row8_col1" class="data row8 col1">0</td>
+</tr>
+<tr class="even">
+<td id="T_49589_level0_row9" class="row_heading level0 row9" data-quarto-table-cell-role="th">9</td>
+<td id="T_49589_row9_col0" class="data row9 col0">sex</td>
+<td id="T_49589_row9_col1" class="data row9 col1">0</td>
+</tr>
+<tr class="odd">
+<td id="T_49589_level0_row10" class="row_heading level0 row10" data-quarto-table-cell-role="th">10</td>
+<td id="T_49589_row10_col0" class="data row10 col0">smoking</td>
+<td id="T_49589_row10_col1" class="data row10 col1">0</td>
+</tr>
+<tr class="even">
+<td id="T_49589_level0_row11" class="row_heading level0 row11" data-quarto-table-cell-role="th">11</td>
+<td id="T_49589_row11_col0" class="data row11 col0">time</td>
+<td id="T_49589_row11_col1" class="data row11 col1">0</td>
+</tr>
+<tr class="odd">
+<td id="T_49589_level0_row12" class="row_heading level0 row12" data-quarto-table-cell-role="th">12</td>
+<td id="T_49589_row12_col0" class="data row12 col0">DEATH_EVENT</td>
+<td id="T_49589_row12_col1" class="data row12 col1">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>No missing values, no imputation or filling Nulls required</p>
+<div class="cell" data-execution_count="4">
+<div id="tbl-death-event-counts" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="4">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-death-event-counts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;3: Distribution of the target variable <code>DEATH_EVENT</code> in the heart failure dataset.
+</figcaption>
+<div aria-describedby="tbl-death-event-counts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display" data-execution_count="119">
+<div>
+
+
+<table class="dataframe do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">DEATH_EVENT</th>
+<th data-quarto-table-cell-role="th">Count</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>0</td>
+<td>203</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">1</td>
-<td>0.005693</td>
-<td>0.002924</td>
-<td>0.812500</td>
-<td>1.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">3</td>
-<td>0.004860</td>
-<td>0.002300</td>
-<td>0.791667</td>
-<td>1.0</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">2</td>
-<td>0.005335</td>
-<td>0.002479</td>
-<td>0.770833</td>
-<td>1.0</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">0</td>
-<td>0.006618</td>
-<td>0.003298</td>
-<td>0.666667</td>
-<td>1.0</td>
+<td>1</td>
+<td>96</td>
 </tr>
 </tbody>
 </table>
@@ -445,84 +328,42 @@ Name: count, dtype: int64</code></pre>
 </div>
 </div>
 </div>
+</figure>
+</div>
+</div>
+<ul>
+<li>Dataset Size: The dataset is relatively small, with only 300 rows.</li>
+<li>Class Imbalance: The target variable, DEATH_EVENT, has few examples in the “True” class (i.e., the event occurred), which might affect the model’s ability to learn and generalize well. This class imbalance will be taken into consideration during analysis and model evaluation.</li>
+</ul>
 </section>
-<section id="knn" class="level3">
-<h3 class="anchored" data-anchor-id="knn">KNN</h3>
-<div id="dad3056a" class="cell" data-execution_count="22">
-<div class="cell-output cell-output-display" data-execution_count="396">
-<style>#sk-container-id-27 {color: black;}#sk-container-id-27 pre{padding: 0;}#sk-container-id-27 div.sk-toggleable {background-color: white;}#sk-container-id-27 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-27 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-27 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-27 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-27 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-27 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-27 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-27 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-27 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-27 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-27 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-27 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-27 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-27 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-27 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-27 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-27 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-27 div.sk-item {position: relative;z-index: 1;}#sk-container-id-27 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-27 div.sk-item::before, #sk-container-id-27 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-27 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-27 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-27 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-27 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-27 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-27 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-27 div.sk-label-container {text-align: center;}#sk-container-id-27 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-27 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-27" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>Pipeline(steps=[('columntransformer',
-                 ColumnTransformer(remainder='passthrough',
-                                   transformers=[('standardscaler',
-                                                  StandardScaler(),
-                                                  ['age',
-                                                   'creatinine_phosphokinase',
-                                                   'ejection_fraction',
-                                                   'platelets',
-                                                   'serum_creatinine',
-                                                   'serum_sodium', 'time']),
-                                                 ('onehotencoder',
-                                                  OneHotEncoder(drop='if_binary',
-                                                                dtype=&lt;class 'int'&gt;,
-                                                                handle_unknown='ignore',
-                                                                sparse_output=False),
-                                                  ['anaemia', 'diabetes',
-                                                   'high_blood_pressure', 'sex',
-                                                   'smoking'])],
-                                   verbose_feature_names_out=False)),
-                ('kneighborsclassifier', KNeighborsClassifier(n_neighbors=19))])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-131" type="checkbox"><label for="sk-estimator-id-131" class="sk-toggleable__label sk-toggleable__label-arrow">Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[('columntransformer',
-                 ColumnTransformer(remainder='passthrough',
-                                   transformers=[('standardscaler',
-                                                  StandardScaler(),
-                                                  ['age',
-                                                   'creatinine_phosphokinase',
-                                                   'ejection_fraction',
-                                                   'platelets',
-                                                   'serum_creatinine',
-                                                   'serum_sodium', 'time']),
-                                                 ('onehotencoder',
-                                                  OneHotEncoder(drop='if_binary',
-                                                                dtype=&lt;class 'int'&gt;,
-                                                                handle_unknown='ignore',
-                                                                sparse_output=False),
-                                                  ['anaemia', 'diabetes',
-                                                   'high_blood_pressure', 'sex',
-                                                   'smoking'])],
-                                   verbose_feature_names_out=False)),
-                ('kneighborsclassifier', KNeighborsClassifier(n_neighbors=19))])</pre></div></div></div><div class="sk-serial"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-132" type="checkbox"><label for="sk-estimator-id-132" class="sk-toggleable__label sk-toggleable__label-arrow">columntransformer: ColumnTransformer</label><div class="sk-toggleable__content"><pre>ColumnTransformer(remainder='passthrough',
-                  transformers=[('standardscaler', StandardScaler(),
-                                 ['age', 'creatinine_phosphokinase',
-                                  'ejection_fraction', 'platelets',
-                                  'serum_creatinine', 'serum_sodium', 'time']),
-                                ('onehotencoder',
-                                 OneHotEncoder(drop='if_binary',
-                                               dtype=&lt;class 'int'&gt;,
-                                               handle_unknown='ignore',
-                                               sparse_output=False),
-                                 ['anaemia', 'diabetes', 'high_blood_pressure',
-                                  'sex', 'smoking'])],
-                  verbose_feature_names_out=False)</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-133" type="checkbox"><label for="sk-estimator-id-133" class="sk-toggleable__label sk-toggleable__label-arrow">standardscaler</label><div class="sk-toggleable__content"><pre>['age', 'creatinine_phosphokinase', 'ejection_fraction', 'platelets', 'serum_creatinine', 'serum_sodium', 'time']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-134" type="checkbox"><label for="sk-estimator-id-134" class="sk-toggleable__label sk-toggleable__label-arrow">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-135" type="checkbox"><label for="sk-estimator-id-135" class="sk-toggleable__label sk-toggleable__label-arrow">onehotencoder</label><div class="sk-toggleable__content"><pre>['anaemia', 'diabetes', 'high_blood_pressure', 'sex', 'smoking']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-136" type="checkbox"><label for="sk-estimator-id-136" class="sk-toggleable__label sk-toggleable__label-arrow">OneHotEncoder</label><div class="sk-toggleable__content"><pre>OneHotEncoder(drop='if_binary', dtype=&lt;class 'int'&gt;, handle_unknown='ignore',
-              sparse_output=False)</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-137" type="checkbox"><label for="sk-estimator-id-137" class="sk-toggleable__label sk-toggleable__label-arrow">remainder</label><div class="sk-toggleable__content"><pre>[]</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-138" type="checkbox"><label for="sk-estimator-id-138" class="sk-toggleable__label sk-toggleable__label-arrow">passthrough</label><div class="sk-toggleable__content"><pre>passthrough</pre></div></div></div></div></div></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-139" type="checkbox"><label for="sk-estimator-id-139" class="sk-toggleable__label sk-toggleable__label-arrow">KNeighborsClassifier</label><div class="sk-toggleable__content"><pre>KNeighborsClassifier(n_neighbors=19)</pre></div></div></div></div></div></div></div>
+</section>
+<section id="model" class="level2">
+<h2 class="anchored" data-anchor-id="model">Model</h2>
+<p>We compared Decision Tree, KNN, Logistic Regression, and selected Logistic Regression due to its interpretability, and ability to handle both linear and non-linear relationships between features. Logistic Regression performed better than the other two models as it works well with fewer features and is less prone to overfitting compared to more complex models like Decision Trees or KNN, especially when the data is relatively small.</p>
+<div id="lr_cv_scores" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="figures/lr_cv_scores.png" class="img-fluid figure-img" style="width:60.0%"></p>
+<figcaption>Cross-validation scores for Logistic Regression- Logistic regression performs better than Decision tree and KNN on the cross validation data, hence, we will select it as our final model.</figcaption>
+</figure>
 </div>
-</div>
-<div id="f59b294e" class="cell" data-execution_count="23">
-<div class="cell-output cell-output-display" data-execution_count="397">
-<pre><code>params             {'kneighborsclassifier__n_neighbors': 19}
-mean_test_score                                     0.777899
-Name: 6, dtype: object</code></pre>
-</div>
-</div>
+</section>
+<section id="results-and-conculsion" class="level2">
+<h2 class="anchored" data-anchor-id="results-and-conculsion">Results and Conculsion</h2>
+<p>The analysis revealed that <code>platelets</code> and <code>ejection_fraction</code> are the most important features in predicting the risk of patient mortality. These features significantly impact the model’s ability to assess patient risk, which is crucial for early intervention. Our model achieved a recall score of 0.73, which is a good start, but there is room for improvement, particularly in reducing the number of high risk patients the model might miss, i.e., maximising recall by minimising False Negatives.</p>
+<p>The main challenges in this project stem from class imbalance and limited data availability. With more diverse and comprehensive datasets, performance could be further enhanced. We would also like to explore other machine learning models to improve the overall accuracy.</p>
+<p>In conclusion, while the current model shows potential, there is significant opportunity to enhance its effectiveness. With improvements in data quality and model optimization, this tool could become a crucial asset in predicting patient risk and saving lives.</p>
 <p>_</p>
 <section id="logistic-regression" class="level4">
 <h4 class="anchored" data-anchor-id="logistic-regression">Logistic Regression</h4>
-<div id="2ff9a55b" class="cell" data-execution_count="24">
-<div class="cell-output cell-output-display" data-execution_count="398">
-<style>#sk-container-id-28 {color: black;}#sk-container-id-28 pre{padding: 0;}#sk-container-id-28 div.sk-toggleable {background-color: white;}#sk-container-id-28 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-28 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-28 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-28 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-28 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-28 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-28 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-28 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-28 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-28 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-28 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-28 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-28 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-28 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-28 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-28 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-28 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-28 div.sk-item {position: relative;z-index: 1;}#sk-container-id-28 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-28 div.sk-item::before, #sk-container-id-28 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-28 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-28 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-28 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-28 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-28 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-28 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-28 div.sk-label-container {text-align: center;}#sk-container-id-28 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-28 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-28" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>LogisticRegression(C=0.0001, class_weight='balanced', max_iter=2000,
-                   random_state=522)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-140" type="checkbox" checked=""><label for="sk-estimator-id-140" class="sk-toggleable__label sk-toggleable__label-arrow">LogisticRegression</label><div class="sk-toggleable__content"><pre>LogisticRegression(C=0.0001, class_weight='balanced', max_iter=2000,
+<div id="c2b663e7" class="cell" data-execution_count="6">
+<div class="cell-output cell-output-display" data-execution_count="121">
+<style>#sk-container-id-12 {color: black;}#sk-container-id-12 pre{padding: 0;}#sk-container-id-12 div.sk-toggleable {background-color: white;}#sk-container-id-12 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-12 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-12 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-12 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-12 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-12 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-12 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-12 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-12 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-12 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-12 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-12 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-12 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-12 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-12 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-12 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-12 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-12 div.sk-item {position: relative;z-index: 1;}#sk-container-id-12 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-12 div.sk-item::before, #sk-container-id-12 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-12 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-12 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-12 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-12 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-12 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-12 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-12 div.sk-label-container {text-align: center;}#sk-container-id-12 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-12 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-12" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>LogisticRegression(C=0.0001, class_weight='balanced', max_iter=2000,
+                   random_state=522)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-12" type="checkbox" checked=""><label for="sk-estimator-id-12" class="sk-toggleable__label sk-toggleable__label-arrow">LogisticRegression</label><div class="sk-toggleable__content"><pre>LogisticRegression(C=0.0001, class_weight='balanced', max_iter=2000,
                    random_state=522)</pre></div></div></div></div></div>
 </div>
 </div>
-<div id="1bbbe381" class="cell" data-execution_count="25">
-<div class="cell-output cell-output-display" data-execution_count="399">
+<div id="c98e0eff" class="cell" data-execution_count="7">
+<div class="cell-output cell-output-display" data-execution_count="122">
 <div>
 
 
@@ -573,205 +414,102 @@ Name: 6, dtype: object</code></pre>
 </div>
 </div>
 <p><strong>Model is performing well with C = 0.0010 with a high test score, close to train score, indicating that model isn’t overfitting or underfitting</strong></p>
-<div id="42fef946" class="cell" data-execution_count="26">
-<div class="cell-output cell-output-display" data-execution_count="400">
-
-<style>
-  #altair-viz-904fdcbbf4084df4bf1884f21cc27b7b.vega-embed {
-    width: 100%;
-    display: flex;
-  }
-
-  #altair-viz-904fdcbbf4084df4bf1884f21cc27b7b.vega-embed details,
-  #altair-viz-904fdcbbf4084df4bf1884f21cc27b7b.vega-embed details summary {
-    position: relative;
-  }
-</style>
-<div id="altair-viz-904fdcbbf4084df4bf1884f21cc27b7b"></div>
-<script type="text/javascript">
-  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
-  (function(spec, embedOpt){
-    let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "altair-viz-904fdcbbf4084df4bf1884f21cc27b7b") {
-      outputDiv = document.getElementById("altair-viz-904fdcbbf4084df4bf1884f21cc27b7b");
-    }
-    const paths = {
-      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
-      "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
-      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5.20.1?noext",
-      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
-    };
-
-    function maybeLoadScript(lib, version) {
-      var key = `${lib.replace("-", "")}_version`;
-      return (VEGA_DEBUG[key] == version) ?
-        Promise.resolve(paths[lib]) :
-        new Promise(function(resolve, reject) {
-          var s = document.createElement('script');
-          document.getElementsByTagName("head")[0].appendChild(s);
-          s.async = true;
-          s.onload = () => {
-            VEGA_DEBUG[key] = version;
-            return resolve(paths[lib]);
-          };
-          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
-          s.src = paths[lib];
-        });
-    }
-
-    function showError(err) {
-      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
-      throw err;
-    }
-
-    function displayChart(vegaEmbed) {
-      vegaEmbed(outputDiv, spec, embedOpt)
-        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
-    }
-
-    if(typeof define === "function" && define.amd) {
-      requirejs.config({paths});
-      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
-    } else {
-      maybeLoadScript("vega", "5")
-        .then(() => maybeLoadScript("vega-lite", "5.20.1"))
-        .then(() => maybeLoadScript("vega-embed", "6"))
-        .catch(showError)
-        .then(() => displayChart(vegaEmbed));
-    }
-  })({"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "data": {"name": "data-88ce4b0bd0af63ca0875b1e76a62d2df"}, "mark": {"type": "line"}, "encoding": {"color": {"field": "Score Type", "scale": {"domain": ["mean_test_score", "mean_train_score"], "range": ["skyblue", "pink"]}, "title": "Score Type", "type": "nominal"}, "tooltip": [{"field": "param_logisticregression__C", "type": "quantitative"}, {"field": "Score Type", "type": "nominal"}, {"field": "Score", "type": "quantitative"}], "x": {"field": "param_logisticregression__C", "scale": {"type": "log"}, "title": "C (Regularization Parameter)", "type": "quantitative"}, "y": {"field": "Score", "scale": {"domain": [0.75, 0.85]}, "title": "Score", "type": "quantitative"}}, "height": 400, "title": "Training vs Cross-Validation Scores (Log Scale)", "transform": [{"fold": ["mean_test_score", "mean_train_score"], "as": ["Score Type", "Score"]}], "width": 600, "$schema": "https://vega.github.io/schema/vega-lite/v5.20.1.json", "datasets": {"data-88ce4b0bd0af63ca0875b1e76a62d2df": [{"param_logisticregression__C": 0.0001, "mean_test_score": 0.8324275362318841, "mean_train_score": 0.8340223944875108}, {"param_logisticregression__C": 0.001, "mean_test_score": 0.8282608695652174, "mean_train_score": 0.8330964685615848}, {"param_logisticregression__C": 0.01, "mean_test_score": 0.8199275362318842, "mean_train_score": 0.8251873385012919}, {"param_logisticregression__C": 0.1, "mean_test_score": 0.8157608695652174, "mean_train_score": 0.8247308354866494}, {"param_logisticregression__C": 1.0, "mean_test_score": 0.7992753623188407, "mean_train_score": 0.8238070628768304}, {"param_logisticregression__C": 10.0, "mean_test_score": 0.7951086956521738, "mean_train_score": 0.821485788113695}, {"param_logisticregression__C": 100.0, "mean_test_score": 0.7951086956521738, "mean_train_score": 0.8233462532299741}, {"param_logisticregression__C": 1000.0, "mean_test_score": 0.7951086956521738, "mean_train_score": 0.8233462532299741}, {"param_logisticregression__C": 10000.0, "mean_test_score": 0.7951086956521738, "mean_train_score": 0.8233462532299741}, {"param_logisticregression__C": 1e-05, "mean_test_score": 0.7653985507246377, "mean_train_score": 0.7666128337639966}]}}, {"mode": "vega-lite"});
-</script>
-</div>
-</div>
-<p><strong>Logistic regression performs better than decision trees and KNN on the cross validation data, hence, we will select it as our final model</strong></p>
-<div id="ceb53799" class="cell" data-execution_count="27">
-<div class="cell-output cell-output-display" data-execution_count="401">
-<div>
-
-
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
-<thead>
-<tr class="header">
-<th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th">Feature</th>
-<th data-quarto-table-cell-role="th">Coefficient</th>
-<th data-quarto-table-cell-role="th">Absolute_Coefficient</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">6</td>
-<td>platelets</td>
-<td>-0.006702</td>
-<td>0.006702</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">4</td>
-<td>ejection_fraction</td>
-<td>0.004108</td>
-<td>0.004108</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">2</td>
-<td>creatinine_phosphokinase</td>
-<td>-0.003465</td>
-<td>0.003465</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">0</td>
-<td>age</td>
-<td>0.002880</td>
-<td>0.002880</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">5</td>
-<td>high_blood_pressure</td>
-<td>-0.002383</td>
-<td>0.002383</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">1</td>
-<td>anaemia</td>
-<td>0.001004</td>
-<td>0.001004</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">9</td>
-<td>sex</td>
-<td>0.000714</td>
-<td>0.000714</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">7</td>
-<td>serum_creatinine</td>
-<td>0.000431</td>
-<td>0.000431</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">3</td>
-<td>diabetes</td>
-<td>-0.000375</td>
-<td>0.000375</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">11</td>
-<td>time</td>
-<td>-0.000208</td>
-<td>0.000208</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">10</td>
-<td>smoking</td>
-<td>-0.000106</td>
-<td>0.000106</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">8</td>
-<td>serum_sodium</td>
-<td>-0.000064</td>
-<td>0.000064</td>
-</tr>
-</tbody>
-</table>
-
-</div>
-</div>
-</div>
-</section>
 </section>
 </section>
 <section id="model-evaluation" class="level2">
 <h2 class="anchored" data-anchor-id="model-evaluation">Model Evaluation</h2>
 <section id="confusion-matrix" class="level4">
 <h4 class="anchored" data-anchor-id="confusion-matrix">Confusion Matrix</h4>
-<div id="009ca3bd" class="cell" data-execution_count="28">
-<div class="cell-output cell-output-display" data-execution_count="402">
+<div class="cell" data-execution_count="8">
+<div id="tbl-confusion-matrix" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="8">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-confusion-matrix-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4: Confusion matrix for the final model on the test dataset.
+</figcaption>
+<div aria-describedby="tbl-confusion-matrix-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display" data-execution_count="123">
+<style type="text/css">
+</style>
+
+<div id="T_dd6c7" class="do-not-create-environment quarto-float quarto-figure quarto-figure-center anchored" data-quarto-postprocess="true" style="display:inline">
+<figure class="quarto-float quarto-subfloat-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-subfloat-caption quarto-subfloat-tbl" id="T_dd6c7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Confusion matrix for predictions.
+</figcaption>
+<div aria-describedby="T_dd6c7-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="T_dd6c7" class="do-not-create-environment caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th class="index_name level0" data-quarto-table-cell-role="th">Predicted</th>
+<th id="T_dd6c7_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">0</th>
+<th id="T_dd6c7_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">1</th>
+</tr>
+<tr class="odd">
+<th class="index_name level0" data-quarto-table-cell-role="th">Actual</th>
+<th class="blank col0" data-quarto-table-cell-role="th">&nbsp;</th>
+<th class="blank col1" data-quarto-table-cell-role="th">&nbsp;</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td id="T_dd6c7_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th">0</td>
+<td id="T_dd6c7_row0_col0" class="data row0 col0">35</td>
+<td id="T_dd6c7_row0_col1" class="data row0 col1">6</td>
+</tr>
+<tr class="even">
+<td id="T_dd6c7_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th">1</td>
+<td id="T_dd6c7_row1_col0" class="data row1 col0">5</td>
+<td id="T_dd6c7_row1_col1" class="data row1 col1">14</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<div class="cell" data-execution_count="9">
+<div id="tbl-model-metrics" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="9">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-model-metrics-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5: Evaluation metrics for the final model.
+</figcaption>
+<div aria-describedby="tbl-model-metrics-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display" data-execution_count="124">
 <div>
 
 
-<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<table class="dataframe do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
 <thead>
 <tr class="header">
-<th data-quarto-table-cell-role="th">Predicted</th>
-<th data-quarto-table-cell-role="th">0</th>
-<th data-quarto-table-cell-role="th">1</th>
-</tr>
-<tr class="odd">
-<th data-quarto-table-cell-role="th">Actual</th>
 <th data-quarto-table-cell-role="th"></th>
-<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">Metric</th>
+<th data-quarto-table-cell-role="th">Value</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">0</td>
-<td>35</td>
-<td>6</td>
+<td>Accuracy</td>
+<td>0.8167</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">1</td>
-<td>5</td>
-<td>14</td>
+<td>Precision</td>
+<td>0.7000</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>Recall</td>
+<td>0.7368</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>F1 Score</td>
+<td>0.7179</td>
 </tr>
 </tbody>
 </table>
@@ -779,12 +517,7 @@ Name: 6, dtype: object</code></pre>
 </div>
 </div>
 </div>
-<div id="84ea2d34" class="cell" data-execution_count="29">
-<div class="cell-output cell-output-stdout">
-<pre><code>Accuracy: 0.8167
-Precision: 0.7000
-Recall: 0.7368
-F1 Score: 0.7179</code></pre>
+</figure>
 </div>
 </div>
 </section>
