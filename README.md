@@ -66,10 +66,10 @@ docker compose up
 To run the analysis, open a terminal and run the following commands and their respective arguments:
 
 ```         
-python src/download_and_convert.py 
+python src/download_and_convert.py \
   --url "https://archive.ics.uci.edu/static/public/519/heart+failure+clinical+records.zip"
 
-python src/process_and_analyze.py 
+python src/process_and_analyze.py \
   --file_path "../data/heart_failure_clinical_records_dataset_converted.csv"
   
 python src/correlation_analysis.py \
