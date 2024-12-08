@@ -28,39 +28,7 @@ Cardiovascular diseases are responsible for approximately 17 million deaths glob
 
 ## Data 
 
-We analyzed a dataset containing the medical records of 299 heart failure patients. The patients consisted of 105 women and 194 men, and their ages range between 40 and 95 years old. The dataset contains 13 features, which report clinical, body, and lifestyle information. The **death event** was used as the target variable in our binary classification study. It states whether the patient died or survived before the end of the follow-up period, which lasted 130 days on average. Our dataset has a class imbalance where the number of survived patients (death event = 0) is 203 (67.89%) and the number of dead patients (death event = 1) is 96 (32.11%).
-
-| Column Name            | Description                                                  |
-|------------------------|--------------------------------------------------------------|
-| age                    | Patient's age                                          |
-| anaemia                | Decrease of red blood cells or hemoglobin                    |
-| creatinine_phosphokinase| Level of the CPK enzyme in the blood                        |
-| diabetes               | If the patient has diabetes                                  |
-| ejection_fraction      | Percentage of blood leaving the heart at each contraction    |
-| high_blood_pressure    | If the patient has hypertension                              |
-| platelets              | Platelets in the blood                                       |
-| serum_creatinine       | Level of serum creatinine in the blood                       |
-| serum_sodium           | Level of serum sodium in the blood                           |
-| sex                    | Woman or man                                                 |
-| smoking                | If the patient smokes or not                                 |
-| time                   | Follow-up period                                             |
-| DEATH_EVENT            | Whether the patient died or not (target variable)            |
-
-## Model
-
-We compared Decision Tree, KNN, Logistic Regression, and selected Logistic Regression due to its interpretability, and ability to handle both linear and non-linear relationships between features. Logistic Regression performed better than the other two models as it works well with fewer features and is less prone to overfitting compared to more complex models like Decision Trees or KNN, especially when the data is relatively small.
-
-## Results and Conculsion
-
-The analysis revealed that `platelets` and `ejection_fraction` are the most important features in predicting the risk of patient mortality. These features significantly impact the model's ability to assess patient risk, which is crucial for early intervention. Our model achieved a recall score of 0.73, which is a good start, but there is room for improvement, particularly in reducing the number of high risk patients the model might miss, i.e., maximising recall by minimising False Negatives.
-
-The main challenges in this project stem from class imbalance and limited data availability. With more diverse and comprehensive datasets, performance could be further enhanced. We would also like to explore other machine learning models to improve the overall accuracy.
-
-In conclusion, while the current model shows potential, there is significant opportunity to enhance its effectiveness. With improvements in data quality and model optimization, this tool could become a crucial asset in predicting patient risk and saving lives.
-
-## EDA and Analysis
-
-### Dataset and Imports
+We analyzed a dataset containing the medical records of 299 heart failure patients. The patients consisted of 105 women and 194 men, and their ages range between 40 and 95 years old. The dataset contains 13 features shown in @tbl-patient-table, which report clinical, body, and lifestyle information. The **death event** was used as the target variable in our binary classification study. It states whether the patient died or survived before the end of the follow-up period, which lasted 130 days on average. Our dataset has a class imbalance where the number of survived patients (death event = 0) is 203 (67.89%) and the number of dead patients (death event = 1) is 96 (32.11%).
 
 ```{python}
 #| echo: false
@@ -93,6 +61,67 @@ import warnings
 #alt.data_transformers.enable('vegafusion')
 ```
 
+### **EDA and Visualizations**
+
+
+
+```{python}
+#| label: tbl-patient-table
+#| tbl-cap: Description of the columns in the heart failure dataset.
+#| echo: false
+
+import pandas as pd
+
+# Load the table
+patient_table = pd.read_csv("tables/patient_table.csv")
+
+# Apply CSS to left-align all columns
+patient_table.style.set_properties(**{'text-align': 'left'})
+```
+
+
+
+
+
+
+```{python}
+# Check for missing values
+
+file_path = 'data/heart_failure_clinical_records_dataset.csv'
+heart_failure_data = pd.read_csv(file_path)
+
+missing_values = heart_failure_data.isnull().sum()
+
+# Convert to a DataFrame for better visualization
+missing_values_df = pd.DataFrame({
+    'Column': missing_values.index,
+    'Missing Values': missing_values.values
+})
+
+# Display the DataFrame
+missing_values_df
+```
+
+No missing values, no imputation or filling Nulls required
+
+![Correlation heatmap-  Based on the correlation matrix graph below, all features have relatively low correlations between each other, the correlations are below 0.5, so there is no strong evidence to drop additional featues. ](figures/correlation_heatmap.png){#correlation_heatmap width=60% fig-pos="H"}
+
+
+## Model
+
+We compared Decision Tree, KNN, Logistic Regression, and selected Logistic Regression due to its interpretability, and ability to handle both linear and non-linear relationships between features. Logistic Regression performed better than the other two models as it works well with fewer features and is less prone to overfitting compared to more complex models like Decision Trees or KNN, especially when the data is relatively small.
+
+## Results and Conculsion
+
+The analysis revealed that `platelets` and `ejection_fraction` are the most important features in predicting the risk of patient mortality. These features significantly impact the model's ability to assess patient risk, which is crucial for early intervention. Our model achieved a recall score of 0.73, which is a good start, but there is room for improvement, particularly in reducing the number of high risk patients the model might miss, i.e., maximising recall by minimising False Negatives.
+
+The main challenges in this project stem from class imbalance and limited data availability. With more diverse and comprehensive datasets, performance could be further enhanced. We would also like to explore other machine learning models to improve the overall accuracy.
+
+In conclusion, while the current model shows potential, there is significant opportunity to enhance its effectiveness. With improvements in data quality and model optimization, this tool could become a crucial asset in predicting patient risk and saving lives.
+
+
+
+
 ```{python}
 #| echo: false
 #| output: false
@@ -108,9 +137,12 @@ binary_columns = ['anaemia', 'diabetes', 'high_blood_pressure', 'sex', 'smoking'
 heart_failure_data[binary_columns] = heart_failure_data[binary_columns].astype(bool)
 ```
 
-### EDA and Visualisations
 
 ```{python}
+
+#| echo: false
+#| output: false
+
 #validate data
 schema = pa.DataFrameSchema(
     {
@@ -138,10 +170,16 @@ schema.validate(heart_failure_data, lazy = True)
 ```
 
 ```{python}
+#| echo: false
+#| output: false
+
 heart_failure_data.shape
 ```
 
 ```{python}
+#| echo: false
+#| output: false
+
 heart_failure_data.info()
 ```
 
@@ -153,44 +191,56 @@ heart_failure_data['DEATH_EVENT'].value_counts()
 * Class Imbalance: The target variable, DEATH_EVENT, has few examples in the "True" class (i.e., the event occurred), which might affect the model's ability to learn and generalize well. This class imbalance will be taken into consideration during analysis and model evaluation.
 
 ```{python}
+#| echo: false
+#| output: false
+
 # Summary statistics
 print("Summary Statistics:")
 heart_failure_data.describe()
 ```
 
-```{python}
-# Check for missing values
-
-missing_values = heart_failure_data.isnull().sum()
-print("\nMissing Values:")
-print(missing_values)
-```
-
-No missing values, no imputation or filling Nulls required
 
 ```{python}
+#| echo: false
+#| output: false
+
 aly.heatmap(heart_failure_data,color="DEATH_EVENT")
 ```
 
 ```{python}
+#| echo: false
+#| output: false
+
 # Distributions of all columns
 print("Visualizing distributions for all columns...")
 aly.dist(heart_failure_data)
 ```
 
 ```{python}
+#| echo: false
+#| output: false
+
 aly.pair(heart_failure_data,color="DEATH_EVENT")
 ```
 
 ```{python}
+#| echo: false
+#| output: false
+
 aly.corr(data.movies())
 ```
 
 ```{python}
+#| echo: false
+#| output: false
+
 aly.parcoord(heart_failure_data,color = 'DEATH_EVENT')
 ```
 
 ```{python}
+#| echo: false
+#| output: false
+
 # Create the distribution plots
 aly.dist(heart_failure_data,color = 'DEATH_EVENT')
 ```
