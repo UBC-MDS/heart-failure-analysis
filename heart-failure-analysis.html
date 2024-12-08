@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="heart-failure-analysis_files/libs/clipboard/clipboard.min.js"></script>
@@ -54,7 +74,6 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#model" id="toc-model" class="nav-link" data-scroll-target="#model">Model</a></li>
   <li><a href="#model-evaluation" id="toc-model-evaluation" class="nav-link" data-scroll-target="#model-evaluation">Model Evaluation</a></li>
   <li><a href="#results-and-conculsion" id="toc-results-and-conculsion" class="nav-link" data-scroll-target="#results-and-conculsion">Results and Conculsion</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
   </ul>
 </nav>
 </div>
@@ -88,11 +107,11 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>Cardiovascular diseases are responsible for approximately 17 million deaths globally each year, with heart failure and myocardial infarctions being the leading contributors to this staggering toll. Electronic medical records from patients with heart failure, collected during follow-up care, provide a wealth of data on symptoms, test results, and clinical outcomes. Leveraging this data, our team applies machine learning algorithms to predict patient survival after heart failure. This approach uncovers critical patterns and insights that might otherwise remain hidden from traditional clinical assessments, offering valuable tools to support medical decision-making and improve patient outcomes.</p>
+<p>Cardiovascular diseases are responsible for approximately 17 million deaths globally each year, with heart failure and myocardial infarctions being the leading contributors to this staggering toll <span class="citation" data-cites="chicco2020">(<a href="#ref-chicco2020" role="doc-biblioref">Chicco and Jurman 2020</a>)</span>. Electronic medical records from patients with heart failure, collected during follow-up care, provide a wealth of data on symptoms, test results, and clinical outcomes. Leveraging this data, our team applies machine learning algorithms to predict patient survival after heart failure. This approach uncovers critical patterns and insights that might otherwise remain hidden from traditional clinical assessments, offering valuable tools to support medical decision-making and improve patient outcomes.</p>
 </section>
 <section id="data" class="level2">
 <h2 class="anchored" data-anchor-id="data">Data</h2>
-<p>We analyzed a dataset containing the medical records of 299 heart failure patients. The patients consisted of 105 women and 194 men, and their ages range between 40 and 95 years old. The dataset contains 13 features shown in <a href="#tbl-patient-table" class="quarto-xref">Table&nbsp;1</a>, which report clinical, body, and lifestyle information. The <strong>death event</strong> was used as the target variable in our binary classification study. It states whether the patient died or survived before the end of the follow-up period, which lasted 130 days on average. Our dataset has a class imbalance where the number of survived patients (death event = 0) is 203 (67.89%) and the number of dead patients (death event = 1) is 96 (32.11%).</p>
+<p>We analyzed a dataset containing the medical records of 299 heart failure patients <span class="citation" data-cites="dua2017">(<a href="#ref-dua2017" role="doc-biblioref">Dua and Graff 2017</a>)</span>. The patients consisted of 105 women and 194 men, and their ages range between 40 and 95 years old. The dataset contains 13 features shown in <a href="#tbl-patient-table" class="quarto-xref">Table&nbsp;1</a>, which report clinical, body, and lifestyle information <span class="citation" data-cites="heartfailuredata">(<a href="#ref-heartfailuredata" role="doc-biblioref"><span>“Heart Failure Clinical Records [Dataset]”</span> 2020</a>)</span>. The <strong>death event</strong> was used as the target variable in our binary classification study. It states whether the patient died or survived before the end of the follow-up period, which lasted 130 days on average. Our dataset has a class imbalance where the number of survived patients (death event = 0) is 203 (67.89%) and the number of dead patients (death event = 1) is 96 (32.11%).</p>
 <section id="eda-and-visualizations" class="level3">
 <h3 class="anchored" data-anchor-id="eda-and-visualizations"><strong>EDA and Visualizations</strong></h3>
 <div class="cell" data-execution_count="2">
@@ -102,86 +121,86 @@ ul.task-list li input[type="checkbox"] {
 Table&nbsp;1: Description of the columns in the heart failure dataset.
 </figcaption>
 <div aria-describedby="tbl-patient-table-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display" data-execution_count="153">
+<div class="cell-output cell-output-display" data-execution_count="20">
 <style type="text/css">
-#T_225e3_row0_col0, #T_225e3_row0_col1, #T_225e3_row1_col0, #T_225e3_row1_col1, #T_225e3_row2_col0, #T_225e3_row2_col1, #T_225e3_row3_col0, #T_225e3_row3_col1, #T_225e3_row4_col0, #T_225e3_row4_col1, #T_225e3_row5_col0, #T_225e3_row5_col1, #T_225e3_row6_col0, #T_225e3_row6_col1, #T_225e3_row7_col0, #T_225e3_row7_col1, #T_225e3_row8_col0, #T_225e3_row8_col1, #T_225e3_row9_col0, #T_225e3_row9_col1, #T_225e3_row10_col0, #T_225e3_row10_col1, #T_225e3_row11_col0, #T_225e3_row11_col1, #T_225e3_row12_col0, #T_225e3_row12_col1 {
+#T_28cc8_row0_col0, #T_28cc8_row0_col1, #T_28cc8_row1_col0, #T_28cc8_row1_col1, #T_28cc8_row2_col0, #T_28cc8_row2_col1, #T_28cc8_row3_col0, #T_28cc8_row3_col1, #T_28cc8_row4_col0, #T_28cc8_row4_col1, #T_28cc8_row5_col0, #T_28cc8_row5_col1, #T_28cc8_row6_col0, #T_28cc8_row6_col1, #T_28cc8_row7_col0, #T_28cc8_row7_col1, #T_28cc8_row8_col0, #T_28cc8_row8_col1, #T_28cc8_row9_col0, #T_28cc8_row9_col1, #T_28cc8_row10_col0, #T_28cc8_row10_col1, #T_28cc8_row11_col0, #T_28cc8_row11_col1, #T_28cc8_row12_col0, #T_28cc8_row12_col1 {
   text-align: left;
 }
 </style>
 
-<table id="T_225e3" class="do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<table id="T_28cc8" class="do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th class="blank level0" data-quarto-table-cell-role="th">&nbsp;</th>
-<th id="T_225e3_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Column Name</th>
-<th id="T_225e3_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Description</th>
+<th id="T_28cc8_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Column Name</th>
+<th id="T_28cc8_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td id="T_225e3_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th">0</td>
-<td id="T_225e3_row0_col0" class="data row0 col0">age</td>
-<td id="T_225e3_row0_col1" class="data row0 col1">Patient's age</td>
+<td id="T_28cc8_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th">0</td>
+<td id="T_28cc8_row0_col0" class="data row0 col0">age</td>
+<td id="T_28cc8_row0_col1" class="data row0 col1">Patient's age</td>
 </tr>
 <tr class="even">
-<td id="T_225e3_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th">1</td>
-<td id="T_225e3_row1_col0" class="data row1 col0">anaemia</td>
-<td id="T_225e3_row1_col1" class="data row1 col1">Decrease of red blood cells or hemoglobin</td>
+<td id="T_28cc8_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th">1</td>
+<td id="T_28cc8_row1_col0" class="data row1 col0">anaemia</td>
+<td id="T_28cc8_row1_col1" class="data row1 col1">Decrease of red blood cells or hemoglobin</td>
 </tr>
 <tr class="odd">
-<td id="T_225e3_level0_row2" class="row_heading level0 row2" data-quarto-table-cell-role="th">2</td>
-<td id="T_225e3_row2_col0" class="data row2 col0">creatinine_phosphokinase</td>
-<td id="T_225e3_row2_col1" class="data row2 col1">Level of the CPK enzyme in the blood</td>
+<td id="T_28cc8_level0_row2" class="row_heading level0 row2" data-quarto-table-cell-role="th">2</td>
+<td id="T_28cc8_row2_col0" class="data row2 col0">creatinine_phosphokinase</td>
+<td id="T_28cc8_row2_col1" class="data row2 col1">Level of the CPK enzyme in the blood</td>
 </tr>
 <tr class="even">
-<td id="T_225e3_level0_row3" class="row_heading level0 row3" data-quarto-table-cell-role="th">3</td>
-<td id="T_225e3_row3_col0" class="data row3 col0">diabetes</td>
-<td id="T_225e3_row3_col1" class="data row3 col1">If the patient has diabetes</td>
+<td id="T_28cc8_level0_row3" class="row_heading level0 row3" data-quarto-table-cell-role="th">3</td>
+<td id="T_28cc8_row3_col0" class="data row3 col0">diabetes</td>
+<td id="T_28cc8_row3_col1" class="data row3 col1">If the patient has diabetes</td>
 </tr>
 <tr class="odd">
-<td id="T_225e3_level0_row4" class="row_heading level0 row4" data-quarto-table-cell-role="th">4</td>
-<td id="T_225e3_row4_col0" class="data row4 col0">ejection_fraction</td>
-<td id="T_225e3_row4_col1" class="data row4 col1">Percentage of blood leaving the heart at each contraction</td>
+<td id="T_28cc8_level0_row4" class="row_heading level0 row4" data-quarto-table-cell-role="th">4</td>
+<td id="T_28cc8_row4_col0" class="data row4 col0">ejection_fraction</td>
+<td id="T_28cc8_row4_col1" class="data row4 col1">Percentage of blood leaving the heart at each contraction</td>
 </tr>
 <tr class="even">
-<td id="T_225e3_level0_row5" class="row_heading level0 row5" data-quarto-table-cell-role="th">5</td>
-<td id="T_225e3_row5_col0" class="data row5 col0">high_blood_pressure</td>
-<td id="T_225e3_row5_col1" class="data row5 col1">If the patient has hypertension</td>
+<td id="T_28cc8_level0_row5" class="row_heading level0 row5" data-quarto-table-cell-role="th">5</td>
+<td id="T_28cc8_row5_col0" class="data row5 col0">high_blood_pressure</td>
+<td id="T_28cc8_row5_col1" class="data row5 col1">If the patient has hypertension</td>
 </tr>
 <tr class="odd">
-<td id="T_225e3_level0_row6" class="row_heading level0 row6" data-quarto-table-cell-role="th">6</td>
-<td id="T_225e3_row6_col0" class="data row6 col0">platelets</td>
-<td id="T_225e3_row6_col1" class="data row6 col1">Platelets in the blood</td>
+<td id="T_28cc8_level0_row6" class="row_heading level0 row6" data-quarto-table-cell-role="th">6</td>
+<td id="T_28cc8_row6_col0" class="data row6 col0">platelets</td>
+<td id="T_28cc8_row6_col1" class="data row6 col1">Platelets in the blood</td>
 </tr>
 <tr class="even">
-<td id="T_225e3_level0_row7" class="row_heading level0 row7" data-quarto-table-cell-role="th">7</td>
-<td id="T_225e3_row7_col0" class="data row7 col0">serum_creatinine</td>
-<td id="T_225e3_row7_col1" class="data row7 col1">Level of serum creatinine in the blood</td>
+<td id="T_28cc8_level0_row7" class="row_heading level0 row7" data-quarto-table-cell-role="th">7</td>
+<td id="T_28cc8_row7_col0" class="data row7 col0">serum_creatinine</td>
+<td id="T_28cc8_row7_col1" class="data row7 col1">Level of serum creatinine in the blood</td>
 </tr>
 <tr class="odd">
-<td id="T_225e3_level0_row8" class="row_heading level0 row8" data-quarto-table-cell-role="th">8</td>
-<td id="T_225e3_row8_col0" class="data row8 col0">serum_sodium</td>
-<td id="T_225e3_row8_col1" class="data row8 col1">Level of serum sodium in the blood</td>
+<td id="T_28cc8_level0_row8" class="row_heading level0 row8" data-quarto-table-cell-role="th">8</td>
+<td id="T_28cc8_row8_col0" class="data row8 col0">serum_sodium</td>
+<td id="T_28cc8_row8_col1" class="data row8 col1">Level of serum sodium in the blood</td>
 </tr>
 <tr class="even">
-<td id="T_225e3_level0_row9" class="row_heading level0 row9" data-quarto-table-cell-role="th">9</td>
-<td id="T_225e3_row9_col0" class="data row9 col0">sex</td>
-<td id="T_225e3_row9_col1" class="data row9 col1">Woman or man</td>
+<td id="T_28cc8_level0_row9" class="row_heading level0 row9" data-quarto-table-cell-role="th">9</td>
+<td id="T_28cc8_row9_col0" class="data row9 col0">sex</td>
+<td id="T_28cc8_row9_col1" class="data row9 col1">Woman or man</td>
 </tr>
 <tr class="odd">
-<td id="T_225e3_level0_row10" class="row_heading level0 row10" data-quarto-table-cell-role="th">10</td>
-<td id="T_225e3_row10_col0" class="data row10 col0">smoking</td>
-<td id="T_225e3_row10_col1" class="data row10 col1">If the patient smokes or not</td>
+<td id="T_28cc8_level0_row10" class="row_heading level0 row10" data-quarto-table-cell-role="th">10</td>
+<td id="T_28cc8_row10_col0" class="data row10 col0">smoking</td>
+<td id="T_28cc8_row10_col1" class="data row10 col1">If the patient smokes or not</td>
 </tr>
 <tr class="even">
-<td id="T_225e3_level0_row11" class="row_heading level0 row11" data-quarto-table-cell-role="th">11</td>
-<td id="T_225e3_row11_col0" class="data row11 col0">time</td>
-<td id="T_225e3_row11_col1" class="data row11 col1">Follow-up period</td>
+<td id="T_28cc8_level0_row11" class="row_heading level0 row11" data-quarto-table-cell-role="th">11</td>
+<td id="T_28cc8_row11_col0" class="data row11 col0">time</td>
+<td id="T_28cc8_row11_col1" class="data row11 col1">Follow-up period</td>
 </tr>
 <tr class="odd">
-<td id="T_225e3_level0_row12" class="row_heading level0 row12" data-quarto-table-cell-role="th">12</td>
-<td id="T_225e3_row12_col0" class="data row12 col0">DEATH_EVENT</td>
-<td id="T_225e3_row12_col1" class="data row12 col1">Whether the patient died or not (target variable)</td>
+<td id="T_28cc8_level0_row12" class="row_heading level0 row12" data-quarto-table-cell-role="th">12</td>
+<td id="T_28cc8_row12_col0" class="data row12 col0">DEATH_EVENT</td>
+<td id="T_28cc8_row12_col1" class="data row12 col1">Whether the patient died or not (target variable)</td>
 </tr>
 </tbody>
 </table>
@@ -203,86 +222,86 @@ Table&nbsp;1: Description of the columns in the heart failure dataset.
 Table&nbsp;2: Number of missing values in each column of the heart failure dataset.
 </figcaption>
 <div aria-describedby="tbl-missing-values-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display" data-execution_count="154">
+<div class="cell-output cell-output-display" data-execution_count="21">
 <style type="text/css">
-#T_80d78_row0_col0, #T_80d78_row0_col1, #T_80d78_row1_col0, #T_80d78_row1_col1, #T_80d78_row2_col0, #T_80d78_row2_col1, #T_80d78_row3_col0, #T_80d78_row3_col1, #T_80d78_row4_col0, #T_80d78_row4_col1, #T_80d78_row5_col0, #T_80d78_row5_col1, #T_80d78_row6_col0, #T_80d78_row6_col1, #T_80d78_row7_col0, #T_80d78_row7_col1, #T_80d78_row8_col0, #T_80d78_row8_col1, #T_80d78_row9_col0, #T_80d78_row9_col1, #T_80d78_row10_col0, #T_80d78_row10_col1, #T_80d78_row11_col0, #T_80d78_row11_col1, #T_80d78_row12_col0, #T_80d78_row12_col1 {
+#T_822fb_row0_col0, #T_822fb_row0_col1, #T_822fb_row1_col0, #T_822fb_row1_col1, #T_822fb_row2_col0, #T_822fb_row2_col1, #T_822fb_row3_col0, #T_822fb_row3_col1, #T_822fb_row4_col0, #T_822fb_row4_col1, #T_822fb_row5_col0, #T_822fb_row5_col1, #T_822fb_row6_col0, #T_822fb_row6_col1, #T_822fb_row7_col0, #T_822fb_row7_col1, #T_822fb_row8_col0, #T_822fb_row8_col1, #T_822fb_row9_col0, #T_822fb_row9_col1, #T_822fb_row10_col0, #T_822fb_row10_col1, #T_822fb_row11_col0, #T_822fb_row11_col1, #T_822fb_row12_col0, #T_822fb_row12_col1 {
   text-align: left;
 }
 </style>
 
-<table id="T_80d78" class="do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<table id="T_822fb" class="do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th class="blank level0" data-quarto-table-cell-role="th">&nbsp;</th>
-<th id="T_80d78_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Column</th>
-<th id="T_80d78_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Missing Values</th>
+<th id="T_822fb_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Column</th>
+<th id="T_822fb_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Missing Values</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td id="T_80d78_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th">0</td>
-<td id="T_80d78_row0_col0" class="data row0 col0">age</td>
-<td id="T_80d78_row0_col1" class="data row0 col1">0</td>
+<td id="T_822fb_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th">0</td>
+<td id="T_822fb_row0_col0" class="data row0 col0">age</td>
+<td id="T_822fb_row0_col1" class="data row0 col1">0</td>
 </tr>
 <tr class="even">
-<td id="T_80d78_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th">1</td>
-<td id="T_80d78_row1_col0" class="data row1 col0">anaemia</td>
-<td id="T_80d78_row1_col1" class="data row1 col1">0</td>
+<td id="T_822fb_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th">1</td>
+<td id="T_822fb_row1_col0" class="data row1 col0">anaemia</td>
+<td id="T_822fb_row1_col1" class="data row1 col1">0</td>
 </tr>
 <tr class="odd">
-<td id="T_80d78_level0_row2" class="row_heading level0 row2" data-quarto-table-cell-role="th">2</td>
-<td id="T_80d78_row2_col0" class="data row2 col0">creatinine_phosphokinase</td>
-<td id="T_80d78_row2_col1" class="data row2 col1">0</td>
+<td id="T_822fb_level0_row2" class="row_heading level0 row2" data-quarto-table-cell-role="th">2</td>
+<td id="T_822fb_row2_col0" class="data row2 col0">creatinine_phosphokinase</td>
+<td id="T_822fb_row2_col1" class="data row2 col1">0</td>
 </tr>
 <tr class="even">
-<td id="T_80d78_level0_row3" class="row_heading level0 row3" data-quarto-table-cell-role="th">3</td>
-<td id="T_80d78_row3_col0" class="data row3 col0">diabetes</td>
-<td id="T_80d78_row3_col1" class="data row3 col1">0</td>
+<td id="T_822fb_level0_row3" class="row_heading level0 row3" data-quarto-table-cell-role="th">3</td>
+<td id="T_822fb_row3_col0" class="data row3 col0">diabetes</td>
+<td id="T_822fb_row3_col1" class="data row3 col1">0</td>
 </tr>
 <tr class="odd">
-<td id="T_80d78_level0_row4" class="row_heading level0 row4" data-quarto-table-cell-role="th">4</td>
-<td id="T_80d78_row4_col0" class="data row4 col0">ejection_fraction</td>
-<td id="T_80d78_row4_col1" class="data row4 col1">0</td>
+<td id="T_822fb_level0_row4" class="row_heading level0 row4" data-quarto-table-cell-role="th">4</td>
+<td id="T_822fb_row4_col0" class="data row4 col0">ejection_fraction</td>
+<td id="T_822fb_row4_col1" class="data row4 col1">0</td>
 </tr>
 <tr class="even">
-<td id="T_80d78_level0_row5" class="row_heading level0 row5" data-quarto-table-cell-role="th">5</td>
-<td id="T_80d78_row5_col0" class="data row5 col0">high_blood_pressure</td>
-<td id="T_80d78_row5_col1" class="data row5 col1">0</td>
+<td id="T_822fb_level0_row5" class="row_heading level0 row5" data-quarto-table-cell-role="th">5</td>
+<td id="T_822fb_row5_col0" class="data row5 col0">high_blood_pressure</td>
+<td id="T_822fb_row5_col1" class="data row5 col1">0</td>
 </tr>
 <tr class="odd">
-<td id="T_80d78_level0_row6" class="row_heading level0 row6" data-quarto-table-cell-role="th">6</td>
-<td id="T_80d78_row6_col0" class="data row6 col0">platelets</td>
-<td id="T_80d78_row6_col1" class="data row6 col1">0</td>
+<td id="T_822fb_level0_row6" class="row_heading level0 row6" data-quarto-table-cell-role="th">6</td>
+<td id="T_822fb_row6_col0" class="data row6 col0">platelets</td>
+<td id="T_822fb_row6_col1" class="data row6 col1">0</td>
 </tr>
 <tr class="even">
-<td id="T_80d78_level0_row7" class="row_heading level0 row7" data-quarto-table-cell-role="th">7</td>
-<td id="T_80d78_row7_col0" class="data row7 col0">serum_creatinine</td>
-<td id="T_80d78_row7_col1" class="data row7 col1">0</td>
+<td id="T_822fb_level0_row7" class="row_heading level0 row7" data-quarto-table-cell-role="th">7</td>
+<td id="T_822fb_row7_col0" class="data row7 col0">serum_creatinine</td>
+<td id="T_822fb_row7_col1" class="data row7 col1">0</td>
 </tr>
 <tr class="odd">
-<td id="T_80d78_level0_row8" class="row_heading level0 row8" data-quarto-table-cell-role="th">8</td>
-<td id="T_80d78_row8_col0" class="data row8 col0">serum_sodium</td>
-<td id="T_80d78_row8_col1" class="data row8 col1">0</td>
+<td id="T_822fb_level0_row8" class="row_heading level0 row8" data-quarto-table-cell-role="th">8</td>
+<td id="T_822fb_row8_col0" class="data row8 col0">serum_sodium</td>
+<td id="T_822fb_row8_col1" class="data row8 col1">0</td>
 </tr>
 <tr class="even">
-<td id="T_80d78_level0_row9" class="row_heading level0 row9" data-quarto-table-cell-role="th">9</td>
-<td id="T_80d78_row9_col0" class="data row9 col0">sex</td>
-<td id="T_80d78_row9_col1" class="data row9 col1">0</td>
+<td id="T_822fb_level0_row9" class="row_heading level0 row9" data-quarto-table-cell-role="th">9</td>
+<td id="T_822fb_row9_col0" class="data row9 col0">sex</td>
+<td id="T_822fb_row9_col1" class="data row9 col1">0</td>
 </tr>
 <tr class="odd">
-<td id="T_80d78_level0_row10" class="row_heading level0 row10" data-quarto-table-cell-role="th">10</td>
-<td id="T_80d78_row10_col0" class="data row10 col0">smoking</td>
-<td id="T_80d78_row10_col1" class="data row10 col1">0</td>
+<td id="T_822fb_level0_row10" class="row_heading level0 row10" data-quarto-table-cell-role="th">10</td>
+<td id="T_822fb_row10_col0" class="data row10 col0">smoking</td>
+<td id="T_822fb_row10_col1" class="data row10 col1">0</td>
 </tr>
 <tr class="even">
-<td id="T_80d78_level0_row11" class="row_heading level0 row11" data-quarto-table-cell-role="th">11</td>
-<td id="T_80d78_row11_col0" class="data row11 col0">time</td>
-<td id="T_80d78_row11_col1" class="data row11 col1">0</td>
+<td id="T_822fb_level0_row11" class="row_heading level0 row11" data-quarto-table-cell-role="th">11</td>
+<td id="T_822fb_row11_col0" class="data row11 col0">time</td>
+<td id="T_822fb_row11_col1" class="data row11 col1">0</td>
 </tr>
 <tr class="odd">
-<td id="T_80d78_level0_row12" class="row_heading level0 row12" data-quarto-table-cell-role="th">12</td>
-<td id="T_80d78_row12_col0" class="data row12 col0">DEATH_EVENT</td>
-<td id="T_80d78_row12_col1" class="data row12 col1">0</td>
+<td id="T_822fb_level0_row12" class="row_heading level0 row12" data-quarto-table-cell-role="th">12</td>
+<td id="T_822fb_row12_col0" class="data row12 col0">DEATH_EVENT</td>
+<td id="T_822fb_row12_col1" class="data row12 col1">0</td>
 </tr>
 </tbody>
 </table>
@@ -299,7 +318,7 @@ Table&nbsp;2: Number of missing values in each column of the heart failure datas
 Table&nbsp;3: Distribution of the target variable <code>DEATH_EVENT</code> in the heart failure dataset.
 </figcaption>
 <div aria-describedby="tbl-death-event-counts-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display" data-execution_count="155">
+<div class="cell-output cell-output-display" data-execution_count="22">
 <div>
 
 
@@ -348,8 +367,8 @@ Table&nbsp;3: Distribution of the target variable <code>DEATH_EVENT</code> in th
 </div>
 <section id="logistic-regression" class="level4">
 <h4 class="anchored" data-anchor-id="logistic-regression">Logistic Regression</h4>
-<div id="c3dbcf75" class="cell" data-execution_count="7">
-<div class="cell-output cell-output-display" data-execution_count="158">
+<div id="3ab3f73b" class="cell" data-execution_count="7">
+<div class="cell-output cell-output-display" data-execution_count="25">
 <div>
 
 
@@ -413,16 +432,16 @@ Table&nbsp;3: Distribution of the target variable <code>DEATH_EVENT</code> in th
 Table&nbsp;4: Confusion matrix for the final model on the test dataset.
 </figcaption>
 <div aria-describedby="tbl-confusion-matrix-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display" data-execution_count="159">
+<div class="cell-output cell-output-display" data-execution_count="26">
 <style type="text/css">
 </style>
 
-<table id="T_900af" class="do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true">
+<table id="T_5158d" class="do-not-create-environment cell caption-top table table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
 <th class="index_name level0" data-quarto-table-cell-role="th">Predicted</th>
-<th id="T_900af_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">0</th>
-<th id="T_900af_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">1</th>
+<th id="T_5158d_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">0</th>
+<th id="T_5158d_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">1</th>
 </tr>
 <tr class="odd">
 <th class="index_name level0" data-quarto-table-cell-role="th">Actual</th>
@@ -432,14 +451,14 @@ Table&nbsp;4: Confusion matrix for the final model on the test dataset.
 </thead>
 <tbody>
 <tr class="odd">
-<td id="T_900af_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th">0</td>
-<td id="T_900af_row0_col0" class="data row0 col0">35</td>
-<td id="T_900af_row0_col1" class="data row0 col1">6</td>
+<td id="T_5158d_level0_row0" class="row_heading level0 row0" data-quarto-table-cell-role="th">0</td>
+<td id="T_5158d_row0_col0" class="data row0 col0">35</td>
+<td id="T_5158d_row0_col1" class="data row0 col1">6</td>
 </tr>
 <tr class="even">
-<td id="T_900af_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th">1</td>
-<td id="T_900af_row1_col0" class="data row1 col0">5</td>
-<td id="T_900af_row1_col1" class="data row1 col1">14</td>
+<td id="T_5158d_level0_row1" class="row_heading level0 row1" data-quarto-table-cell-role="th">1</td>
+<td id="T_5158d_row1_col0" class="data row1 col0">5</td>
+<td id="T_5158d_row1_col1" class="data row1 col1">14</td>
 </tr>
 </tbody>
 </table>
@@ -455,7 +474,7 @@ Table&nbsp;4: Confusion matrix for the final model on the test dataset.
 Table&nbsp;5: Evaluation metrics for the final model.
 </figcaption>
 <div aria-describedby="tbl-model-metrics-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="cell-output cell-output-display" data-execution_count="160">
+<div class="cell-output cell-output-display" data-execution_count="27">
 <div>
 
 
@@ -501,23 +520,23 @@ Table&nbsp;5: Evaluation metrics for the final model.
 </section>
 <section id="results-and-conculsion" class="level2">
 <h2 class="anchored" data-anchor-id="results-and-conculsion">Results and Conculsion</h2>
-<p>The analysis revealed that <code>platelets</code> and <code>ejection_fraction</code> are the most important features in predicting the risk of patient mortality. These features significantly impact the model’s ability to assess patient risk, which is crucial for early intervention. Our model achieved a recall score of 0.73, which is a good start, but there is room for improvement, particularly in reducing the number of high risk patients the model might miss, i.e., maximising recall by minimising False Negatives.</p>
+<p>The analysis revealed that <code>platelets</code> and <code>ejection_fraction</code> are the most important features in predicting the risk of patient mortality. These features significantly impact the model’s ability to assess patient risk, which is crucial for early intervention. Our model achieved a recall score of 0.73, see <a href="#tbl-model-metrics" class="quarto-xref">Table&nbsp;5</a> which is a good start, but there is room for improvement, particularly in reducing the number of high risk patients the model might miss, i.e., maximising recall by minimising False Negatives.</p>
 <p>The main challenges in this project stem from class imbalance and limited data availability. With more diverse and comprehensive datasets, performance could be further enhanced. We would also like to explore other machine learning models to improve the overall accuracy.</p>
 <p>In conclusion, while the current model shows potential, there is significant opportunity to enhance its effectiveness. With improvements in data quality and model optimization, this tool could become a crucial asset in predicting patient risk and saving lives.</p>
-</section>
-<section id="references" class="level2">
-<h2 class="anchored" data-anchor-id="references">References</h2>
-<p>Chicco, D., Jurman, G. Machine learning can predict survival of patients with heart failure from serum creatinine and ejection fraction alone. BMC Med Inform Decis Mak 20, 16 (2020). https://doi.org/10.1186/s12911-020-1023-5</p>
-<p>Dua, Dheeru, and Casey Graff. 2017. “UCI Machine Learning Repository.” University of California, Irvine, School of Information; Computer Sciences. http://archive.ics.uci.edu/ml.</p>
-<p>Heart Failure Clinical Records [Dataset]. (2020). UCI Machine Learning Repository. https://doi.org/10.24432/C5Z89R.</p>
-<p>Kuter, David J. “Thrombopoietin and Platelets: Count Regulation.” American Journal of Hematology. Wiley Online Library, 2016. Accessed November 27, 2024. https://onlinelibrary.wiley.com/doi/full/10.1002/ajh.23704</p>
-<p>Mayo Clinic Staff. “Ejection Fraction: What Does It Measure?” Mayo Clinic, Mayo Foundation for Medical Education and Research. Accessed November 27, 2024. https://www.mayoclinic.org/tests-procedures/ekg/expert-answers/ejection-fraction/faq-20058286</p>
-<p>Medical News Today Staff. “What to Know About Serum Creatinine.” Medical News Today. Last updated March 22, 2018. Accessed November 27, 2024. https://www.medicalnewstoday.com/articles/322380</p>
-<p>MedlinePlus. “Serum Sodium Test.” U.S. National Library of Medicine. Last reviewed September 5, 2023. Accessed November 27, 2024. https://medlineplus.gov/ency/article/003481.html</p>
-<p>U.S. News Staff. “Creatinine Levels: What You Should Know.” U.S. News &amp; World Report. Accessed November 27, 2024. https://health.usnews.com/health-care/patient-advice/articles/creatininelevels</p>
+
 </section>
 
-</main>
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-chicco2020" class="csl-entry" role="listitem">
+Chicco, D., and G. Jurman. 2020. <span>“Machine Learning Can Predict Survival of Patients with Heart Failure from Serum Creatinine and Ejection Fraction Alone.”</span> <em>BMC Medical Informatics and Decision Making</em> 20 (16). <a href="https://doi.org/10.1186/s12911-020-1023-5">https://doi.org/10.1186/s12911-020-1023-5</a>.
+</div>
+<div id="ref-dua2017" class="csl-entry" role="listitem">
+Dua, Dheeru, and Casey Graff. 2017. <span>“UCI Machine Learning Repository.”</span> University of California, Irvine, School of Information; Computer Sciences. <a href="http://archive.ics.uci.edu/ml">http://archive.ics.uci.edu/ml</a>.
+</div>
+<div id="ref-heartfailuredata" class="csl-entry" role="listitem">
+<span>“Heart Failure Clinical Records [Dataset].”</span> 2020. UCI Machine Learning Repository. <a href="https://doi.org/10.24432/C5Z89R">https://doi.org/10.24432/C5Z89R</a>.
+</div>
+</div></section></div></main>
 <!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
