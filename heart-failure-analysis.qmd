@@ -203,7 +203,7 @@ logreg_cv = round(lr_scores.iloc[0,1],2)
 lr_scores.iloc[0:5]
 ```
 
-**The model is performing well with C = {python} logregC\ with a CV score of {python} logreg_cv\ and is close to train score, indicating that model is generalising well.**
+**The model is performing well with C = `{python} logregC` with a CV score of `{python} logreg_cv` and is close to train score, indicating that model is generalising well.**
 
 ![Cross-validation scores for Logistic Regression -  Logistic regression performs better than Decision tree and KNN on the cross validation data, hence, we selected it as our final model.](figures/lr_cv_scores.png){#fig-lr_cv_scores width=60% fig-pos="H"}
 
