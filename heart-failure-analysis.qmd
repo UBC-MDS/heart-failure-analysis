@@ -16,9 +16,9 @@ by Merari Santana, Kevin Gao, Gurmehak Kaur, Yuhan Fan
 
 ## Summary
 
-We built a classification model using the logistic regression algorithm to predict survival outcomes for patients with heart failure. Using patient test results, the final classifier achieves an accuracy of 81.6%. The model’s precision of 70.0% suggests it is moderately conservative in predicting the positive class (death), minimizing false alarms. More importantly, the recall of 73.68% ensures the model identifies the majority of high-risk patients, reducing the likelihood of missing true positive cases, which could have serious consequences. The F1-score of 0.71 reflects a good balance between precision and recall, highlighting the model’s robustness in survival prediction, see @tbl-model-metrics.
+We built a classification model using the logistic regression algorithm to predict survival outcomes for patients with heart failure. Using patient test results, the final classifier achieves an accuracy of 81.6%. The model’s precision of 70.0% suggests it is moderately conservative in predicting the positive class (death), minimizing false alarms. More importantly, the recall of {python} recall\ ensures the model identifies the majority of high-risk patients, reducing the likelihood of missing true positive cases, which could have serious consequences. The F1-score of {python} f1\ reflects a good balance between precision and recall, highlighting the model’s robustness in survival prediction, see @tbl-model-metrics.
 
-From the confusion matrix, the model correctly identified 14 patients who passed away (true positives) and 35 patients who survived (true negatives). However, it also predicted 6 false positives, incorrectly classifying some survivors as deceased, and missed 5 actual cases of death (false negatives). While these errors warrant consideration, the model’s performance demonstrates strong predictive capabilities for both positive and negative outcomes, see @tbl-confusion-matrix.
+From the confusion matrix, the model correctly identified {python} TP\ patients who passed away (true positives) and {python} TN\ patients who survived (true negatives). However, it also predicted {python} FP\ false positives, incorrectly classifying some survivors as deceased, and missed {python} FN\ actual cases of death (false negatives). While these errors warrant consideration, the model’s performance demonstrates strong predictive capabilities for both positive and negative outcomes, see @tbl-confusion-matrix.
 
 Overall, the logistic regression classifier effectively leverages patient test results to support survival prediction, providing a valuable tool to aid clinical decision-making in heart failure management.
 
@@ -139,9 +139,6 @@ death_event_counts
 We compared Decision Tree, KNN, Logistic Regression, and selected Logistic Regression due to its interpretability, and ability to handle both linear and non-linear relationships between features. Logistic Regression performed better than the other two models as it works well with fewer features and is less prone to overfitting compared to more complex models like Decision Trees or KNN, especially when the data is relatively small.
 
 
-![Cross-validation scores for Logistic Regression-  Logistic regression performs better than Decision tree and KNN on the cross validation data, hence, we will select it as our final model.](figures/lr_cv_scores.png){#lr_cv_scores width=60% fig-pos="H"}
-
-
 ```{python}
 heart_failure_data = pd.read_csv(file_path)
 
@@ -171,9 +168,6 @@ preprocessor = make_column_transformer(
 )
 
 ```
- 
-
-#### Logistic Regression
 
 ```{python}
 #| echo: false
@@ -201,22 +195,43 @@ heart_failure_fit = grid_search.fit(heart_failure_train.drop(columns=['DEATH_EVE
 lr_best_model = grid_search.best_estimator_.named_steps['logisticregression']
 lr_best_model
 ```
-
+Hyperparametertuning to find find the best Logistic Regression model:
 ```{python}
 lr_scores = pd.DataFrame(grid_search.cv_results_).sort_values('mean_test_score', ascending = False)[['param_logisticregression__C', 'mean_test_score', 'mean_train_score']]
+logregC = lr_scores.iloc[0,0]
+logreg_cv = round(lr_scores.iloc[0,1],2)
 lr_scores.iloc[0:5]
 ```
 
-**Model is performing well with C = 0.0010 with a high test score, close to train score, indicating that model isn't overfitting or underfitting**
+**The model is performing well with C = {python} logregC\ with a CV score of {python} logreg_cv\ and is close to train score, indicating that model is generalising well.**
+
+![Cross-validation scores for Logistic Regression -  Logistic regression performs better than Decision tree and KNN on the cross validation data, hence, we selected it as our final model.](figures/lr_cv_scores.png){#fig-lr_cv_scores width=60% fig-pos="H"}
 
 
+
+
+The best features to train our model are show in @tbl-top-features:
+
+```{python}
+#| label: tbl-top-features
+#| tbl-cap: Top features for trainig the model.
+#| echo: false
+
+features = lr_best_model.coef_
+feature_names = heart_failure_train.drop(columns=['DEATH_EVENT']).columns
+coefficients = pd.DataFrame({
+    'Feature': feature_names,
+    'Coefficient': features[0],
+    'Absolute_Coefficient': abs(features[0])
+}).sort_values(by='Absolute_Coefficient', ascending=False)
+
+coefficients
+```
 
 
 ## Model Evaluation
 
 #### Confusion Matrix
-
-
 
 
 ```{python}
@@ -237,6 +252,10 @@ cm_crosstab = pd.crosstab(
     rownames=["Actual"], 
     colnames=["Predicted"]
 )
+TP = cm_crosstab.iloc[1,1]
+TN = cm_crosstab.iloc[0,0]
+FP = cm_crosstab.iloc[0,1]
+FN = cm_crosstab.iloc[1,0]
 
 # Render the confusion matrix as it is for correct alignment
 cm_crosstab.style.set_table_attributes("style='display:inline'")
@@ -275,7 +294,7 @@ metrics_table
 
 ## Results and Conculsion
 
-The analysis revealed that `platelets` and `ejection_fraction` are the most important features in predicting the risk of patient mortality. These features significantly impact the model's ability to assess patient risk, which is crucial for early intervention. Our model achieved a recall score of 0.73, see @tbl-model-metrics, which is a good start, but there is room for improvement, particularly in reducing the number of high risk patients the model might miss, i.e., maximising recall by minimising False Negatives.
+The analysis revealed that `platelets` and `ejection_fraction` are the most important features (see @tbl-top-features) in predicting the risk of patient mortality. These features significantly impact the model's ability to assess patient risk, which is crucial for early intervention. Our model achieved a recall score of {python} recall\ (see @tbl-model-metrics), which is a good start, but there is room for improvement, particularly in reducing the number of high risk patients the model might miss, i.e., maximising recall by minimising False Negatives.
 
 The main challenges in this project stem from class imbalance and limited data availability. With more diverse and comprehensive datasets, performance could be further enhanced. We would also like to explore other machine learning models to improve the overall accuracy.
 
