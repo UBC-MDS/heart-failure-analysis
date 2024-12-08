@@ -80,16 +80,19 @@ patient_table.style.set_properties(**{'text-align': 'left'})
 ```
 
 
-
+![Correlation heatmap-  Based on the correlation matrix graph below, all features have relatively low correlations between each other, the correlations are below 0.5, so there is no strong evidence to drop additional featues. ](figures/correlation_heatmap.png){#correlation_heatmap width=60% fig-pos="H"}
 
 
 
 ```{python}
-# Check for missing values
+#| label: tbl-missing-values
+#| tbl-cap: Number of missing values in each column of the heart failure dataset.
+#| echo: false
 
 file_path = 'data/heart_failure_clinical_records_dataset.csv'
 heart_failure_data = pd.read_csv(file_path)
 
+# Check for missing values
 missing_values = heart_failure_data.isnull().sum()
 
 # Convert to a DataFrame for better visualization
@@ -98,154 +101,46 @@ missing_values_df = pd.DataFrame({
     'Missing Values': missing_values.values
 })
 
-# Display the DataFrame
-missing_values_df
+# Style the DataFrame to align text to the left
+missing_values_df.style.set_properties(**{'text-align': 'left'})
 ```
+
 
 No missing values, no imputation or filling Nulls required
 
-![Correlation heatmap-  Based on the correlation matrix graph below, all features have relatively low correlations between each other, the correlations are below 0.5, so there is no strong evidence to drop additional featues. ](figures/correlation_heatmap.png){#correlation_heatmap width=60% fig-pos="H"}
+
+```{python}
+#| label: tbl-death-event-counts
+#| tbl-cap: Distribution of the target variable `DEATH_EVENT` in the heart failure dataset.
+#| echo: false
+
+import pandas as pd
+
+# Load the dataset
+file_path = 'data/heart_failure_clinical_records_dataset.csv'
+heart_failure_data = pd.read_csv(file_path)
+
+# Get value counts for DEATH_EVENT and convert to a DataFrame
+death_event_counts = heart_failure_data['DEATH_EVENT'].value_counts().reset_index()
+death_event_counts.columns = ['DEATH_EVENT', 'Count']  # Rename columns
+
+# Display the DataFrame as a table
+death_event_counts
+
+```
+
+* Dataset Size: The dataset is relatively small, with only 300 rows.
+* Class Imbalance: The target variable, DEATH_EVENT, has few examples in the "True" class (i.e., the event occurred), which might affect the model's ability to learn and generalize well. This class imbalance will be taken into consideration during analysis and model evaluation.
+
 
 
 ## Model
 
 We compared Decision Tree, KNN, Logistic Regression, and selected Logistic Regression due to its interpretability, and ability to handle both linear and non-linear relationships between features. Logistic Regression performed better than the other two models as it works well with fewer features and is less prone to overfitting compared to more complex models like Decision Trees or KNN, especially when the data is relatively small.
 
-## Results and Conculsion
 
-The analysis revealed that `platelets` and `ejection_fraction` are the most important features in predicting the risk of patient mortality. These features significantly impact the model's ability to assess patient risk, which is crucial for early intervention. Our model achieved a recall score of 0.73, which is a good start, but there is room for improvement, particularly in reducing the number of high risk patients the model might miss, i.e., maximising recall by minimising False Negatives.
+![Cross-validation scores for Logistic Regression-  Logistic regression performs better than Decision tree and KNN on the cross validation data, hence, we will select it as our final model.](figures/lr_cv_scores.png){#lr_cv_scores width=60% fig-pos="H"}
 
-The main challenges in this project stem from class imbalance and limited data availability. With more diverse and comprehensive datasets, performance could be further enhanced. We would also like to explore other machine learning models to improve the overall accuracy.
-
-In conclusion, while the current model shows potential, there is significant opportunity to enhance its effectiveness. With improvements in data quality and model optimization, this tool could become a crucial asset in predicting patient risk and saving lives.
-
-
-
-
-```{python}
-#| echo: false
-#| output: false
-
-# Load the dataset
-file_path = 'data/heart_failure_clinical_records_dataset.csv'
-heart_failure_data = pd.read_csv(file_path)
-
-# List of binary columns
-binary_columns = ['anaemia', 'diabetes', 'high_blood_pressure', 'sex', 'smoking', 'DEATH_EVENT']
-
-# Convert all binary columns to True/False
-heart_failure_data[binary_columns] = heart_failure_data[binary_columns].astype(bool)
-```
-
-
-```{python}
-
-#| echo: false
-#| output: false
-
-#validate data
-schema = pa.DataFrameSchema(
-    {
-        "age": pa.Column(float, pa.Check.between(1, 120), nullable = True),
-        "anaemia": pa.Column(bool),
-        "creatinine_phosphokinase": pa.Column(int, pa.Check.between(20, 50000), nullable = True),
-        "diabetes": pa.Column(bool),
-        "ejection_fraction": pa.Column(int, pa.Check.between(5, 90), nullable = True),
-        "high_blood_pressure": pa.Column(bool),
-        "platelets": pa.Column(float, pa.Check.between(10000, 900000), nullable = True),
-        "serum_creatinine": pa.Column(float, pa.Check.between(0.2, 10), nullable = True),
-        "serum_sodium": pa.Column(int, pa.Check.between(110, 190), nullable = True),
-        "sex": pa.Column(bool),
-        "smoking": pa.Column(bool),
-        "time": pa.Column(int, pa.Check.between(1, 360), nullable = True),
-        "DEATH_EVENT": pa.Column(bool)
-    },
-        checks=[
-        pa.Check(lambda df: ~df.duplicated().any(), error="Duplicate rows found."),
-        pa.Check(lambda df: ~(df.isna().all(axis=1)).any(), error="Empty rows found.")
-    ]
-)
-
-schema.validate(heart_failure_data, lazy = True)
-```
-
-```{python}
-#| echo: false
-#| output: false
-
-heart_failure_data.shape
-```
-
-```{python}
-#| echo: false
-#| output: false
-
-heart_failure_data.info()
-```
-
-```{python}
-heart_failure_data['DEATH_EVENT'].value_counts()
-```
-
-* Dataset Size: The dataset is relatively small, with only 300 rows.
-* Class Imbalance: The target variable, DEATH_EVENT, has few examples in the "True" class (i.e., the event occurred), which might affect the model's ability to learn and generalize well. This class imbalance will be taken into consideration during analysis and model evaluation.
-
-```{python}
-#| echo: false
-#| output: false
-
-# Summary statistics
-print("Summary Statistics:")
-heart_failure_data.describe()
-```
-
-
-```{python}
-#| echo: false
-#| output: false
-
-aly.heatmap(heart_failure_data,color="DEATH_EVENT")
-```
-
-```{python}
-#| echo: false
-#| output: false
-
-# Distributions of all columns
-print("Visualizing distributions for all columns...")
-aly.dist(heart_failure_data)
-```
-
-```{python}
-#| echo: false
-#| output: false
-
-aly.pair(heart_failure_data,color="DEATH_EVENT")
-```
-
-```{python}
-#| echo: false
-#| output: false
-
-aly.corr(data.movies())
-```
-
-```{python}
-#| echo: false
-#| output: false
-
-aly.parcoord(heart_failure_data,color = 'DEATH_EVENT')
-```
-
-```{python}
-#| echo: false
-#| output: false
-
-# Create the distribution plots
-aly.dist(heart_failure_data,color = 'DEATH_EVENT')
-```
-
-### Data Splitting
 
 ```{python}
 heart_failure_data = pd.read_csv(file_path)
@@ -258,11 +153,7 @@ heart_failure_train, heart_failure_test = train_test_split(heart_failure_data,
 url_processed = 'data/processed/'
 heart_failure_train.to_csv(os.path.join(url_processed, 'heart_failure_train.csv'))
 heart_failure_test.to_csv(os.path.join(url_processed, 'heart_failure_test.csv'))
-```
 
-### Preprocessing columns
-
-```{python}
 # Define numeric columns
 numeric_columns = ['age', 'creatinine_phosphokinase', 'ejection_fraction', 
                    'platelets', 'serum_creatinine', 'serum_sodium', 'time']
@@ -272,124 +163,22 @@ binary_columns = ['anaemia', 'diabetes', 'high_blood_pressure', 'sex', 'smoking'
 # Convert all binary columns to True/False so they're treated as categorical data
 heart_failure_train[binary_columns] = heart_failure_train[binary_columns].astype(bool)
 heart_failure_test[binary_columns] = heart_failure_test[binary_columns].astype(bool)
-```
 
-```{python}
 preprocessor = make_column_transformer(
     (StandardScaler(), numeric_columns),
     (OneHotEncoder(handle_unknown="ignore", sparse_output=False, drop='if_binary', dtype = int), binary_columns),
     remainder = 'passthrough'
 )
+
 ```
-
-```{python}
-preprocessor.fit(heart_failure_train)
-heart_failure_scaled_train = preprocessor.transform(heart_failure_train)
-heart_failure_scaled_test = preprocessor.transform(heart_failure_test)
-
-preprocessor.verbose_feature_names_out = False
-column_names = (preprocessor.get_feature_names_out().tolist())
-scaled_train = pd.DataFrame(heart_failure_scaled_train, columns=column_names)
-
-#Correlation matrix part starts from here:
-correlation_matrix = scaled_train.drop(columns=['DEATH_EVENT']).corr()
-correlation_long = correlation_matrix.reset_index().melt(id_vars='index')
-correlation_long.columns = ['Feature 1', 'Feature 2', 'Correlation']
-
-alt.Chart(correlation_long).mark_rect().encode(
-    x='Feature 1:O',
-    y='Feature 2:O',
-    color=alt.Color('Correlation:Q', scale=alt.Scale(scheme='viridis')),
-    tooltip=['Feature 1', 'Feature 2', 'Correlation']
-).properties(
-    width=600,
-    height=600,
-    title="Correlation Heatmap"
-)
-
-#Based on the correlation matrix graph below, all features have relatively low correlations between each other, 
-#the correlations are below 0.5, so there is no strong evidence to drop additional featues. 
-```
-
-```{python}
-# validate training data for anomalous correlations between target/response variable 
-# and features/explanatory variables, 
-# as well as anomalous correlations between features/explanatory variables
-# Do these on training data as part of EDA! 
-
-warnings.filterwarnings("ignore", category=FutureWarning, module="deepchecks")
-
-scaled_train_ds = Dataset(scaled_train, label="DEATH_EVENT", cat_features=[])
-
-check_feat_lab_corr = FeatureLabelCorrelation().add_condition_feature_pps_less_than(0.9)
-check_feat_lab_corr_result = check_feat_lab_corr.run(dataset=scaled_train_ds)
-
-check_feat_feat_corr = FeatureFeatureCorrelation().add_condition_max_number_of_pairs_above_threshold(threshold = 0.92, n_pairs = 0)
-check_feat_feat_corr_result = check_feat_feat_corr.run(dataset=scaled_train_ds)
-
-if not check_feat_lab_corr_result.passed_conditions():
-    raise ValueError("Feature-Label correlation exceeds the maximum acceptable threshold.")
-
-if not check_feat_feat_corr_result.passed_conditions():
-    raise ValueError("Feature-feature correlation exceeds the maximum acceptable threshold.")
-```
-
-## Building the Model
-Testing Decision Tree, KNN, Logistic Regression
-
-### Decision Tree
-
-```{python}
-pipeline = make_pipeline(
-        preprocessor, 
-        DecisionTreeClassifier(random_state=522)
-    )
-
-dt_scores = cross_validate(pipeline, 
-                           heart_failure_train.drop(columns=['DEATH_EVENT']), 
-                           heart_failure_train['DEATH_EVENT'],
-                           return_train_score=True
-                          )
-
-dt_scores = pd.DataFrame(dt_scores).sort_values('test_score', ascending = False)
-dt_scores
-```
-
-### KNN
-
-```{python}
-pipeline = make_pipeline(
-        preprocessor, 
-        KNeighborsClassifier()
-    )
-
-param_grid = {
-    "kneighborsclassifier__n_neighbors": range(1, 100, 3)
-}
-
-grid_search = GridSearchCV(
-    pipeline,
-    param_grid,
-    cv=10,  
-    n_jobs=-1,  
-    return_train_score=True,
-)
-
-heart_failure_fit = grid_search.fit(heart_failure_train.drop(columns=['DEATH_EVENT']), heart_failure_train['DEATH_EVENT'] )
-
-knn_best_model = grid_search.best_estimator_ 
-knn_best_model
-```
-
-```{python}
-pd.DataFrame(grid_search.cv_results_).sort_values('mean_test_score', ascending = False)[['params', 'mean_test_score']].iloc[0]
-```
-
- _
+ 
 
 #### Logistic Regression
 
 ```{python}
+#| echo: false
+#| output: false
+
 pipeline = make_pipeline(
         preprocessor, 
         LogisticRegression(random_state=522, max_iter=2000, class_weight = "balanced")
@@ -420,80 +209,80 @@ lr_scores.iloc[0:5]
 
 **Model is performing well with C = 0.0010 with a high test score, close to train score, indicating that model isn't overfitting or underfitting**
 
-```{python}
-#| scrolled: true
-# Log scale for x-axis, fixed y-axis range, and explicit data type specification
-alt.Chart(lr_scores).transform_fold(
-    ["mean_test_score", "mean_train_score"],  # Combine columns into one for color differentiation
-    as_=["Score Type", "Score"]  # Rename columns for legend and y-axis
-).mark_line().encode(
-    x=alt.X("param_logisticregression__C:Q", 
-            title="C (Regularization Parameter)", 
-            scale=alt.Scale(type='log')),  # Set x-axis to log scale
-    y=alt.Y("Score:Q", 
-            title="Score", 
-            scale=alt.Scale(domain=[0.75, 0.85])),  # Set y-axis range
-    color=alt.Color("Score Type:N", 
-                    title="Score Type",  # Add legend title
-                    scale=alt.Scale(domain=["mean_test_score", "mean_train_score"],
-                                    range=["skyblue", "pink"])),  # Map colors to lines
-    tooltip=["param_logisticregression__C", "Score Type:N", "Score:Q"]  # Explicitly specify data types in tooltip
-).properties(
-    title="Training vs Cross-Validation Scores (Log Scale)",
-    width=600,
-    height=400
-)
-```
 
-**Logistic regression performs better than decision trees and KNN on the cross validation data, hence, we will select it as our final model**
 
-```{python}
-features = lr_best_model.coef_
-feature_names = heart_failure_train.drop(columns=['DEATH_EVENT']).columns
-coefficients = pd.DataFrame({
-    'Feature': feature_names,
-    'Coefficient': features[0],
-    'Absolute_Coefficient': abs(features[0])
-}).sort_values(by='Absolute_Coefficient', ascending=False)
-
-coefficients
-```
 
 ## Model Evaluation
 
 #### Confusion Matrix
 
-```{python}
-#| scrolled: true
-# Confusion Matrix
 
+
+
+```{python}
+#| label: tbl-confusion-matrix
+#| tbl-cap: Confusion matrix for the final model on the test dataset.
+#| echo: false
+
+import pandas as pd
+
+# Generate confusion matrix as a crosstab
 heart_failure_predictions = heart_failure_test.assign(
     predicted=heart_failure_fit.predict(heart_failure_test)
 )
 
-cm_crosstab = pd.crosstab(heart_failure_predictions['DEATH_EVENT'], 
-                          heart_failure_predictions['predicted'], 
-                          rownames=["Actual"], 
-                          colnames=["Predicted"]
-                         )
+cm_crosstab = pd.crosstab(
+    heart_failure_predictions['DEATH_EVENT'], 
+    heart_failure_predictions['predicted'], 
+    rownames=["Actual"], 
+    colnames=["Predicted"]
+)
 
+# Render the confusion matrix as it is for correct alignment
+cm_crosstab.style.set_table_attributes("style='display:inline'")
 
-cm_crosstab
-# cm = confusion_matrix(heart_failure_test["DEATH_EVENT"], heart_failure_fit.predict(heart_failure_test))
-# cm
 ```
 
+
+
+
 ```{python}
+#| echo: false
+#| label: tbl-model-metrics
+#| tbl-cap: Evaluation metrics for the final model.
+
+import pandas as pd
+
+# Calculate evaluation metrics
 accuracy = accuracy_score(heart_failure_predictions['DEATH_EVENT'], heart_failure_predictions['predicted'])
 precision = precision_score(heart_failure_predictions['DEATH_EVENT'], heart_failure_predictions['predicted'])
 recall = recall_score(heart_failure_predictions['DEATH_EVENT'], heart_failure_predictions['predicted'])
 f1 = f1_score(heart_failure_predictions['DEATH_EVENT'], heart_failure_predictions['predicted'])
 
-print(f"Accuracy: {accuracy:.4f}")
-print(f"Precision: {precision:.4f}")
-print(f"Recall: {recall:.4f}")
-print(f"F1 Score: {f1:.4f}")
+# Create a DataFrame for the metrics
+metrics_table = pd.DataFrame({
+    'Metric': ['Accuracy', 'Precision', 'Recall', 'F1 Score'],
+    'Value': [accuracy, precision, recall, f1]
+})
+
+# Round values for better readability
+metrics_table['Value'] = metrics_table['Value'].round(4)
+
+# Display the DataFrame
+metrics_table
 ```
+
+
+## Results and Conculsion
+
+The analysis revealed that `platelets` and `ejection_fraction` are the most important features in predicting the risk of patient mortality. These features significantly impact the model's ability to assess patient risk, which is crucial for early intervention. Our model achieved a recall score of 0.73, which is a good start, but there is room for improvement, particularly in reducing the number of high risk patients the model might miss, i.e., maximising recall by minimising False Negatives.
+
+The main challenges in this project stem from class imbalance and limited data availability. With more diverse and comprehensive datasets, performance could be further enhanced. We would also like to explore other machine learning models to improve the overall accuracy.
+
+In conclusion, while the current model shows potential, there is significant opportunity to enhance its effectiveness. With improvements in data quality and model optimization, this tool could become a crucial asset in predicting patient risk and saving lives.
+
+
+
 
 ## References
 
