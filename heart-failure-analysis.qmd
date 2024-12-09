@@ -1,5 +1,6 @@
 ---
 title: Heart Failure Survival Analysis
+author: "Merari Santana, Kevin Gao, Gurmehak Kaur, Yuhan Fan"
 jupyter: python3
 format:
   html:
@@ -361,8 +362,6 @@ cm_crosstab.style.set_table_attributes("style='display:inline'")
 ```
 
 
-
-by Merari Santana, Kevin Gao, Gurmehak Kaur, Yuhan Fan
 
 ## Summary
 
