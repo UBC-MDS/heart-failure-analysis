@@ -614,12 +614,14 @@ metrics_table2
 
 ## Results and Conculsion
 
-The analysis revealed that `platelets` and `ejection_fraction` are the most important features (see @tbl-top-features) in predicting the risk of patient mortality. These features significantly impact the model's ability to assess patient risk, which is crucial for early intervention. Our model achieved a recall score of {python} recall\ (see @tbl-model-metrics2), which is a good start, but there is room for improvement, particularly in reducing the number of high risk patients the model might miss, i.e., maximising recall by minimising False Negatives.
+The analysis revealed that `platelets` and `ejection_fraction` are the most important features (see @tbl-top-features) in predicting the risk of patient mortality. These features significantly impact the model's ability to assess patient risk, which is crucial for early intervention. Our model achieved a recall score of `{python} recall` (see @tbl-model-metrics2), which is a good start, but there is room for improvement, particularly in reducing the number of high risk patients the model might miss, i.e., maximising recall by minimising False Negatives.
 
 The main challenges in this project stem from class imbalance and limited data availability. With more diverse and comprehensive datasets, performance could be further enhanced. We would also like to explore other machine learning models to improve the overall accuracy.
 
 In conclusion, while the current model shows potential, there is significant opportunity to enhance its effectiveness. With improvements in data quality and model optimization, this tool could become a crucial asset in predicting patient risk and saving lives.
 
+
+## References
 
 
 
