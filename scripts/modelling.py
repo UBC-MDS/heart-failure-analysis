@@ -95,7 +95,7 @@ def main(training_data, pipeline_to, plot_to, seed):
     print("Best Logistic Regression Model:", lr_best_model)
 
     # Save the Logistic Regression pipeline
-    with open(os.path.join(pipeline_to, "heart_failure_model.pickle"), 'wb') as f:
+    with open(os.path.join(pipeline_to, "pipeline.pickle"), 'wb') as f:
         pickle.dump(heart_failure_model, f)
 
     # ----- Visualizing Logistic Regression Scores -----
