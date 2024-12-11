@@ -381,7 +381,7 @@ We analyzed a dataset containing the medical records of 299 heart failure patien
 
 
 
-## Exploratory Data Analysis and Visualizations
+### **EDA and Visualizations**
 
 
 
@@ -449,8 +449,8 @@ death_event_counts
 
 ```
 
-Dataset Size: The dataset is relatively small, with only 300 rows. \
-Class Imbalance: The target variable, DEATH_EVENT, has few examples in the "True" class (i.e., the event occurred), which might affect the model's ability to learn and generalize well. This class imbalance will be taken into consideration during analysis and model evaluation.
+* Dataset Size: The dataset is relatively small, with only 300 rows.
+* Class Imbalance: The target variable, DEATH_EVENT, has few examples in the "True" class (i.e., the event occurred), which might affect the model's ability to learn and generalize well. This class imbalance will be taken into consideration during analysis and model evaluation.
 
 
 
