@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    #vis.vega-embed {
+      width: 100%;
+      display: flex;
+    }
+
+    #vis.vega-embed details,
+    #vis.vega-embed details summary {
+      position: relative;
+    }
+  </style>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-lite@5.20.1"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+</head>
+<body>
+  <div id="vis"></div>
+  <script>
+    (function(vegaEmbed) {
+      var spec = {"config": {"view": {"continuousWidth": 300, "continuousHeight": 300}}, "data": {"name": "data-88ce4b0bd0af63ca0875b1e76a62d2df"}, "mark": {"type": "line"}, "encoding": {"color": {"field": "Score Type", "scale": {"domain": ["mean_test_score", "mean_train_score"], "range": ["skyblue", "pink"]}, "title": "Score Type", "type": "nominal"}, "tooltip": [{"field": "param_logisticregression__C", "type": "quantitative"}, {"field": "Score Type", "type": "nominal"}, {"field": "Score", "type": "quantitative"}], "x": {"field": "param_logisticregression__C", "scale": {"type": "log"}, "title": "C (Regularization Parameter)", "type": "quantitative"}, "y": {"field": "Score", "scale": {"domain": [0.75, 0.85]}, "title": "Score", "type": "quantitative"}}, "height": 400, "title": "Training vs Cross-Validation Scores (Log Scale)", "transform": [{"fold": ["mean_test_score", "mean_train_score"], "as": ["Score Type", "Score"]}], "width": 600, "$schema": "https://vega.github.io/schema/vega-lite/v5.20.1.json", "datasets": {"data-88ce4b0bd0af63ca0875b1e76a62d2df": [{"param_logisticregression__C": 0.0001, "mean_test_score": 0.8324275362318841, "mean_train_score": 0.8340223944875108}, {"param_logisticregression__C": 0.001, "mean_test_score": 0.8282608695652174, "mean_train_score": 0.8330964685615848}, {"param_logisticregression__C": 0.01, "mean_test_score": 0.8199275362318842, "mean_train_score": 0.8251873385012919}, {"param_logisticregression__C": 0.1, "mean_test_score": 0.8157608695652174, "mean_train_score": 0.8247308354866494}, {"param_logisticregression__C": 1.0, "mean_test_score": 0.7992753623188407, "mean_train_score": 0.8238070628768304}, {"param_logisticregression__C": 10.0, "mean_test_score": 0.7951086956521738, "mean_train_score": 0.821485788113695}, {"param_logisticregression__C": 100.0, "mean_test_score": 0.7951086956521738, "mean_train_score": 0.8233462532299741}, {"param_logisticregression__C": 1000.0, "mean_test_score": 0.7951086956521738, "mean_train_score": 0.8233462532299741}, {"param_logisticregression__C": 10000.0, "mean_test_score": 0.7951086956521738, "mean_train_score": 0.8233462532299741}, {"param_logisticregression__C": 1e-05, "mean_test_score": 0.7653985507246377, "mean_train_score": 0.7666128337639966}]}};
+      var embedOpt = {"mode": "vega-lite"};
+
+      function showError(el, error){
+          el.innerHTML = ('<div style="color:red;">'
+                          + '<p>JavaScript Error: ' + error.message + '</p>'
+                          + "<p>This usually means there's a typo in your chart specification. "
+                          + "See the javascript console for the full traceback.</p>"
+                          + '</div>');
+          throw error;
+      }
+      const el = document.getElementById('vis');
+      vegaEmbed("#vis", spec, embedOpt)
+        .catch(error => showError(el, error));
+    })(vegaEmbed);
+
+  </script>
+</body>
+</html>

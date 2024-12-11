@@ -3,13 +3,15 @@ import os
 # Command 1: Download and convert the dataset
 command_1 = """
 python src/download_and_convert.py \
-  --url "https://archive.ics.uci.edu/static/public/519/heart+failure+clinical+records.zip"
+  --url "https://archive.ics.uci.edu/static/public/519/heart+failure+clinical+records.zip" \
+  --write_to "./data"
 """
 
 # Command 2: Process and analyze the dataset
 command_2 = """
 python src/process_and_analyze.py \
-  --file_path "../data/heart_failure_clinical_records_dataset_converted.csv"
+  --file_path "./data/heart_failure_clinical_records_dataset_converted.csv" \
+  --output_dir "./data/processed"
 """
 
 # Command 3: Perform correlation analysis
