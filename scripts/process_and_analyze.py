@@ -8,9 +8,12 @@ import click
 import altair_ally as aly
 from sklearn.model_selection import train_test_split
 import pandera as pa
+import sys
 from pandera import Check, Column, DataFrameSchema
+
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 from src.split_data import split_data
+
 
 def validate_data(file_path):
     """
@@ -75,8 +78,6 @@ def explore_data(data):
     aly.parcoord(data, color="DEATH_EVENT")
     aly.dist(data, color="DEATH_EVENT")
 
-split_data(data, output_dir, train_size = 0.8, random_stat = 522)
-
 
 @click.command()
 @click.option('--file_path', type=click.Path(exists=True, dir_okay=False), help="Path to the dataset CSV file.")
@@ -86,6 +87,9 @@ def main(file_path, output_dir):
     Validate, analyze, and split a dataset.
     """
     try:
+        # Ensure the output directory exists
+        os.makedirs(output_dir, exist_ok=True)
+
         # Step 1: Validate the dataset
         print("Validating dataset...")
         data = validate_data(file_path)
@@ -96,7 +100,7 @@ def main(file_path, output_dir):
 
         # Step 3: Split the dataset
         print("\nSplitting the dataset...")
-        split_data(data, output_dir)
+        split_data(data, output_dir, train_size=0.8, random_state=522)
 
     except Exception as e:
         print(f"An error occurred: {e}")
