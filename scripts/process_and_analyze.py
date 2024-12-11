@@ -9,6 +9,8 @@ import altair_ally as aly
 from sklearn.model_selection import train_test_split
 import pandera as pa
 from pandera import Check, Column, DataFrameSchema
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+from src.split_data import split_data
 
 def validate_data(file_path):
     """
@@ -73,29 +75,7 @@ def explore_data(data):
     aly.parcoord(data, color="DEATH_EVENT")
     aly.dist(data, color="DEATH_EVENT")
 
-
-def split_data(data, output_dir, train_size=0.8, random_state=522):
-    """
-    Split the dataset into training and testing sets.
-    """
-    # Split the data
-    train_data, test_data = train_test_split(
-        data,
-        train_size=train_size,
-        stratify=data['DEATH_EVENT'],
-        random_state=random_state
-    )
-
-    # Save the splits
-    os.makedirs(output_dir, exist_ok=True)
-    train_path = os.path.join(output_dir, "heart_failure_train.csv")
-    test_path = os.path.join(output_dir, "heart_failure_test.csv")
-
-    train_data.to_csv(train_path, index=False)
-    test_data.to_csv(test_path, index=False)
-
-    print(f"Training data saved to: {train_path}")
-    print(f"Test data saved to: {test_path}")
+split_data(data, output_dir, train_size = 0.8, random_stat = 522)
 
 
 @click.command()
