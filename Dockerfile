@@ -20,5 +20,5 @@ RUN pip cache purge
 RUN fix-permissions "${CONDA_DIR}"
 RUN fix-permissions "/home/${NB_USER}"
 
-RUN pip install deepchecks==0.18.1
+# RUN pip install deepchecks==0.18.1
 
