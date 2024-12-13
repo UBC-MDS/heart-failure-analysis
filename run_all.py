@@ -3,13 +3,15 @@ import os
 # Command 1: Download and convert the dataset
 command_1 = """
 python scripts/download_and_convert.py \
-  --url "https://archive.ics.uci.edu/static/public/519/heart+failure+clinical+records.zip"
+  --url "https://archive.ics.uci.edu/static/public/519/heart+failure+clinical+records.zip" \
+  --write_to "data/raw"
 """
 
 # Command 2: Process and analyze the dataset
 command_2 = """
 python scripts/process_and_analyze.py \
-  --file_path "../data/heart_failure_clinical_records_dataset_converted.csv"
+  --file_path "./data/raw/heart_failure_clinical_records_dataset_converted.csv" \
+  --output_dir "./data/processed"
 """
 
 # Command 3: Perform correlation analysis
@@ -33,7 +35,7 @@ python scripts/modelling.py \
 command_5 = """
 python scripts/model_evaluation.py \
   --scaled-test-data "data/processed/heart_failure_test.csv" \
-  --pipeline-from "results/pipeline/heart_failure_model.pickle" \
+  --pipeline-from "results/pipeline/pipeline.pickle" \
   --results-to "results/figures"
 """
 

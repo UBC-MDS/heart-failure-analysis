@@ -54,7 +54,7 @@ reports/heart-failure-analysis.pdf:
 
 # Clean up analysis
 clean:
-	rm -rf data/raw/* \
+	rm -rf \
 		data/processed/* \
 		results/figures/* \
 		results/img/* \
