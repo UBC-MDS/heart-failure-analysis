@@ -18,7 +18,7 @@ data/raw/heart_failure_clinical_records.data: scripts/download_and_convert.py
 # Process and analyze data
 data/processed/heart_failure_train.csv data/processed/heart_failure_test.csv : scripts/process_and_analyze.py data/raw/heart_failure_clinical_records.data
 	python scripts/process_and_analyze.py \
-		--file_path="../data/heart_failure_clinical_records_dataset_converted.csv" \
+		--file_path="data/raw/heart_failure_clinical_records_dataset_converted.csv" \
 		--output_dir=data/processed
 
 # Perform correlation analysis
@@ -54,15 +54,16 @@ reports/heart-failure-analysis.pdf:
 
 # Clean up analysis
 clean:
-	rm -rf data/raw/*
-	rm -f results/data/processed/heart_failure_train.csv \
-		results/data/processed/heart_failure_test.csv \
-		results/models/pipeline.pickle \
-		results/figures/training_plots \
-		results/tables/test_evaluation.csv \
-		results/figures/correlation_heatmap.png \
-		results/tables/confusion_matrix.csv \
+	rm -rf data/raw/* \
+		data/processed/* \
+		results/figures/* \
+		results/img/* \
+		results/models/* \
+		results/pipeline/* \
+		
+	rm -f \
 		results/tables/test_scores.csv \
+		results/tables/confusion_matrix.csv \
 		reports/heart-failure-analysis.html \
 		reports/heart-failure-analysis.pdf
 		
