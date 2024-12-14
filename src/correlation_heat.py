@@ -32,12 +32,14 @@ def correlation_heat(correlation_long: pd.DataFrame, feature_1: str, feature_2: 
         If the feature_1, feature_2, or correlation are empty strings. 
     """
 
-    if not isinstance(dataframe, pd.DataFrame):
+    if not isinstance(correlation_long, pd.DataFrame):
         raise TypeError("Input must be a pandas DataFrame")    
-    if dataframe.empty:
+    if correlation_long.empty:
         raise ValueError("DataFrame must contain observations.")
     if not all([feature_1, feature_2, correlation]):
         raise ValueError("Feature names and correlation column must be non-empty strings.")
+    if feature_1 not in correlation_long.columns or feature_2 not in correlation_long.columns or correlation not in correlation_long.columns:
+        raise KeyError("One or more specified columns are not in the DataFrame.")
     
     chart = alt.Chart(correlation_long).mark_rect().encode(
         x=f'{feature_1}:O',
