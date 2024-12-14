@@ -33,9 +33,17 @@ docker compose up
 2.  In the terminal, look for a URL that starts with [`http://127.0.0.1:8888/lab?token=`](http://127.0.0.1:8888/lab?token=) (for an example, see the highlighted text in the terminal below). Copy and paste that URL into your browser.
 ![docker_output](results/figures/docker_image_ex.png)
 
-<img src="img/jupyter-container-web-app-launch-url.png" width="400"/>
 
-3.  To run the analysis, open `heart-failure-analysis.ipynb` in Jupyter Lab you just launched and under the "Kernel" menu click "Restart Kernel and Run All Cells...".
+3.  To run the analysis, open `reports/heart-failure-analysis.ipynb` in Jupyter Lab you just launched and under the "Kernel" menu click "Restart Kernel and Run All Cells...".
+
+
+### Calling scripts
+
+To run the analysis, make sure you are in the root directory of the project, then run the following command, using a Jupyter Lab terminal GUI:
+
+```         
+python run_all.py
+```
 
 ### Clean up
 
@@ -62,36 +70,6 @@ docker compose up
 
 6.  Send a pull request to merge the changes into the `main` branch.
 
-### Calling scripts
-
-To run the analysis, open a terminal and run the following commands and their respective arguments:
-
-```         
-python scripts/download_and_convert.py \
-  --url "https://archive.ics.uci.edu/static/public/519/heart+failure+clinical+records.zip"
-
-python scripts/process_and_analyze.py \
-  --file_path "../data/heart_failure_clinical_records_dataset_converted.csv"
-  
-python scripts/correlation_analysis.py \
-  --train_file "./data/processed/heart_failure_train.csv" \
-  --test_file "./data/processed/heart_failure_test.csv" \
-  --output_file "./results/figures/heatmap.html"
-  
-python scripts/modelling.py \
-  --training-data "./data/processed/heart_failure_train.csv" \
-  --pipeline-to "results/pipeline" \
-  --plot-to "results/figures" \
-  --seed 123
-  
-python scripts/model_evaluation.py \
-    --scaled-test-data=data/processed/heart_failure_test.csv \
-    --pipeline-from=results/pipeline/heart_failure_model.pickle \
-    --results-to=results/figures
-    
-quarto render heart-failure-analysis.qmd --to html
-quarto render heart-failure-analysis.qmd --to pdf
-```
 
 ## License
 
