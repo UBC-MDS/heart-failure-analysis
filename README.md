@@ -31,7 +31,10 @@ docker compose up
 ```
 
 2.  In the terminal, look for a URL that starts with [`http://127.0.0.1:8888/lab?token=`](http://127.0.0.1:8888/lab?token=) (for an example, see the highlighted text in the terminal below). Copy and paste that URL into your browser.
+
+
 ![docker_output](results/figures/docker_image_ex.png)
+
 
 
 3.  To run the analysis, open `reports/heart-failure-analysis.ipynb` in Jupyter Lab you just launched and under the "Kernel" menu click "Restart Kernel and Run All Cells...".
