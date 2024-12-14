@@ -25,7 +25,7 @@ def download_and_extract_zip(url, directory):
     str: Path to the extracted CSV file.
     """
     # Validate URL and fetch the file
-    request = requests.get(url)
+    request = requests.get(url, verify= False)
     filename_from_url = os.path.basename(url)
 
     if request.status_code != 200:

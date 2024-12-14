@@ -8,7 +8,12 @@ import click
 import altair_ally as aly
 from sklearn.model_selection import train_test_split
 import pandera as pa
+import sys
 from pandera import Check, Column, DataFrameSchema
+
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+from src.split_data import split_data
+
 
 def validate_data(file_path):
     """
@@ -74,30 +79,6 @@ def explore_data(data):
     aly.dist(data, color="DEATH_EVENT")
 
 
-def split_data(data, output_dir, train_size=0.8, random_state=522):
-    """
-    Split the dataset into training and testing sets.
-    """
-    # Split the data
-    train_data, test_data = train_test_split(
-        data,
-        train_size=train_size,
-        stratify=data['DEATH_EVENT'],
-        random_state=random_state
-    )
-
-    # Save the splits
-    os.makedirs(output_dir, exist_ok=True)
-    train_path = os.path.join(output_dir, "heart_failure_train.csv")
-    test_path = os.path.join(output_dir, "heart_failure_test.csv")
-
-    train_data.to_csv(train_path, index=False)
-    test_data.to_csv(test_path, index=False)
-
-    print(f"Training data saved to: {train_path}")
-    print(f"Test data saved to: {test_path}")
-
-
 @click.command()
 @click.option('--file_path', type=click.Path(exists=True, dir_okay=False), help="Path to the dataset CSV file.")
 @click.option('--output_dir', default="../data/processed", help="Directory to save the split datasets.")
@@ -106,6 +87,9 @@ def main(file_path, output_dir):
     Validate, analyze, and split a dataset.
     """
     try:
+        # Ensure the output directory exists
+        os.makedirs(output_dir, exist_ok=True)
+
         # Step 1: Validate the dataset
         print("Validating dataset...")
         data = validate_data(file_path)
@@ -116,7 +100,7 @@ def main(file_path, output_dir):
 
         # Step 3: Split the dataset
         print("\nSplitting the dataset...")
-        split_data(data, output_dir)
+        split_data(data, output_dir, train_size=0.8, random_state=522)
 
     except Exception as e:
         print(f"An error occurred: {e}")

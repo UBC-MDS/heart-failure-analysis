@@ -20,7 +20,6 @@ import altair as alt
 def main(training_data, pipeline_to, plot_to, seed):
     '''Tests three pipelines for heart failure prediction and selects Logistic Regression as the final model.'''
     
-    # 创建路径如果不存在
     os.makedirs(pipeline_to, exist_ok=True)
     os.makedirs(plot_to, exist_ok=True)
     
@@ -95,7 +94,7 @@ def main(training_data, pipeline_to, plot_to, seed):
     print("Best Logistic Regression Model:", lr_best_model)
 
     # Save the Logistic Regression pipeline
-    with open(os.path.join(pipeline_to, "heart_failure_model.pickle"), 'wb') as f:
+    with open(os.path.join(pipeline_to, "pipeline.pickle"), 'wb') as f:
         pickle.dump(heart_failure_model, f)
 
     # ----- Visualizing Logistic Regression Scores -----

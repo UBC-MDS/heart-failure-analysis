@@ -2,19 +2,21 @@ import os
 
 # Command 1: Download and convert the dataset
 command_1 = """
-python src/download_and_convert.py \
-  --url "https://archive.ics.uci.edu/static/public/519/heart+failure+clinical+records.zip"
+python scripts/download_and_convert.py \
+  --url "https://archive.ics.uci.edu/static/public/519/heart+failure+clinical+records.zip" \
+  --write_to "data/raw"
 """
 
 # Command 2: Process and analyze the dataset
 command_2 = """
-python src/process_and_analyze.py \
-  --file_path "../data/heart_failure_clinical_records_dataset_converted.csv"
+python scripts/process_and_analyze.py \
+  --file_path "./data/raw/heart_failure_clinical_records_dataset_converted.csv" \
+  --output_dir "./data/processed"
 """
 
 # Command 3: Perform correlation analysis
 command_3 = """
-python src/correlation_analysis.py \
+python scripts/correlation_analysis.py \
   --train_file "./data/processed/heart_failure_train.csv" \
   --test_file "./data/processed/heart_failure_test.csv" \
   --output_file "./results/figures/heatmap.png"
@@ -22,7 +24,7 @@ python src/correlation_analysis.py \
 
 # Command 4: Run the modeling script
 command_4 = """
-python src/modelling.py \
+python scripts/modelling.py \
   --training-data "./data/processed/heart_failure_train.csv" \
   --pipeline-to "results/pipeline" \
   --plot-to "results/figures" \
@@ -31,9 +33,9 @@ python src/modelling.py \
 
 # Command 5: Evaluate the model
 command_5 = """
-python src/model_evaluation.py \
+python scripts/model_evaluation.py \
   --scaled-test-data "data/processed/heart_failure_test.csv" \
-  --pipeline-from "results/pipeline/heart_failure_model.pickle" \
+  --pipeline-from "results/pipeline/pipeline.pickle" \
   --results-to "results/figures"
 """
 
