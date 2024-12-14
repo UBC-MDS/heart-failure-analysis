@@ -31,6 +31,7 @@ docker compose up
 ```
 
 2.  In the terminal, look for a URL that starts with [`http://127.0.0.1:8888/lab?token=`](http://127.0.0.1:8888/lab?token=) (for an example, see the highlighted text in the terminal below). Copy and paste that URL into your browser.
+![docker_output](results/figures/docker_image_ex.png)
 
 <img src="img/jupyter-container-web-app-launch-url.png" width="400"/>
 
