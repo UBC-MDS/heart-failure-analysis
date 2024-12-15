@@ -7,7 +7,7 @@ all: data/raw/heart_failure_clinical_records.data \
 	results/tables/confusion_matrix.csv \
 	results/tables/test_scores.csv \
 	reports/heart-failure-analysis.html \
-	reports/heart-failure-analysis.pdf \
+	reports/heart-failure-analysis.pdf
 
 # Download and convert data
 data/raw/heart_failure_clinical_records.data: scripts/download_and_convert.py
@@ -34,6 +34,7 @@ results/models/pipeline.pickle results/figures/training_plots: data/processed/he
 		--training-data "./data/processed/heart_failure_train.csv" \
 		--pipeline-to "results/models" \
 		--plot-to "results/figures" \
+		--table-to "results/tables" \
 		--seed 123
 
 results/tables/confusion_matrix.csv results/tables/test_scores.csv: scripts/model_evaluation.py data/processed/heart_failure_test.csv results/models/pipeline.pickle

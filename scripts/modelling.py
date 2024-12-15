@@ -16,13 +16,14 @@ import altair as alt
 @click.option('--training-data', type=str, help="Path to training data")
 @click.option('--pipeline-to', type=str, help="Path to directory where the final pipeline object will be written to")
 @click.option('--plot-to', type=str, help="Path to directory where the plot will be written to")
+@click.option('--table-to', type=str, help="Path to directory where the table will be written to")
 @click.option('--seed', type=int, help="Random seed", default=522)
-def main(training_data, pipeline_to, plot_to, seed):
+def main(training_data, pipeline_to, plot_to, table_to, seed):
     '''Tests three pipelines for heart failure prediction and selects Logistic Regression as the final model.'''
     
     os.makedirs(pipeline_to, exist_ok=True)
     os.makedirs(plot_to, exist_ok=True)
-    
+    os.makedirs(table_to, exist_ok=True)
     np.random.seed(seed)
 
     # Load the dataset
@@ -116,7 +117,7 @@ def main(training_data, pipeline_to, plot_to, seed):
         width=600,
         height=400
     )
-    lr_plot.save(os.path.join(plot_to, "logistic_regression_scores.html"), scale_factor=2.0)
+    #lr_plot.save(os.path.join(plot_to, "logistic_regression_scores.html"), scale_factor=2.0)
 
     # ----- Analyzing Logistic Regression Coefficients -----
     lr_model = lr_best_model.named_steps['logisticregression']
@@ -127,7 +128,7 @@ def main(training_data, pipeline_to, plot_to, seed):
         'Coefficient': features[0],
         'Absolute_Coefficient': abs(features[0])
     }).sort_values(by='Absolute_Coefficient', ascending=False)
-    coefficients.to_csv(os.path.join(plot_to, "logistic_regression_coefficients.csv"), index=False)
+    coefficients.to_csv(os.path.join(table_to, "logistic_regression_coefficients.csv"), index=False)
     print("Logistic Regression Coefficients:", coefficients)
 
 if __name__ == '__main__':
