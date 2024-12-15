@@ -3,6 +3,7 @@
 # date: 2024-12-06
 
 import click
+import sys
 import os
 import pandas as pd
 import numpy as np
@@ -15,6 +16,8 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import make_pipeline
 import altair as alt
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+from src.model_fit import model_fit
 
 @click.command()
 @click.option('--training-data', type=str, help="Path to training data")
@@ -59,8 +62,9 @@ def main(training_data, pipeline_to, plot_to, seed):
     # ----- K-Nearest Neighbors Pipeline -----
     knn_param_grid = {"kneighborsclassifier__n_neighbors": range(1, 100, 3)}
 
+    #--- ABSTRACT FUNCTION ---
     # Hyperparameter tuning and model fitting 
-    knn_best_model, knn_cv_results = model_fit(
+    knn_best_model, knn_grid_search = model_fit(
         KNeighborsClassifier(),
         heart_failure_preprocessor,
         knn_param_grid,
@@ -71,25 +75,26 @@ def main(training_data, pipeline_to, plot_to, seed):
     # ----- Logistic Regression Pipeline -----
     lr_param_grid = {"logisticregression__C": 10.0 ** np.arange(-5, 5, 1)}
 
+    #--- ABSTRACT FUNCTION ---
     # Hyperparameter tuning and model fitting 
-    lr_best_model, lr_cv_results = model_fit(
-        LogisticRegression(random_state=123, max_iter=2000, class_weight="balanced"),
-        heart_failure_preprocessor,
-        lr_param_grid,
-        heart_failure_train
-    )
+    lr_best_model, lr_grid_search = model_fit(
+    LogisticRegression(random_state=123, max_iter=2000, class_weight="balanced"),
+    heart_failure_preprocessor,
+    lr_param_grid,
+    heart_failure_train
+)
 
     print("Best Logistic Regression Model:", lr_best_model)
 
 
     # Save the Logistic Regression pipeline
-    with open(os.path.join(pipeline_to, "heart_failure_model.pickle"), 'wb') as f:
-        pickle.dump(heart_failure_model, f)
+    with open(os.path.join(pipeline_to, "pipeline.pickle"), 'wb') as f:
+        pickle.dump(lr_best_model, f)
 
     # ----- Visualizing Logistic Regression Scores -----
     lr_scores = pd.DataFrame(lr_grid_search.cv_results_).sort_values(
-        'mean_test_score', ascending=False
-    )[['param_logisticregression__C', 'mean_test_score', 'mean_train_score']]
+    'mean_test_score', ascending=False
+)[['param_logisticregression__C', 'mean_test_score', 'mean_train_score']]
 
     lr_plot = alt.Chart(lr_scores).transform_fold(
         ["mean_test_score", "mean_train_score"],
