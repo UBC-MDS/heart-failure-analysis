@@ -65,6 +65,8 @@ clean:
 	rm -f \
 		results/tables/test_scores.csv \
 		results/tables/confusion_matrix.csv \
+		results/tables/confusion_matrix.csv \
+		results/tables/logistic_regression_coefficients.csv \
 		reports/heart-failure-analysis.html \
 		reports/heart-failure-analysis.pdf
 		
