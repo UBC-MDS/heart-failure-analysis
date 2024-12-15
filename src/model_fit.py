@@ -45,9 +45,9 @@ def model_fit(model, preprocessor, grid, heart_failure_train):
          n_jobs=-1,
          return_train_score=True
          )
-    fitted_model = grid_search.fit(
+    grid_search.fit(
          heart_failure_train.drop(columns=['DEATH_EVENT']), 
          heart_failure_train['DEATH_EVENT']
          )
      
-    return fitted_model.best_estimator_, fitted_model.cv_results_
+    return grid_search.best_estimator_, grid_search
