@@ -1,3 +1,7 @@
+# modelling.py
+# author: Gurmehak Kaur 
+# date: 2024-12-06
+
 import click
 import os
 import pandas as pd
@@ -37,6 +41,7 @@ def main(training_data, pipeline_to, plot_to, seed):
         remainder='passthrough'
     )
 
+
     # ----- Decision Tree Pipeline -----
     dt_pipeline = make_pipeline(
         heart_failure_preprocessor, 
@@ -50,51 +55,35 @@ def main(training_data, pipeline_to, plot_to, seed):
     )
     dt_scores = pd.DataFrame(dt_scores).sort_values('test_score', ascending=False)
 
+
     # ----- K-Nearest Neighbors Pipeline -----
-    knn_pipeline = make_pipeline(
-        heart_failure_preprocessor, 
-        KNeighborsClassifier()
-    )
-    knn_param_grid = {
-        "kneighborsclassifier__n_neighbors": range(1, 100, 3)
-    }
-    knn_grid_search = GridSearchCV(
-        knn_pipeline,
+    knn_param_grid = {"kneighborsclassifier__n_neighbors": range(1, 100, 3)}
+
+    # Hyperparameter tuning and model fitting 
+    knn_best_model, knn_cv_results = model_fit(
+        KNeighborsClassifier(),
+        heart_failure_preprocessor,
         knn_param_grid,
-        cv=10,
-        n_jobs=-1,
-        return_train_score=True,
+        heart_failure_train
     )
-    knn_grid_search.fit(
-        heart_failure_train.drop(columns=['DEATH_EVENT']), 
-        heart_failure_train['DEATH_EVENT']
-    )
-    knn_best_model = knn_grid_search.best_estimator_
+
 
     # ----- Logistic Regression Pipeline -----
-    lr_pipeline = make_pipeline(
-        heart_failure_preprocessor, 
-        LogisticRegression(random_state=seed, max_iter=2000, class_weight="balanced")
-    )
-    lr_param_grid = {
-        "logisticregression__C": 10.0 ** np.arange(-5, 5, 1)
-    }
-    lr_grid_search = GridSearchCV(
-        lr_pipeline,
+    lr_param_grid = {"logisticregression__C": 10.0 ** np.arange(-5, 5, 1)}
+
+    # Hyperparameter tuning and model fitting 
+    lr_best_model, lr_cv_results = model_fit(
+        LogisticRegression(random_state=123, max_iter=2000, class_weight="balanced"),
+        heart_failure_preprocessor,
         lr_param_grid,
-        cv=10,
-        n_jobs=-1,
-        return_train_score=True
+        heart_failure_train
     )
-    heart_failure_model = lr_grid_search.fit(
-        heart_failure_train.drop(columns=['DEATH_EVENT']), 
-        heart_failure_train['DEATH_EVENT']
-    )
-    lr_best_model = lr_grid_search.best_estimator_
+
     print("Best Logistic Regression Model:", lr_best_model)
 
+
     # Save the Logistic Regression pipeline
-    with open(os.path.join(pipeline_to, "pipeline.pickle"), 'wb') as f:
+    with open(os.path.join(pipeline_to, "heart_failure_model.pickle"), 'wb') as f:
         pickle.dump(heart_failure_model, f)
 
     # ----- Visualizing Logistic Regression Scores -----
