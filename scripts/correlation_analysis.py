@@ -85,30 +85,6 @@ def plot_correlation_matrix(scaled_train, output_file=None):
         chart.show()
 
 
-def validate_feature_correlations(scaled_train, threshold_feature_feature=0.92):
-    """
-    Validates feature-feature correlations in the dataset using deepchecks.
-
-    Parameters:
-        scaled_train (pd.DataFrame): Processed training dataset.
-        threshold_feature_feature (float): Maximum correlation threshold for feature-feature correlation.
-
-    Raises:
-        ValueError: If feature-feature correlations exceed the specified threshold.
-    """
-    warnings.filterwarnings("ignore", category=FutureWarning, module="deepchecks")
-
-    # Combine features into a Dataset for deepchecks
-    dataset = Dataset(scaled_train)
-
-    # Feature-Feature Correlation Check
-    check_feat_feat_corr = FeatureFeatureCorrelation().add_condition_max_number_of_pairs_above_threshold(
-        threshold=threshold_feature_feature, n_pairs=0
-    )
-    if not check_feat_feat_corr.run(dataset=dataset).passed_conditions():
-        raise ValueError("Feature-feature correlation exceeds the maximum acceptable threshold.")
-
-
 @click.command()
 @click.option('--train_file', type=click.Path(exists=True, dir_okay=False), required=True, help="Path to the training dataset CSV file.")
 @click.option('--test_file', type=click.Path(exists=True, dir_okay=False), required=True, help="Path to the test dataset CSV file.")
@@ -131,14 +107,6 @@ def main(train_file, test_file, output_file, threshold_feature_feature):
 
     # Plot and save/display correlation heatmap
     plot_correlation_matrix(scaled_train, output_file)
-
-    # Validate feature-feature correlations
-    try:
-        #validate_feature_correlations(scaled_train, threshold_feature_feature)
-        click.echo("All feature-feature correlation checks passed.")
-    except ValueError as e:
-        click.echo(str(e), err=True)
-        exit(1)
 
 
 if __name__ == "__main__":

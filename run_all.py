@@ -26,8 +26,9 @@ python scripts/correlation_analysis.py \
 command_4 = """
 python scripts/modelling.py \
   --training-data "./data/processed/heart_failure_train.csv" \
-  --pipeline-to "results/pipeline" \
+  --pipeline-to "results/models" \
   --plot-to "results/figures" \
+  --table-to "results/tables" \
   --seed 123
 """
 
@@ -35,8 +36,8 @@ python scripts/modelling.py \
 command_5 = """
 python scripts/model_evaluation.py \
   --scaled-test-data "data/processed/heart_failure_test.csv" \
-  --pipeline-from "results/pipeline/pipeline.pickle" \
-  --results-to "results/figures"
+  --pipeline-from "results/models/pipeline.pickle" \
+  --results-to "results/tables"
 """
 
 # Execute all commands
