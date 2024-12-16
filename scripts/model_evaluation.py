@@ -7,29 +7,16 @@ import click
 import os
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
-import altair as alt
-import altair_ally as aly
 import os
-from vega_datasets import data
 from sklearn import set_config
-from sklearn.model_selection import (GridSearchCV, cross_validate, train_test_split,)
-from sklearn.preprocessing import StandardScaler, OneHotEncoder
-from sklearn.compose import make_column_transformer
-from sklearn.pipeline import make_pipeline
-from sklearn.linear_model import LogisticRegression
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.metrics import confusion_matrix, accuracy_score, precision_score, recall_score, f1_score
-import pandera as pa
-from deepchecks.tabular.checks import FeatureLabelCorrelation, FeatureFeatureCorrelation
-from deepchecks.tabular import Dataset
-import warnings
+from sklearn.metrics import  accuracy_score, precision_score, recall_score, f1_score
+
 
 @click.command()
 @click.option('--scaled-test-data', type=str, help="Path to scaled test data")
 @click.option('--pipeline-from', type=str, help="Path to directory where the fit pipeline object lives")
-@click.option('--results-to', type=str, help="Path to directory where the plot will be written to")
+@click.option('--results-to', type=str, help="Path to directory where the table will be written to")
+
 @click.option('--seed', type=int, help="Random seed", default=123)
 def main(scaled_test_data, pipeline_from, results_to, seed):
     '''Evaluates the health failure classifier on the test data 
