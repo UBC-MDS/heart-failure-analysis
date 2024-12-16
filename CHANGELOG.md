@@ -2,16 +2,16 @@ Revisions:
 
 
 Who: Merari Santana
-What was addressed: README file improvements
-Description of Revision: Our README.md file had a missing image, so I added a working image to clarify the workflow. 
+What was addressed: Scripts on README file were not running
+Description of Revision: I revised the instructions for running Make file. This runs all the scripts correctly.
 Evidence:
-  url: https://github.com/UBC-MDS/heart-failure-analysis/commit/81c4defc579056bd846ce1c3dd5c917cd3e28789
+  https://github.com/UBC-MDS/heart-failure-analysis/commit/3f23b4e431508388575169556cc8aa3a8e0a0646
 
 Who: Merari Santana
-What was addressed: Scripts on README file were not running
-Description of Revision: I added our run_all.py command to README file so user can run our scripts in one go.
+What was addressed: Improved accessibility to our report
+Description of Revision: I deployed Github pages so that our README file has a direct link to our HTML report.
 Evidence:
-  url: https://github.com/UBC-MDS/heart-failure-analysis/commit/b9f686786d26e61021c8e2540628aa271f868788
+  url: https://github.com/UBC-MDS/heart-failure-analysis/commit/7e22dd6dc250c11948aa87be384a8f9c15fec87a
     
 Who: Merari Santana
 What was addressed: Change acronymns in final report and delete bullet points
