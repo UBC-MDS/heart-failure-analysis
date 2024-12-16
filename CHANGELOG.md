@@ -31,8 +31,8 @@ Who: Gurmehak Kaur
 What was addressed: Simplify Dockerfile
 Description of Revision: I combined related commands into single RUN instruction and cleaned up the file.
 Evidence:
-    url: -
-
+    url: https://github.com/UBC-MDS/heart-failure-analysis/commit/2219586a0c1f61a0009c8e16c49fba9b087f7b8a
+    
 Who: Ke Gao
 What was addressed: Improve Automatic Numbering of Figures in the Report
 Description of Revision: I improved automatic numbering of figures in the report.
