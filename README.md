@@ -10,9 +10,8 @@ The data set used in this project was created by D. Chicco, Giuseppe Jurman in 2
 
 ## Report
 
-The final report can be found 
-[here] (https://ubc-mds.github.io/heart-failure-analysis/reports/heart-failure-analysis.html
-).
+The final report can be found [here](https://ubc-mds.github.io/heart-failure-analysis/reports/heart-failure-analysis.html).
+
 
 ## Dependencies
 
