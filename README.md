@@ -28,13 +28,7 @@ The final report can be found [here](https://ubc-mds.github.io/heart-failure-ana
 
 ### Running the analysis
 
-1.  Navigate to the root of this project on your computer using your local terminal and then enter the following command:
-
-```         
-docker pull gur5/heart-failure-prediction:latest
-```
-
-2.  Once this finishes executing, run the following command in your local terminal:
+2.  Navigate to the root of this project on your computer using your local terminal and then enter the following command:
 
 ```         
 docker compose up
