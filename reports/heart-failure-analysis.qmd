@@ -52,7 +52,7 @@ import warnings
 
 import pandas as pd
 
-file_path = '../data/heart_failure_clinical_records_dataset.csv'
+file_path = '../data/raw/heart_failure_clinical_records_dataset.csv'
 heart_failure_data = pd.read_csv(file_path)
 
 # List of binary columns
@@ -399,8 +399,9 @@ patient_table = pd.read_csv("../results/tables/patient_table.csv")
 patient_table.style.set_properties(**{'text-align': 'left'})
 ```
 
+Based on the correlation matrix graph @fig-correlation_heatmap, all features have relatively low correlations between each other, the correlations are below 0.5, so there is no strong evidence to drop additional features.
 
-![Correlation heatmap-  Based on the correlation matrix graph below, all features have relatively low correlations between each other, the correlations are below 0.5, so there is no strong evidence to drop additional featues. ](../results/figures/correlation_heatmap.png){#correlation_heatmap width=60% fig-pos="H"}
+![Correlation heatmap](../results/figures/correlation_heatmap.png){#fig-correlation_heatmap width=80% fig-pos="H" fig-num=true}
 
 
 
@@ -409,7 +410,7 @@ patient_table.style.set_properties(**{'text-align': 'left'})
 #| tbl-cap: Number of missing values in each column of the heart failure dataset.
 #| echo: false
 
-file_path = '../data/heart_failure_clinical_records_dataset.csv'
+file_path = '../data/raw/heart_failure_clinical_records_dataset.csv'
 heart_failure_data = pd.read_csv(file_path)
 
 # Check for missing values
@@ -437,7 +438,7 @@ No missing values, no imputation or filling Nulls required
 import pandas as pd
 
 # Load the dataset
-file_path = '../data/heart_failure_clinical_records_dataset.csv'
+file_path = '../data/raw/heart_failure_clinical_records_dataset.csv'
 heart_failure_data = pd.read_csv(file_path)
 
 # Get value counts for DEATH_EVENT and convert to a DataFrame
@@ -515,8 +516,12 @@ heart_failure_fit = grid_search.fit(heart_failure_train.drop(columns=['DEATH_EVE
 lr_best_model = grid_search.best_estimator_.named_steps['logisticregression']
 lr_best_model
 ```
+
 Hyperparameter tuning to find find the best Logistic Regression model:
 ```{python}
+#| label: tbl-lr-scores
+#| tbl-cap: "Logistic Regression Scores"
+#| tbl-num: true
 lr_scores = pd.DataFrame(grid_search.cv_results_).sort_values('mean_test_score', ascending = False)[['param_logisticregression__C', 'mean_test_score', 'mean_train_score']]
 logregC = lr_scores.iloc[0,0]
 logreg_cv = round(lr_scores.iloc[0,1],2)
@@ -525,9 +530,9 @@ lr_scores.iloc[0:5]
 
 **The model is performing well with C = `{python} logregC` with a CV score of `{python} logreg_cv` and is close to train score, indicating that model is generalising well.**
 
-![Cross-validation scores for Logistic Regression -  Logistic regression performs better than Decision tree and KNN on the cross validation data, hence, we selected it as our final model.](../results/figures/lr_cv_scores.png){#fig-lr_cv_scores width=60% fig-pos="H"}
+![Cross-validation scores for Logistic Regression](../results/figures/lr_cv_scores.png){#fig-lr_cv_scores width=80% fig-pos="H" fig-num=true text-align="center"}
 
-
+Logistic regression performs better than Decision tree and KNN on the cross validation data, hence, we selected it as our final model.
 
 
 The best features to train our model are show in @tbl-top-features:

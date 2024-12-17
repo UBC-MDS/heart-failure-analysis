@@ -3,13 +3,15 @@ import os
 # Command 1: Download and convert the dataset
 command_1 = """
 python scripts/download_and_convert.py \
-  --url "https://archive.ics.uci.edu/static/public/519/heart+failure+clinical+records.zip"
+  --url "https://archive.ics.uci.edu/static/public/519/heart+failure+clinical+records.zip" \
+  --write_to "data/raw"
 """
 
 # Command 2: Process and analyze the dataset
 command_2 = """
 python scripts/process_and_analyze.py \
-  --file_path "../data/heart_failure_clinical_records_dataset_converted.csv"
+  --file_path "./data/raw/heart_failure_clinical_records_dataset_converted.csv" \
+  --output_dir "./data/processed"
 """
 
 # Command 3: Perform correlation analysis
@@ -24,8 +26,9 @@ python scripts/correlation_analysis.py \
 command_4 = """
 python scripts/modelling.py \
   --training-data "./data/processed/heart_failure_train.csv" \
-  --pipeline-to "results/pipeline" \
+  --pipeline-to "results/models" \
   --plot-to "results/figures" \
+  --table-to "results/tables" \
   --seed 123
 """
 
@@ -33,8 +36,8 @@ python scripts/modelling.py \
 command_5 = """
 python scripts/model_evaluation.py \
   --scaled-test-data "data/processed/heart_failure_test.csv" \
-  --pipeline-from "results/pipeline/heart_failure_model.pickle" \
-  --results-to "results/figures"
+  --pipeline-from "results/models/pipeline.pickle" \
+  --results-to "results/tables"
 """
 
 # Execute all commands

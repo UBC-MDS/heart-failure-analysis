@@ -11,6 +11,7 @@ on:
     paths: 
       - 'Dockerfile'
       - 'conda-linux-64.lock'
+      - 'requirements.txt'
       
 jobs:
   push_to_registry:

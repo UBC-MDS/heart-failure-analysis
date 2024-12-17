@@ -9,6 +9,8 @@ USER root
 RUN sudo apt update \
     && sudo apt install -y lmodern
 
+RUN apt-get update && apt-get install -y build-essential make
+
 USER $NB_UID
 
 RUN mamba update --quiet --file /tmp/conda-linux-64.lock
@@ -17,8 +19,7 @@ RUN mamba clean --all -y -f
 RUN pip install --no-cache-dir -r /tmp/requirements.txt
 RUN pip cache purge
 
+
 RUN fix-permissions "${CONDA_DIR}"
 RUN fix-permissions "/home/${NB_USER}"
-
-RUN pip install deepchecks==0.18.1
 

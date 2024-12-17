@@ -1,4 +1,9 @@
+# modelling.py
+# author: Gurmehak Kaur 
+# date: 2024-12-06
+
 import click
+import sys
 import os
 import pandas as pd
 import numpy as np
@@ -11,19 +16,21 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import make_pipeline
 import altair as alt
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+from src.model_fit import model_fit
 
 @click.command()
 @click.option('--training-data', type=str, help="Path to training data")
 @click.option('--pipeline-to', type=str, help="Path to directory where the final pipeline object will be written to")
 @click.option('--plot-to', type=str, help="Path to directory where the plot will be written to")
+@click.option('--table-to', type=str, help="Path to directory where the table will be written to")
 @click.option('--seed', type=int, help="Random seed", default=522)
-def main(training_data, pipeline_to, plot_to, seed):
+def main(training_data, pipeline_to, plot_to, table_to, seed):
     '''Tests three pipelines for heart failure prediction and selects Logistic Regression as the final model.'''
     
-    # 创建路径如果不存在
     os.makedirs(pipeline_to, exist_ok=True)
     os.makedirs(plot_to, exist_ok=True)
-    
+    os.makedirs(table_to, exist_ok=True)
     np.random.seed(seed)
 
     # Load the dataset
@@ -38,6 +45,7 @@ def main(training_data, pipeline_to, plot_to, seed):
         remainder='passthrough'
     )
 
+
     # ----- Decision Tree Pipeline -----
     dt_pipeline = make_pipeline(
         heart_failure_preprocessor, 
@@ -51,57 +59,43 @@ def main(training_data, pipeline_to, plot_to, seed):
     )
     dt_scores = pd.DataFrame(dt_scores).sort_values('test_score', ascending=False)
 
+
     # ----- K-Nearest Neighbors Pipeline -----
-    knn_pipeline = make_pipeline(
-        heart_failure_preprocessor, 
-        KNeighborsClassifier()
-    )
-    knn_param_grid = {
-        "kneighborsclassifier__n_neighbors": range(1, 100, 3)
-    }
-    knn_grid_search = GridSearchCV(
-        knn_pipeline,
+    knn_param_grid = {"kneighborsclassifier__n_neighbors": range(1, 100, 3)}
+
+    #--- ABSTRACT FUNCTION ---
+    # Hyperparameter tuning and model fitting 
+    knn_best_model, knn_grid_search = model_fit(
+        KNeighborsClassifier(),
+        heart_failure_preprocessor,
         knn_param_grid,
-        cv=10,
-        n_jobs=-1,
-        return_train_score=True,
+        heart_failure_train
     )
-    knn_grid_search.fit(
-        heart_failure_train.drop(columns=['DEATH_EVENT']), 
-        heart_failure_train['DEATH_EVENT']
-    )
-    knn_best_model = knn_grid_search.best_estimator_
+
 
     # ----- Logistic Regression Pipeline -----
-    lr_pipeline = make_pipeline(
-        heart_failure_preprocessor, 
-        LogisticRegression(random_state=seed, max_iter=2000, class_weight="balanced")
-    )
-    lr_param_grid = {
-        "logisticregression__C": 10.0 ** np.arange(-5, 5, 1)
-    }
-    lr_grid_search = GridSearchCV(
-        lr_pipeline,
-        lr_param_grid,
-        cv=10,
-        n_jobs=-1,
-        return_train_score=True
-    )
-    heart_failure_model = lr_grid_search.fit(
-        heart_failure_train.drop(columns=['DEATH_EVENT']), 
-        heart_failure_train['DEATH_EVENT']
-    )
-    lr_best_model = lr_grid_search.best_estimator_
+    lr_param_grid = {"logisticregression__C": 10.0 ** np.arange(-5, 5, 1)}
+
+    #--- ABSTRACT FUNCTION ---
+    # Hyperparameter tuning and model fitting 
+    lr_best_model, lr_grid_search = model_fit(
+    LogisticRegression(random_state=123, max_iter=2000, class_weight="balanced"),
+    heart_failure_preprocessor,
+    lr_param_grid,
+    heart_failure_train
+)
+
     print("Best Logistic Regression Model:", lr_best_model)
 
+
     # Save the Logistic Regression pipeline
-    with open(os.path.join(pipeline_to, "heart_failure_model.pickle"), 'wb') as f:
-        pickle.dump(heart_failure_model, f)
+    with open(os.path.join(pipeline_to, "pipeline.pickle"), 'wb') as f:
+        pickle.dump(lr_best_model, f)
 
     # ----- Visualizing Logistic Regression Scores -----
     lr_scores = pd.DataFrame(lr_grid_search.cv_results_).sort_values(
-        'mean_test_score', ascending=False
-    )[['param_logisticregression__C', 'mean_test_score', 'mean_train_score']]
+    'mean_test_score', ascending=False
+)[['param_logisticregression__C', 'mean_test_score', 'mean_train_score']]
 
     lr_plot = alt.Chart(lr_scores).transform_fold(
         ["mean_test_score", "mean_train_score"],
@@ -117,7 +111,7 @@ def main(training_data, pipeline_to, plot_to, seed):
         width=600,
         height=400
     )
-    lr_plot.save(os.path.join(plot_to, "logistic_regression_scores.html"), scale_factor=2.0)
+    #lr_plot.save(os.path.join(plot_to, "logistic_regression_scores.html"), scale_factor=2.0)
 
     # ----- Analyzing Logistic Regression Coefficients -----
     lr_model = lr_best_model.named_steps['logisticregression']
@@ -128,7 +122,7 @@ def main(training_data, pipeline_to, plot_to, seed):
         'Coefficient': features[0],
         'Absolute_Coefficient': abs(features[0])
     }).sort_values(by='Absolute_Coefficient', ascending=False)
-    coefficients.to_csv(os.path.join(plot_to, "logistic_regression_coefficients.csv"), index=False)
+    coefficients.to_csv(os.path.join(table_to, "logistic_regression_coefficients.csv"), index=False)
     print("Logistic Regression Coefficients:", coefficients)
 
 if __name__ == '__main__':
