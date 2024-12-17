@@ -31,9 +31,10 @@ Who: Gurmehak Kaur
 
 What was addressed:
 
--   Improve the project folder structure Description of Revision:
+-   Improve the project folder structure Description of Revision: I cleaned up and improved the project’s folder structure by organizing files into dedicated folders that were earlier missing in our repo: `reports/` for generated summaries, `results/` with subfolders for tables and figures for visualizations, `scripts/` for executable workflows and `src/` for abstract functions. This streamlined structure improves clarity and project maintainability.
     Evidence:
-    <https://github.com/UBC-MDS/heart-failure-analysis/commit/5517cf4a60afb6bf6afef3c43c2f820a9909862c>
+    <https://github.com/UBC-MDS/heart-failure-analysis/commit/87eadd9b89b44e0c49dea8433a9b300577dab760>
+    <https://github.com/UBC-MDS/heart-failure-analysis/commit/5517cf4a60afb6bf6afef3c43c2f820a9909862c> 
 
 Who: Ke Gao
 
